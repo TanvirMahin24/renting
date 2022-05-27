@@ -30,6 +30,9 @@
 :global(.mantine-Select-wrapper input::placeholder) {
   color: var(--dark) !important;
 }
+:global(.mantine-Slider-root) {
+  margin-top: 8px;
+}
 
 .range {
   width: 30%;
@@ -37,12 +40,14 @@
 
 @media screen and (max-width: 768px) {
   .wrapper {
+    margin-top: 20px;
     transform: translateY(0);
+    position: relative;
   }
   .filter {
     width: 90%;
     flex-direction: column;
-    height: auto;
+    height: auto !important;
     padding: 20px;
   }
   .range {

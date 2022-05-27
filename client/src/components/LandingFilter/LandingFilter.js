@@ -22,6 +22,7 @@ const LandingFilter = () => {
           <RangeSlider
             mt="xl"
             mb="xl"
+            color={"orange"}
             showLabelOnHover={false}
             showTooltip={false}
             step={25}

@@ -2,7 +2,7 @@
   --primary: #ff5a3c;
   --primary-hover: #fb412a;
   --secondary: #5c727d;
-  --secondary-500: rgba(211, 211, 211, 0.5);
+  --secondary-500: rgba(211, 211, 211, 0.7);
   --danger: #dc3545;
   --danger-hover: #a52734;
   --dark: #0f1519;
@@ -97,6 +97,7 @@ select.form-select option:hover {
 .bg_dark {
   background: var(--light) !important;
 }
+
 .bg_light {
   background: var(--light) !important;
 }
