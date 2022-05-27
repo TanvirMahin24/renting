@@ -106,6 +106,15 @@ select.form-select option:hover {
   background: #0f1519;
 }
 
+.text_primary {
+  color: var(--primary) !important;
+}
+
+.border_left {
+  border-left: 3px solid var(--primary) !important;
+  padding-left: 15px;
+}
+
 .crd {
   border-radius: 15px !important;
   overflow: hidden;

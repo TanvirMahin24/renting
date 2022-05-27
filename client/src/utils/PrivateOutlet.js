@@ -1,25 +1,28 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { authUserAction } from "../actions/Auth.action";
 
-const PrivateOutlet = ({ auth, loading }) => {
+const PrivateOutlet = ({ auth, authUserAction }) => {
   const navigate = useNavigate();
   useEffect(() => {
-    setTimeout(() => {
-      return auth !== "" && loading === false ? (
-        <Outlet />
-      ) : (
-        <Navigate to="/" />
-      );
-    }, 5000);
-  }, [auth]);
-
-  return auth !== "" ? <Outlet /> : <Navigate to="/" />;
+    const refFunc = async () => {
+      if (auth === null || auth === false) {
+        let check = await authUserAction();
+        if (check === true) {
+          return <Outlet />;
+        } else {
+          navigate("/");
+        }
+      }
+    };
+    refFunc();
+  }, [auth, authUserAction]);
+  return auth === null ? <Outlet /> : auth === true ? <Outlet /> : null;
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth.token,
-  loading: state.auth.loading,
+  auth: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, null)(PrivateOutlet);
+export default connect(mapStateToProps, { authUserAction })(PrivateOutlet);

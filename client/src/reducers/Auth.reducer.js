@@ -8,19 +8,28 @@ import {
 } from "../constants/Type";
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: null,
   user: null,
   loading: true,
 };
 
 const authReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload,
+        user: payload,
+      };
+    case AUTH_USER_LOAD:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
       };
 
     case LOGIN_FAIL:

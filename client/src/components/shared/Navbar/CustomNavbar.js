@@ -6,7 +6,11 @@ import logoImg from "../../../assets/logo.png";
 import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
 import { useSpotlight } from "@mantine/spotlight";
 import { Tooltip } from "@mantine/core";
-const CustomNavbar = ({ landing }) => {
+import { connect } from "react-redux";
+import { logoutAction } from "../../../actions/Auth.action";
+
+const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
+  console.log(isAuth);
   const spotlight = useSpotlight();
   const [tooltipActive, setTooltipActive] = useState(false);
   return (
@@ -43,27 +47,32 @@ const CustomNavbar = ({ landing }) => {
               <Nav.Link as={Link} to="/contact" className={styles.link}>
                 Contact
               </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/login"
-                className={`${styles.link} d-md-none d-block`}
-              >
-                Login
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/register"
-                className={`${styles.link} d-md-none d-block`}
-              >
-                Register
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/account"
-                className={`${styles.link} d-md-none d-block`}
-              >
-                Account
-              </Nav.Link>
+              {isAuth ? (
+                <Nav.Link
+                  as={Link}
+                  to="/account"
+                  className={`${styles.link} d-md-none d-block`}
+                >
+                  Account
+                </Nav.Link>
+              ) : (
+                <>
+                  <Nav.Link
+                    as={Link}
+                    to="/login"
+                    className={`${styles.link} d-md-none d-block`}
+                  >
+                    Login
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to="/register"
+                    className={`${styles.link} d-md-none d-block`}
+                  >
+                    Register
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
             <Nav
               className={`d-md-flex align-items-center d-none`}
@@ -99,8 +108,9 @@ const CustomNavbar = ({ landing }) => {
                   className={styles.nav_btn}
                   onMouseEnter={() => setTooltipActive(true)}
                   onMouseLeave={() => setTooltipActive(false)}
+                  onClick={() => spotlight.openSpotlight()}
                 >
-                  <span onClick={() => spotlight.openSpotlight()}>
+                  <span>
                     <AiOutlineSearch />
                   </span>
                 </Nav.Link>
@@ -115,12 +125,32 @@ const CustomNavbar = ({ landing }) => {
                 }
                 menuVariant="light"
               >
-                <NavDropdown.Item as={Link} to="/login">
-                  Login
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/register">
-                  Register
-                </NavDropdown.Item>
+                {isAuth ? (
+                  <>
+                    <span className="d-block fw-bold px-3 text_primary">
+                      {user && user.first_name ? user.first_name : ""}
+                    </span>
+                    <span className="d-block px-3 text-capitalize ">
+                      {user && user.role ? user.role : ""}
+                    </span>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/dashboard">
+                      Dashboard
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => logoutAction()}>
+                      Logout
+                    </NavDropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <NavDropdown.Item as={Link} to="/login">
+                      Login
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/register">
+                      Register
+                    </NavDropdown.Item>
+                  </>
+                )}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -130,4 +160,9 @@ const CustomNavbar = ({ landing }) => {
   );
 };
 
-export default CustomNavbar;
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { logoutAction })(CustomNavbar);

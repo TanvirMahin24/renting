@@ -1,0 +1,122 @@
+.nav .nav__item {
+  padding: 0.6rem 0;
+  border: 1px solid #e6e6e6;
+  border-bottom: none;
+  text-decoration: none !important;
+  font-weight: 600;
+  color: var(--secondary) !important;
+  transition: 0.3s all ease-in-out;
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  font-size: 14px;
+  cursor: pointer !important;
+}
+
+.nav .nav__item:last-child {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.nav .nav__item:global(.active) {
+  color: var(--white) !important;
+  background: var(--dark);
+}
+
+.nav__item_text {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.nav__item:global(.active) .icon {
+  color: var(--white) !important;
+}
+.icon {
+  height: 35px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__item:hover {
+  color: var(--primary) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.right__item {
+  text-decoration: none !important;
+  color: var(--secondary) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--secondary);
+  margin-right: 10px;
+  transition: 0.3s all ease-in-out;
+}
+.right__item:global(.active) {
+  text-decoration: none !important;
+  color: var(--dark) !important;
+  border: 1px solid var(--light);
+  background: linear-gradient(90deg, #ffe502 0%, #ffa602 100%) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.right__item:hover {
+  color: var(--dark) !important;
+  border: 1px solid var(--dark);
+  transition: 0.3s all ease-in-out;
+}
+
+.ham {
+  display: none;
+}
+
+.title {
+  font-size: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    display: block;
+    position: fixed;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    left: -105%;
+    min-height: 100vh !important;
+    transition: 0.3s all ease-in-out;
+    overflow-y: scroll;
+  }
+
+  .wrapper.active {
+    left: 0;
+    transition: 0.3s all ease-in-out;
+  }
+
+  .ham {
+    display: block;
+    text-decoration: none !important;
+    color: var(--dark) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50%;
+    border: 1px solid var(--dark);
+    margin-right: 10px;
+    transition: 0.3s all ease-in-out;
+  }
+
+  .logo {
+    width: 160px;
+  }
+
+  .title {
+    display: none;
+  }
+}

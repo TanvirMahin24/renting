@@ -3,7 +3,14 @@ const { validPassword, genPassword } = require("../../Utils/hashPassword");
 
 const updateProfile = async (req, res) => {
   // get id from request
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
+
+  // check id is auth user id
+  if (id !== req.user.id) {
+    return res.status(401).json({
+      message: "You are not authorized to update this user",
+    });
+  }
 
   // get data from request
   const { first_name, last_name, email, phone } = req.body;

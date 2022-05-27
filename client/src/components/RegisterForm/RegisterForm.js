@@ -23,7 +23,7 @@ const RegisterForm = ({ isAuthenticated, registerAction }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/discover");
+      navigate("/dashboard");
     }
   }, [isAuthenticated]);
 
@@ -31,9 +31,10 @@ const RegisterForm = ({ isAuthenticated, registerAction }) => {
     setSubmitting(true);
     // TODO ::: create account action
     let check = await registerAction(values);
-    if (check) {
+    if (check === true) {
       toast.success("Register Successful");
       setSubmitting(false);
+      navigate("/dashboard");
     }
     setSubmitting(false);
   };

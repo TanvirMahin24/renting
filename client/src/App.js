@@ -5,9 +5,21 @@ import PrivateOutlet from "./utils/PrivateOutlet";
 import "./App.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { SpotlightProvider } from "@mantine/spotlight";
-import { RegisterPage, LoginPage, LandingPage } from "./views";
+import {
+  RegisterPage,
+  LoginPage,
+  LandingPage,
+  DashboardPage,
+  SettingsPage,
+} from "./views";
+import { useEffect } from "react";
+import { authUserAction } from "./actions/Auth.action";
+import { connect } from "react-redux";
 
-function App() {
+function App({ authUserAction }) {
+  useEffect(() => {
+    authUserAction();
+  }, []);
   return (
     <>
       <SpotlightProvider
@@ -16,7 +28,7 @@ function App() {
         searchPlaceholder="Search for home now..."
         shortcut="mod + shift + S"
       >
-        <ToastContainer newestOnTop theme="dark" />
+        <ToastContainer newestOnTop theme="light" />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -25,7 +37,8 @@ function App() {
 
             <Route path="/*" element={<PrivateOutlet />}>
               <>
-                <Route path="dashboard" element={<div>Dashboard</div>} />
+                <Route path="dashboard" element={<DashboardPage />} />
+                <Route path="settings" element={<SettingsPage />} />
               </>
             </Route>
           </Routes>
@@ -35,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { authUserAction })(App);

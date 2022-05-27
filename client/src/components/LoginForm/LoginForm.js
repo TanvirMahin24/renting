@@ -22,7 +22,7 @@ const LoginForm = ({ isAuthenticated, loginAction }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // navigate("/discover");
+      navigate("/dashboard");
     }
   }, [isAuthenticated]);
 
@@ -30,9 +30,10 @@ const LoginForm = ({ isAuthenticated, loginAction }) => {
     setSubmitting(true);
     // TODO ::: create account action
     let check = await loginAction(values);
-    if (check) {
+    if (check === true) {
       toast.success("Login Successful");
       setSubmitting(false);
+      navigate("/dashboard");
     }
     setSubmitting(false);
   };

@@ -10,7 +10,7 @@ const BreadCrumb = ({ name, first, last, type }) => {
       <Container>
         <span className="d-block fs-2 pb-4 fw-bold">{name}</span>
         <div className="d-flex align-items-center justify-content-start">
-          {type === "home" ? (
+          {type === "home" || type === "dashboard" ? (
             <span className={styles.logo}>
               <AiOutlineHome />
             </span>
@@ -19,7 +19,16 @@ const BreadCrumb = ({ name, first, last, type }) => {
           )}
           {first ? (
             <>
-              <Link className={styles.first} to={type === "home" ? "/" : "/"}>
+              <Link
+                className={styles.first}
+                to={
+                  type === "home"
+                    ? "/"
+                    : type === "dashboard"
+                    ? "/dashboard"
+                    : "/"
+                }
+              >
                 {first}
               </Link>{" "}
               <span className={styles.divider}>

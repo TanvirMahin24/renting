@@ -6,7 +6,7 @@
   position: absolute !important;
   top: 0 !important;
   background: transparent !important;
-  z-index: 9999 !important;
+  z-index: 999 !important;
   width: 100% !important;
 }
 

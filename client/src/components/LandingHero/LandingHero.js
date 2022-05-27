@@ -3,7 +3,6 @@ import styles from "./LandingHero.module.css";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import coreStyles from "react-awesome-slider/src/core/styles.scss";
-import animationStyles from "react-awesome-slider/src/styled/open-animation/open-animation.scss";
 import img1 from "../../assets/Landing/1.jpg";
 import img2 from "../../assets/Landing/2.jpg";
 import img3 from "../../assets/Landing/3.jpg";
