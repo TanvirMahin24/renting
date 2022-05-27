@@ -1,4 +1,5 @@
 import React from "react";
+import LandingFilter from "../../components/LandingFilter/LandingFilter";
 import LandingHero from "../../components/LandingHero/LandingHero";
 import CustomNavbar from "../../components/shared/Navbar/CustomNavbar";
 
@@ -9,6 +10,7 @@ const LandingPage = () => {
     >
       <CustomNavbar landing />
       <LandingHero />
+      <LandingFilter />
     </div>
   );
 };
