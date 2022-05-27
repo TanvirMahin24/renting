@@ -2,6 +2,14 @@
   height: 110px !important;
 }
 
+.nav.landing {
+  position: absolute !important;
+  top: 0 !important;
+  background: transparent !important;
+  z-index: 9999 !important;
+  width: 100% !important;
+}
+
 :global(.nav-item.dropdown:hover .dropdown-menu) {
   display: block !important;
 }
@@ -15,6 +23,15 @@
   display: inline-block;
   transition: 0.3s all ease-in-out;
   background: var(--white) !important;
+}
+
+.nav.landing .link {
+  background: transparent !important;
+  color: var(--white) !important;
+}
+
+.nav.landing .link:hover {
+  color: var(--primary) !important;
 }
 
 .link:hover {
@@ -50,5 +67,24 @@
 @media screen and (max-width: 668px) {
   .d_none {
     display: none !important;
+  }
+
+  .nav.nav.landing {
+    background: var(--white) !important;
+    position: relative !important;
+  }
+
+  .nav.landing .link {
+    background: white !important;
+    color: var(--dark) !important;
+  }
+
+  .nav.landing .link:hover {
+    color: var(--primary) !important;
+  }
+
+  .bg_md_white {
+    background: var(--white) !important;
+    color: var(--dark) !important;
   }
 }

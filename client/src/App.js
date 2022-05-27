@@ -2,10 +2,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import PrivateOutlet from "./utils/PrivateOutlet";
-import { RegisterPage, LoginPage } from "./views";
 import "./App.css";
 import { AiOutlineSearch } from "react-icons/ai";
-import { SpotlightProvider, useSpotlight } from "@mantine/spotlight";
+import { SpotlightProvider } from "@mantine/spotlight";
+import { RegisterPage, LoginPage, LandingPage } from "./views";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <ToastContainer newestOnTop theme="dark" />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<div>Landing</div>} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
 

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import styles from "./CustomNavbar.module.css";
 import logoImg from "../../../assets/logo.png";
 import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
-import { SpotlightProvider, useSpotlight } from "@mantine/spotlight";
+import { useSpotlight } from "@mantine/spotlight";
 import { Tooltip } from "@mantine/core";
-const CustomNavbar = () => {
+const CustomNavbar = ({ landing }) => {
   const spotlight = useSpotlight();
   const [tooltipActive, setTooltipActive] = useState(false);
   return (
@@ -14,15 +14,19 @@ const CustomNavbar = () => {
       <Navbar
         collapseOnSelect
         expand="md"
-        bg="white"
+        bg={`${landing ? "transparent" : "white"}`}
         variant="dark"
-        className={styles.nav}
+        className={styles.nav + `${landing ? " " + styles.landing : ""}`}
       >
-        <Container className="bg-white">
+        <Container className={`${landing ? styles.bg_md_white : "bg-white"}`}>
           <Navbar.Brand as={Link} to="/">
             <div className="d-flex justify-content-center align-items-center">
               <img src={logoImg} className={styles.logo} alt="" />{" "}
-              <span className="d-block pt-1 ps-2 fw-bold text-dark fs-3">
+              <span
+                className={`d-block pt-1 ps-2 fw-bold  fs-3 ${
+                  landing ? styles.bg_md_white : "text-dark"
+                }`}
+              >
                 Renting Site
               </span>
             </div>
