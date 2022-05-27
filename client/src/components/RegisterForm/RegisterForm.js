@@ -11,8 +11,10 @@ import {
 import * as Yup from "yup";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "./RegisterForm.module.css";
+import { registerAction } from "../../actions/Auth.action";
+import { toast } from "react-toastify";
 
-const RegisterForm = ({ isAuthenticated }) => {
+const RegisterForm = ({ isAuthenticated, registerAction }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordVisible2, setIsPasswordVisible2] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -28,8 +30,9 @@ const RegisterForm = ({ isAuthenticated }) => {
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
-    let check = false;
+    let check = await registerAction(values);
     if (check) {
+      toast.success("Register Successful");
       setSubmitting(false);
     }
     setSubmitting(false);
@@ -37,6 +40,7 @@ const RegisterForm = ({ isAuthenticated }) => {
   let initVals = {
     fname: "",
     lname: "",
+    phone: "",
     email: "",
     password: "",
     password2: "",
@@ -45,6 +49,7 @@ const RegisterForm = ({ isAuthenticated }) => {
   const SignupSchema = Yup.object().shape({
     fname: Yup.string().required("First name is required!"),
     lname: Yup.string().required("Last name is required!"),
+    phone: Yup.string().required("Phone number is required!"),
     email: Yup.string()
       .email("Enter a valid email!")
       .required("Email is required!"),
@@ -108,6 +113,25 @@ const RegisterForm = ({ isAuthenticated }) => {
                   type="text"
                   className={`${styles.input} w-100`}
                   isInvalid={errors.lname && touched.lname}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3 d-flex flex-column">
+                <div className="d-flex justify-content-between align-items-center pb-2">
+                  <label htmlFor="phone" className="d-block">
+                    Phone Number
+                  </label>
+                  {errors.phone && touched.phone ? (
+                    <small className="text-danger pt-2">{errors.phone}</small>
+                  ) : null}
+                </div>
+                <Field
+                  as={BootstrapForm.Control}
+                  placeholder="Type your phone no..."
+                  name="phone"
+                  isValid={!errors.phone && touched.phone}
+                  type="text"
+                  className={`${styles.input} w-100`}
+                  isInvalid={errors.phone && touched.phone}
                 />
               </InputGroup>
               <InputGroup className="mb-3 d-flex flex-column">
@@ -233,4 +257,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, null)(RegisterForm);
+export default connect(mapStateToProps, { registerAction })(RegisterForm);

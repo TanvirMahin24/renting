@@ -4,15 +4,11 @@ import { Link } from "react-router-dom";
 import styles from "./CustomNavbar.module.css";
 import logoImg from "../../../assets/logo.png";
 import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
+import { SpotlightProvider, useSpotlight } from "@mantine/spotlight";
+import { Tooltip } from "@mantine/core";
 const CustomNavbar = () => {
-  // DROPDOWN CONTROL
-  const [show, setShow] = useState(false);
-  const showDropdown = (e) => {
-    setShow(!show);
-  };
-  const hideDropdown = (e) => {
-    setShow(false);
-  };
+  const spotlight = useSpotlight();
+  const [tooltipActive, setTooltipActive] = useState(false);
   return (
     <div>
       <Navbar
@@ -69,11 +65,42 @@ const CustomNavbar = () => {
               className={`d-md-flex align-items-center d-none`}
               id="nav__custom"
             >
-              <Nav.Link href="#deets" className={styles.nav_btn}>
-                <span>
-                  <AiOutlineSearch />
-                </span>
-              </Nav.Link>
+              <Tooltip
+                opened={tooltipActive}
+                label={
+                  <span>
+                    <span className="code_block">Ctrl</span> +{" "}
+                    <span className="code_block">Shift</span> +{" "}
+                    <span className="code_block">S</span>
+                  </span>
+                }
+                radius="s"
+                styles={{
+                  arrow: {
+                    boxShadow: "var(--box-shadow-1) !important",
+                    background: "#fff !important",
+                    color: "var(--secondary)",
+                  },
+                  body: {
+                    boxShadow: "var(--box-shadow-1) !important",
+                    background: "#fff !important",
+                    color: "var(--secondary)",
+                    fontStyle: "oblique",
+                  },
+                }}
+                withArrow
+              >
+                <Nav.Link
+                  href="#deets"
+                  className={styles.nav_btn}
+                  onMouseEnter={() => setTooltipActive(true)}
+                  onMouseLeave={() => setTooltipActive(false)}
+                >
+                  <span onClick={() => spotlight.openSpotlight()}>
+                    <AiOutlineSearch />
+                  </span>
+                </Nav.Link>
+              </Tooltip>
               <NavDropdown
                 renderMenuOnMount={true}
                 drop="down"

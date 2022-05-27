@@ -12,6 +12,7 @@ import * as Yup from "yup";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "./LoginForm.module.css";
 import { loginAction } from "../../actions/Auth.action";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ isAuthenticated, loginAction }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -30,7 +31,8 @@ const LoginForm = ({ isAuthenticated, loginAction }) => {
     // TODO ::: create account action
     let check = await loginAction(values);
     if (check) {
-      console.log("SubmittEd");
+      toast.success("Login Successful");
+      setSubmitting(false);
     }
     setSubmitting(false);
   };

@@ -1,4 +1,4 @@
-const Pack = require("../../Model/Pack.model");
+const Pack = require("../../Model/Listing.model");
 const Keyword = require("../../Model/Keyword.model");
 const getPackDetails = async (req, res) => {
   // Fetch Pack

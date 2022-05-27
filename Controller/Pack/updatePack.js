@@ -1,4 +1,4 @@
-const Pack = require("../../Model/Pack.model");
+const Pack = require("../../Model/Listing.model");
 const fs = require("fs");
 const { validationResult } = require("express-validator");
 const path = require("path");

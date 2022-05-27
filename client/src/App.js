@@ -4,24 +4,33 @@ import { ToastContainer } from "react-toastify";
 import PrivateOutlet from "./utils/PrivateOutlet";
 import { RegisterPage, LoginPage } from "./views";
 import "./App.css";
+import { AiOutlineSearch } from "react-icons/ai";
+import { SpotlightProvider, useSpotlight } from "@mantine/spotlight";
 
 function App() {
   return (
     <>
-      <ToastContainer newestOnTop theme="dark" />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<div>Landing</div>} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+      <SpotlightProvider
+        actions={[]}
+        searchIcon={<AiOutlineSearch size={22} color="#ff5a3c" />}
+        searchPlaceholder="Search for home now..."
+        shortcut="mod + shift + S"
+      >
+        <ToastContainer newestOnTop theme="dark" />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<div>Landing</div>} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/*" element={<PrivateOutlet />}>
-            <>
-              <Route path="dashboard" element={<div>Dashboard</div>} />
-            </>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route path="/*" element={<PrivateOutlet />}>
+              <>
+                <Route path="dashboard" element={<div>Dashboard</div>} />
+              </>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </SpotlightProvider>
     </>
   );
 }

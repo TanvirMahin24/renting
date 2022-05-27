@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const Pack = require("../../Model/Pack.model");
+const Pack = require("../../Model/Listing.model");
 
 const createPack = async (req, res) => {
   // Validation

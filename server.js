@@ -11,9 +11,12 @@ require("./utils/passport");
 
 // MODELS
 const User = require("./Model/User.model");
-const Pack = require("./Model/Pack.model");
+const Listing = require("./Model/Listing.model");
+const Category = require("./Model/Category.model");
+const Image = require("./Model/Image.model");
 const Keyword = require("./Model/Keyword.model");
-const Order = require("./Model/Order.model");
+const Requirement = require("./Model/Requirement.model");
+const Request = require("./Model/Request.model");
 require("./Model/Subscribers.model");
 
 // INITIALIZE APP
@@ -70,8 +73,6 @@ app.use(passport.session());
 app.use("/api", require("./Routes/Auth"));
 app.use("/api/user", require("./Routes/User"));
 app.use("/api/subscriber", require("./Routes/Subscribe"));
-app.use("/api/pack", require("./Routes/Pack"));
-app.use("/api/order", require("./Routes/Order"));
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
@@ -79,12 +80,19 @@ app.get("/", (req, res) => {
 });
 
 // Sequelize Relations
-Pack.hasMany(Keyword);
-Keyword.belongsTo(Pack);
-Order.belongsTo(User);
-Order.belongsTo(Pack);
-User.hasMany(Order);
-Pack.hasMany(Order);
+Listing.belongsTo(User);
+Listing.belongsTo(Category);
+Listing.hasMany(Image);
+Listing.hasMany(Keyword);
+Listing.hasMany(Requirement);
+User.hasMany(Listing);
+Category.hasMany(Listing);
+Image.belongsTo(Listing);
+Keyword.belongsTo(Listing);
+Requirement.belongsTo(Listing);
+Request.belongsTo(User);
+Request.belongsTo(Listing);
+
 // Sequelize Sync
 sequelize
   .sync({ force: false })

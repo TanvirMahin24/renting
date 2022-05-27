@@ -6,10 +6,10 @@ const updateProfile = async (req, res) => {
   const id = req.params.id;
 
   // get data from request
-  const { username, email, phone } = req.body;
+  const { first_name, last_name, email, phone } = req.body;
   try {
     // find user by id
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, { except: ["password", "salt"] });
 
     // if user not found
     if (!user) {
@@ -19,7 +19,8 @@ const updateProfile = async (req, res) => {
     } else {
       // update user profile
       await user.update({
-        username,
+        first_name,
+        last_name,
         email,
         phone,
       });

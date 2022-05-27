@@ -9,7 +9,8 @@ const router = express.Router();
 router.post(
   "/register",
   [
-    check("username", "Username is required").not().isEmpty(),
+    check("first_name", "First name is required").not().isEmpty(),
+    check("last_name", "Last name is required").not().isEmpty(),
     check("password", "Password is required").not().isEmpty(),
     check("phone", "Phone is required").not().isEmpty(),
     check("email", "Email is required").not().isEmpty(),
@@ -23,6 +24,7 @@ router.post(
     failWithError: true,
   }),
   function (err, req, res, next) {
+    console.log(err);
     return res.json({ ...err, message: "Invalid Credentials" });
   }
 );

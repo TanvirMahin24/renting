@@ -59,6 +59,15 @@ code {
     monospace;
 }
 
+.code_block {
+  background: rgba(192, 192, 192, 0.2);
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 12px;
+}
+
 .landing_loader {
   display: flex;
   justify-content: center;

@@ -11,7 +11,7 @@ const registerController = async (req, res) => {
   }
 
   // Form data
-  const { username, password, email, phone, role } = req.body;
+  const { first_name, last_name, password, email, phone, role } = req.body;
 
   // Check User exist or not
   const newUser = await User.findAll({ where: { email: email } });
@@ -23,7 +23,8 @@ const registerController = async (req, res) => {
     // Create new user
     const passHash = genPassword(password);
     const newUser = await User.create({
-      username,
+      first_name,
+      last_name,
       email,
       phone,
       password: passHash.hash,

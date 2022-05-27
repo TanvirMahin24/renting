@@ -1,42 +1,34 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../utils/database");
 
-const User = sequelize.define("user", {
+const Request = sequelize.define("request", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  first_name: {
+  occupation: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  last_name: {
+  job_title: {
     type: Sequelize.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   phone: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  password: {
+  document: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  salt: {
+  status: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  role: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: "user",
+    defaultValue: "pending",
   },
 });
 
-module.exports = User;
+module.exports = Request;

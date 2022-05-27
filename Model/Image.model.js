@@ -1,22 +1,17 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../utils/database");
 
-const Order = sequelize.define("order", {
+const Image = sequelize.define("image", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  phone: {
+  image: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  status: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: "pending",
   },
 });
 
-module.exports = Order;
+module.exports = Image;

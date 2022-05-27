@@ -5,7 +5,6 @@ const getAuthUser = async (req, res) => {
     const authUser = await User.findByPk(req.user.id, {
       attributes: { exclude: ["password", "salt"] },
     });
-    console.log(req);
 
     // Send Response
     res.status(200).json({

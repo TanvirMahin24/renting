@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
-const Order = require("../../Model/Order.model");
-const Pack = require("../../Model/Pack.model");
+const Order = require("../../Model/Request.model");
+const Pack = require("../../Model/Listing.model");
 const User = require("../../Model/User.model");
 
 const addOrder = async (req, res) => {
