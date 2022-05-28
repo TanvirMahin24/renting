@@ -12,6 +12,8 @@ import {
   DashboardPage,
   SettingsPage,
   AddListingPage,
+  CategoryPage,
+  AddCategoryPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
@@ -40,6 +42,8 @@ function App({ authUserAction }) {
               <>
                 <Route path="dashboard" element={<DashboardPage />} />
                 <Route path="settings" element={<SettingsPage />} />
+                <Route path="category" element={<CategoryPage />} />
+                <Route path="category/add" element={<AddCategoryPage />} />
                 <Route path="add-listing" element={<AddListingPage />} />
               </>
             </Route>

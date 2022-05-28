@@ -1,6 +1,10 @@
 # Database Model
 
-## User: ✅
+## Symbols
+- ✅  Model done
+- ✔  API done
+
+## User: ✅ ✔
     User schema
 - id: int
 - first_name: string
@@ -11,7 +15,7 @@
 - salt: string
 - role: string
 
-## Listing:
+## Listing: ✅
     Home DB schema
 - id: int
 - title: string

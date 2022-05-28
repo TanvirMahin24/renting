@@ -4,6 +4,8 @@ import LandingPage from "./LandingPage/LandingPage";
 import DashboardPage from "./DashboardPage/DashboardPage";
 import SettingsPage from "./SettingsPage/SettingsPage";
 import AddListingPage from "./AddListingPage/AddListingPage";
+import CategoryPage from "./CategoryPage/CategoryPage";
+import AddCategoryPage from "./AddCategoryPage/AddCategoryPage";
 
 export {
   RegisterPage,
@@ -12,4 +14,6 @@ export {
   DashboardPage,
   SettingsPage,
   AddListingPage,
+  CategoryPage,
+  AddCategoryPage,
 };

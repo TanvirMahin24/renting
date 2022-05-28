@@ -4,12 +4,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logoutAction } from "../../../actions/Auth.action";
 import { TiCogOutline } from "react-icons/ti";
 import { FiLogOut } from "react-icons/fi";
+import { ImStack } from "react-icons/im";
 import styles from "./DashLayout.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { Col, Container, Row } from "react-bootstrap";
 
-const DashLayout = ({ logoutAction, children }) => {
+const DashLayout = ({ logoutAction, children, user }) => {
   const navigate = useNavigate();
   const logoutHandeler = async () => {
     let check = await logoutAction();
@@ -37,6 +38,20 @@ const DashLayout = ({ logoutAction, children }) => {
               <span className={styles.nav__item_text}>Add Listing</span>
             </NavLink>
           </div>
+          {user !== null && user.role === "admin" ? (
+            <>
+              <div className={styles.nav}>
+                <NavLink to="/category" className={styles.nav__item}>
+                  <span className={styles.icon}>
+                    <ImStack />
+                  </span>
+                  <span className={styles.nav__item_text}>Category</span>
+                </NavLink>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
           <div className={styles.nav}>
             <NavLink to="/settings" className={styles.nav__item}>
               <span className={styles.icon}>
@@ -61,4 +76,8 @@ const DashLayout = ({ logoutAction, children }) => {
   );
 };
 
-export default connect(null, { logoutAction })(DashLayout);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { logoutAction })(DashLayout);
