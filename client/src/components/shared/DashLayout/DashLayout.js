@@ -6,6 +6,7 @@ import { TiCogOutline } from "react-icons/ti";
 import { FiLogOut } from "react-icons/fi";
 import styles from "./DashLayout.module.css";
 import { AiOutlineHome } from "react-icons/ai";
+import { BiAddToQueue } from "react-icons/bi";
 import { Col, Container, Row } from "react-bootstrap";
 
 const DashLayout = ({ logoutAction, children }) => {
@@ -26,6 +27,14 @@ const DashLayout = ({ logoutAction, children }) => {
                 <AiOutlineHome />
               </span>
               <span className={styles.nav__item_text}>Dashboard</span>
+            </NavLink>
+          </div>
+          <div className={styles.nav}>
+            <NavLink to="/add-listing" className={styles.nav__item}>
+              <span className={styles.icon}>
+                <BiAddToQueue />
+              </span>
+              <span className={styles.nav__item_text}>Add Listing</span>
             </NavLink>
           </div>
           <div className={styles.nav}>

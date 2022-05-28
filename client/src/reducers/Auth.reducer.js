@@ -4,7 +4,6 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   AUTH_USER_LOAD,
-  GET_CONTACT_LIST,
 } from "../constants/Type";
 
 const initialState = {

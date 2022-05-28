@@ -1,0 +1,65 @@
+.form {
+  padding-top: 30px;
+}
+.input {
+  background: var(--light) !important;
+  color: var(--dark) !important;
+  border: 2px solid #e4ecf2 !important;
+  padding: 12px 15px !important;
+  border-radius: 0 !important;
+}
+
+.input:global(.is-invalid) {
+  border: 1px solid var(--danger) !important;
+}
+
+.select:global(.mantine-MultiSelect-defaultVariant.mantine-MultiSelect-input) {
+  border: none !important;
+  padding-left: 0px !important;
+  padding-right: 0 !important;
+}
+
+.dropdown {
+  top: -10px;
+}
+
+.select input {
+  position: relative;
+  display: block !important;
+  background: var(--light) !important;
+  color: var(--dark) !important;
+  border: 2px solid #e4ecf2 !important;
+  height: 40px;
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  width: 100px !important;
+  padding: 0 10px !important;
+}
+
+.label {
+  font-family: "Montserrat" !important;
+  font-weight: normal !important;
+  font-size: 16px;
+}
+.select_icon {
+  top: 20px !important;
+}
+
+:global(.mantine-MultiSelect-rightSection svg) {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    width: 100%;
+    font-size: 14px !important;
+  }
+
+  .input {
+    font-size: 12px !important;
+  }
+
+  .link__page {
+    font-size: 14px !important;
+  }
+}

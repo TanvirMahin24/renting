@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 import { logoutAction } from "../../../actions/Auth.action";
 
 const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
-  console.log(isAuth);
   const spotlight = useSpotlight();
   const [tooltipActive, setTooltipActive] = useState(false);
   return (

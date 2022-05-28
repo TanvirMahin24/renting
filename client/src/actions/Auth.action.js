@@ -108,7 +108,7 @@ export const logoutAction = () => async (dispatch) => {
   }
 };
 
-// LOGOUT ACTION
+// AUTH USER DATA ACTION
 export const authUserAction = () => async (dispatch) => {
   try {
     const config = {
