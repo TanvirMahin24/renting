@@ -15,6 +15,7 @@ import * as Yup from "yup";
 import { updateUserAction } from "../../actions/Auth.action";
 import { MultiSelect, Select, Switch } from "@mantine/core";
 import { getCategoryAction } from "../../actions/Category.action";
+import { useNavigate } from "react-router-dom";
 
 const AddListingForm = ({
   updateUserAction,
@@ -26,10 +27,14 @@ const AddListingForm = ({
 }) => {
   const [subletCheck, setSubletCheck] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (category === null) {
       getCategoryAction();
+    }
+    if (user !== null && user.role !== "admin") {
+      navigate("/");
     }
   }, []);
   const onSubmitHandeler = async (values) => {

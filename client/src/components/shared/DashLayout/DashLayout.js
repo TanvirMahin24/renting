@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logoutAction } from "../../../actions/Auth.action";
 import { TiCogOutline } from "react-icons/ti";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiUsers } from "react-icons/fi";
 import { ImStack } from "react-icons/im";
 import styles from "./DashLayout.module.css";
 import { AiOutlineHome } from "react-icons/ai";
@@ -46,6 +46,14 @@ const DashLayout = ({ logoutAction, children, user }) => {
                     <ImStack />
                   </span>
                   <span className={styles.nav__item_text}>Category</span>
+                </NavLink>
+              </div>
+              <div className={styles.nav}>
+                <NavLink to="/users" className={styles.nav__item}>
+                  <span className={styles.icon}>
+                    <FiUsers />
+                  </span>
+                  <span className={styles.nav__item_text}>Users</span>
                 </NavLink>
               </div>
             </>

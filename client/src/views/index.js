@@ -6,6 +6,7 @@ import SettingsPage from "./SettingsPage/SettingsPage";
 import AddListingPage from "./AddListingPage/AddListingPage";
 import CategoryPage from "./CategoryPage/CategoryPage";
 import AddCategoryPage from "./AddCategoryPage/AddCategoryPage";
+import UsersPage from "./UsersPage/UsersPage";
 
 export {
   RegisterPage,
@@ -16,4 +17,5 @@ export {
   AddListingPage,
   CategoryPage,
   AddCategoryPage,
+  UsersPage,
 };

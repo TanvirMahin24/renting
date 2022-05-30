@@ -1,29 +1,21 @@
 import { Button, Table, Text } from "@mantine/core";
 import { Container } from "react-bootstrap";
 import React, { useEffect } from "react";
-import styles from "./CategoryList.module.css";
+import styles from "./UsersList.module.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { BiAddToQueue, BiCommentError, BiEditAlt } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { connect } from "react-redux";
-import {
-  deleteCategoryAction,
-  getCategoryAction,
-} from "../../actions/Category.action";
 import { useModals } from "@mantine/modals";
 import { Loader } from "../shared/Loader";
+import { deleteUsersAction, getUsersAction } from "../../actions/Users.action";
 
-const CategoryList = ({
-  user,
-  categories,
-  getCategoryAction,
-  deleteCategoryAction,
-}) => {
+const UsersList = ({ users, getUsersAction, deleteUsersAction, user }) => {
   const modals = useModals();
   const navigate = useNavigate();
   useEffect(() => {
-    if (categories === null) {
-      getCategoryAction();
+    if (users === null) {
+      getUsersAction();
     }
     if (user !== null && user.role !== "admin") {
       navigate("/");
@@ -41,22 +33,18 @@ const CategoryList = ({
         </Text>
       ),
       labels: { confirm: "Delete Category", cancel: "Cancel" },
-      onConfirm: () => deleteCategoryAction(id),
+      onConfirm: () => deleteUsersAction(id),
     });
   };
   return (
     <Container>
       <div className="d-flex flex-md-row flex-column justify-content-between align-items-md-center align-items-start py-3 py-md-0">
-        <h2 className="border_left mt-3 mb-4">Category List</h2>
-        <Link to="/category/add" className="btn btn_primary">
-          <BiAddToQueue className="me-2" size={22} />
-          Add Category
-        </Link>
+        <h2 className="border_left mt-3 mb-4">User List</h2>
       </div>
 
-      {categories === null ? (
+      {users === null ? (
         <Loader />
-      ) : categories.length === 0 ? (
+      ) : users.length === 0 ? (
         <span className="h4 d-block py-5 fw-normal text-center">
           <BiCommentError size={48} color="var(--primary)" className="mb-3" />{" "}
           <br />
@@ -68,21 +56,25 @@ const CategoryList = ({
             <thead>
               <tr>
                 <th>#</th>
-                <th className="w-100">Category Name</th>
+                <th className="">First Name</th>
+                <th className="">Last Name</th>
+                <th className="">Email</th>
+                <th className="">Phone</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {categories.map((category, index) => (
-                <tr key={category.id}>
+              {users.map((usr, index) => (
+                <tr key={usr.id}>
                   <td>{index + 1}</td>
-                  <td>{category.name}</td>
+                  <td>{usr.first_name}</td>
+                  <td>{usr.last_name}</td>
+                  <td>{usr.email}</td>
+                  <td>{usr.phone}</td>
                   <td>
                     <div className="d-flex align-items-center flex-md-row flex-column">
                       <Button
-                        onClick={() =>
-                          navigate(`/category/${category.id}/edit`)
-                        }
+                        onClick={() => navigate(`/users/${usr.id}/edit`)}
                         leftIcon={<BiEditAlt />}
                         radius="xs"
                         size="xs"
@@ -95,7 +87,7 @@ const CategoryList = ({
                         leftIcon={<BsTrash />}
                         radius="xs"
                         size="xs"
-                        onClick={() => deleteHandeler(category.id)}
+                        onClick={() => deleteHandeler(usr.id)}
                       >
                         Delete
                       </Button>
@@ -112,11 +104,11 @@ const CategoryList = ({
 };
 
 const mapStateToProps = (state) => ({
-  categories: state.category.categories,
+  users: state.users.users,
   user: state.auth.user,
 });
 
 export default connect(mapStateToProps, {
-  getCategoryAction,
-  deleteCategoryAction,
-})(CategoryList);
+  getUsersAction,
+  deleteUsersAction,
+})(UsersList);
