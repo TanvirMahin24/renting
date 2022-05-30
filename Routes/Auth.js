@@ -19,7 +19,7 @@ router.post(
 );
 router.post(
   "/login",
-  passport.authenticate("local", {
+  passport.authenticate("loginpassport", {
     successRedirect: "/api/user/auth",
     failWithError: true,
   }),
@@ -30,6 +30,7 @@ router.post(
 );
 router.get("/logout", (req, res) => {
   req.logout();
+  res.status(200).clearCookie("connect.sid");
   res.status(200).json({
     message: "Logged out successfully",
   });

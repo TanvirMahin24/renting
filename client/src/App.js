@@ -44,6 +44,10 @@ function App({ authUserAction }) {
                 <Route path="settings" element={<SettingsPage />} />
                 <Route path="category" element={<CategoryPage />} />
                 <Route path="category/add" element={<AddCategoryPage />} />
+                <Route
+                  path="category/:id/edit"
+                  element={<AddCategoryPage edit />}
+                />
                 <Route path="add-listing" element={<AddListingPage />} />
               </>
             </Route>

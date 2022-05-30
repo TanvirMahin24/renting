@@ -6,9 +6,11 @@ const passport = require("passport");
 const expressSession = require("express-session");
 const SessionStore = require("express-session-sequelize")(expressSession.Store);
 const cookieParser = require("cookie-parser");
+
 const path = require("path");
 require("./utils/passport");
 
+const passportLocalSequelize = require("passport-local-sequelize");
 // MODELS
 const User = require("./Model/User.model");
 const Listing = require("./Model/Listing.model");
@@ -68,7 +70,6 @@ app.use(
 // Auth
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Subscribers Route
 app.use("/api", require("./Routes/Auth"));
 app.use("/api/user", require("./Routes/User"));

@@ -5,18 +5,29 @@ import { connect } from "react-redux";
 import { Field, Formik, Form } from "formik";
 import { Button, InputGroup, Form as BootstrapForm } from "react-bootstrap";
 import * as Yup from "yup";
-import { createCategoryAction } from "../../actions/Category.action";
+import {
+  createCategoryAction,
+  updateCategoryAction,
+} from "../../actions/Category.action";
 import { useNavigate } from "react-router-dom";
 
-const AddCategoryForm = ({ data, createCategoryAction, edit }) => {
+const AddCategoryForm = ({
+  data,
+  createCategoryAction,
+  edit,
+  id,
+  updateCategoryAction,
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
-    let check = await createCategoryAction(values);
+    let check = edit
+      ? await updateCategoryAction(values, id)
+      : await createCategoryAction(values);
     if (check === true) {
-      toast.success("Category Created Successfully");
+      toast.success(`Category ${edit ? "Edited" : "Created"} Successfully`);
       setSubmitting(false);
       navigate("/category");
     }
@@ -68,7 +79,9 @@ const AddCategoryForm = ({ data, createCategoryAction, edit }) => {
                   className={"btn_primary"}
                   disabled={submitting}
                 >
-                  {submitting ? "Submitting..." : "Add Category"}
+                  {submitting
+                    ? "Submitting..."
+                    : `${edit ? "Edit" : "Add"} Category`}
                 </Button>
               </div>
             </Form>
@@ -83,6 +96,7 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { createCategoryAction })(
-  AddCategoryForm
-);
+export default connect(mapStateToProps, {
+  createCategoryAction,
+  updateCategoryAction,
+})(AddCategoryForm);

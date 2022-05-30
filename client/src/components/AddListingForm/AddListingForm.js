@@ -349,29 +349,33 @@ const AddListingForm = ({
                     />
                   </InputGroup>
                 </Col>
-                <Col md={6} className="pt-3">
-                  <InputGroup className="mb-3 d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-center pb-2">
-                      <label htmlFor="drawingroom" className="d-block">
-                        No. of Drawing Room
-                      </label>
-                      {errors.drawingroom && touched.drawingroom ? (
-                        <small className="text-danger pt-2">
-                          {errors.drawingroom}
-                        </small>
-                      ) : null}
-                    </div>
-                    <Field
-                      as={BootstrapForm.Control}
-                      placeholder="Type number of drawingroom..."
-                      name="drawingroom"
-                      isValid={!errors.drawingroom && touched.drawingroom}
-                      type="number"
-                      className={`${styles.input}  w-100`}
-                      isInvalid={errors.drawingroom && touched.drawingroom}
-                    />
-                  </InputGroup>
-                </Col>
+                {subletCheck === false ? (
+                  <Col md={6} className="pt-3">
+                    <InputGroup className="mb-3 d-flex flex-column">
+                      <div className="d-flex justify-content-between align-items-center pb-2">
+                        <label htmlFor="drawingroom" className="d-block">
+                          No. of Drawing Room
+                        </label>
+                        {errors.drawingroom && touched.drawingroom ? (
+                          <small className="text-danger pt-2">
+                            {errors.drawingroom}
+                          </small>
+                        ) : null}
+                      </div>
+                      <Field
+                        as={BootstrapForm.Control}
+                        placeholder="Type number of drawingroom..."
+                        name="drawingroom"
+                        isValid={!errors.drawingroom && touched.drawingroom}
+                        type="number"
+                        className={`${styles.input}  w-100`}
+                        isInvalid={errors.drawingroom && touched.drawingroom}
+                      />
+                    </InputGroup>
+                  </Col>
+                ) : (
+                  <></>
+                )}
                 <Col md={6} className="pt-3">
                   <InputGroup className="mb-3 d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-center pb-2">

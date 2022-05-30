@@ -29,7 +29,6 @@ const registerController = async (req, res) => {
       phone,
       password: passHash.hash,
       salt: passHash.salt,
-      role: role ? role : "user",
     });
 
     // Send Email
