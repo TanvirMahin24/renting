@@ -1,14 +1,14 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
-const sequelize = require("./utils/database");
+const sequelize = require("./Utils/database");
 const passport = require("passport");
 const expressSession = require("express-session");
 const SessionStore = require("express-session-sequelize")(expressSession.Store);
 const cookieParser = require("cookie-parser");
 
 const path = require("path");
-require("./utils/passport");
+require("./Utils/passport");
 
 const passportLocalSequelize = require("passport-local-sequelize");
 // MODELS
