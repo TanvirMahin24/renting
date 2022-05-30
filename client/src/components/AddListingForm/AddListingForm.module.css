@@ -13,6 +13,14 @@
   border: 1px solid var(--danger) !important;
 }
 
+.select {
+  border: 2px solid #e4ecf2 !important;
+}
+
+.label {
+  font-size: 16px;
+}
+
 .select:global(.mantine-MultiSelect-defaultVariant.mantine-MultiSelect-input) {
   border: none !important;
   padding-left: 0px !important;
@@ -21,6 +29,9 @@
 
 .dropdown {
   top: -10px;
+}
+.dropdown {
+  top: -5px;
 }
 
 .select input {
@@ -39,6 +50,11 @@
 .label {
   font-family: "Montserrat" !important;
   font-weight: normal !important;
+  font-size: 16px;
+}
+
+.select.input {
+  top: 10px;
   font-size: 16px;
 }
 .select_icon {

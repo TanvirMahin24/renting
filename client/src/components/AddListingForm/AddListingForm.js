@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AddListingForm.module.css";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
@@ -13,16 +13,25 @@ import {
 } from "react-bootstrap";
 import * as Yup from "yup";
 import { updateUserAction } from "../../actions/Auth.action";
-import { MultiSelect, Switch } from "@mantine/core";
+import { MultiSelect, Select, Switch } from "@mantine/core";
+import { getCategoryAction } from "../../actions/Category.action";
 
 const AddListingForm = ({
   updateUserAction,
   user,
-  edit = false,
-  data = null,
+  edit,
+  data,
+  category,
+  getCategoryAction,
 }) => {
   const [subletCheck, setSubletCheck] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (category === null) {
+      getCategoryAction();
+    }
+  }, []);
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
@@ -65,7 +74,7 @@ const AddListingForm = ({
     requirements: Yup.array().of(Yup.string()).notRequired(),
     description: Yup.string().required("Description is required!"),
     size: Yup.number()
-      .min(0, "Can not be negetive")
+      .min(1, "Can not be negetive")
       .required("Size is required!"),
     price: Yup.number()
       .min(800, "Minimum rent is 800 Tk")
@@ -281,6 +290,37 @@ const AddListingForm = ({
 
               <Row>
                 <Col md={6} className="pt-3">
+                  <Select
+                    classNames={{
+                      input: `${styles.select} ${styles.input} form-control`,
+                      label: styles.label,
+                      selected: styles.selected,
+                      dropdown: styles.dropdown2,
+                    }}
+                    defaultValue={values.category}
+                    onChange={(value) => setFieldValue("category", value)}
+                    data={
+                      category !== null
+                        ? category.map((item) => ({
+                            label: item.name,
+                            value: item.id,
+                          }))
+                        : []
+                    }
+                    error={
+                      errors.category && touched.category
+                        ? errors.category
+                        : null
+                    }
+                    placeholder="Select the house type..."
+                    label="Category"
+                    variant="filled"
+                    radius="xs"
+                    size="md"
+                    shadow={"lg"}
+                  />
+                </Col>
+                <Col md={6} className="pt-3">
                   <InputGroup className="mb-3 d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                       <label htmlFor="bedrooms" className="d-block">
@@ -349,56 +389,59 @@ const AddListingForm = ({
                     />
                   </InputGroup>
                 </Col>
+
                 {subletCheck === false ? (
-                  <Col md={6} className="pt-3">
-                    <InputGroup className="mb-3 d-flex flex-column">
-                      <div className="d-flex justify-content-between align-items-center pb-2">
-                        <label htmlFor="drawingroom" className="d-block">
-                          No. of Drawing Room
-                        </label>
-                        {errors.drawingroom && touched.drawingroom ? (
-                          <small className="text-danger pt-2">
-                            {errors.drawingroom}
-                          </small>
-                        ) : null}
-                      </div>
-                      <Field
-                        as={BootstrapForm.Control}
-                        placeholder="Type number of drawingroom..."
-                        name="drawingroom"
-                        isValid={!errors.drawingroom && touched.drawingroom}
-                        type="number"
-                        className={`${styles.input}  w-100`}
-                        isInvalid={errors.drawingroom && touched.drawingroom}
-                      />
-                    </InputGroup>
-                  </Col>
+                  <>
+                    <Col md={6} className="pt-3">
+                      <InputGroup className="mb-3 d-flex flex-column">
+                        <div className="d-flex justify-content-between align-items-center pb-2">
+                          <label htmlFor="dining" className="d-block">
+                            No. of Dining Space
+                          </label>
+                          {errors.dining && touched.dining ? (
+                            <small className="text-danger pt-2">
+                              {errors.dining}
+                            </small>
+                          ) : null}
+                        </div>
+                        <Field
+                          as={BootstrapForm.Control}
+                          placeholder="Type number of dining..."
+                          name="dining"
+                          isValid={!errors.dining && touched.dining}
+                          type="number"
+                          className={`${styles.input}  w-100`}
+                          isInvalid={errors.dining && touched.dining}
+                        />
+                      </InputGroup>
+                    </Col>
+                    <Col md={6} className="pt-3">
+                      <InputGroup className="mb-3 d-flex flex-column">
+                        <div className="d-flex justify-content-between align-items-center pb-2">
+                          <label htmlFor="drawingroom" className="d-block">
+                            No. of Drawing Room
+                          </label>
+                          {errors.drawingroom && touched.drawingroom ? (
+                            <small className="text-danger pt-2">
+                              {errors.drawingroom}
+                            </small>
+                          ) : null}
+                        </div>
+                        <Field
+                          as={BootstrapForm.Control}
+                          placeholder="Type number of drawingroom..."
+                          name="drawingroom"
+                          isValid={!errors.drawingroom && touched.drawingroom}
+                          type="number"
+                          className={`${styles.input}  w-100`}
+                          isInvalid={errors.drawingroom && touched.drawingroom}
+                        />
+                      </InputGroup>
+                    </Col>
+                  </>
                 ) : (
                   <></>
                 )}
-                <Col md={6} className="pt-3">
-                  <InputGroup className="mb-3 d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-center pb-2">
-                      <label htmlFor="dining" className="d-block">
-                        No. of Dining Space
-                      </label>
-                      {errors.dining && touched.dining ? (
-                        <small className="text-danger pt-2">
-                          {errors.dining}
-                        </small>
-                      ) : null}
-                    </div>
-                    <Field
-                      as={BootstrapForm.Control}
-                      placeholder="Type number of dining..."
-                      name="dining"
-                      isValid={!errors.dining && touched.dining}
-                      type="number"
-                      className={`${styles.input}  w-100`}
-                      isInvalid={errors.dining && touched.dining}
-                    />
-                  </InputGroup>
-                </Col>
               </Row>
 
               <Row>
@@ -542,6 +585,10 @@ const AddListingForm = ({
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  category: state.category.categories,
 });
 
-export default connect(mapStateToProps, { updateUserAction })(AddListingForm);
+export default connect(mapStateToProps, {
+  updateUserAction,
+  getCategoryAction,
+})(AddListingForm);
