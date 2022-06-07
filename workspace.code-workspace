@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\abash-backend"
+		},
+		{
+			"path": "..\\abash"
+		},
+		{
+			"path": "..\\angular-dev"
+		},
+		{
+			"path": "..\\angular-frontend"
+		},
+		{
+			"path": "..\\Sproxte"
+		},
+		{
+			"path": "..\\landify"
+		}
+	],
+	"settings": {}
+}

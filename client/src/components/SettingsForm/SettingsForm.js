@@ -5,10 +5,13 @@ import { connect } from "react-redux";
 import { Field, Formik, Form } from "formik";
 import { Button, InputGroup, Form as BootstrapForm } from "react-bootstrap";
 import * as Yup from "yup";
+import { useModals } from "@mantine/modals";
 import { updateUserAction } from "../../actions/Auth.action";
+import AvatarUpload from "../AvatarUpload/AvatarUpload";
 
 const SettingsForm = ({ user, updateUserAction }) => {
   const [submitting, setSubmitting] = useState(false);
+  const modals = useModals();
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
@@ -19,6 +22,20 @@ const SettingsForm = ({ user, updateUserAction }) => {
     }
     setSubmitting(false);
   };
+
+  const handleUploadAvatar = () => {
+    modals.openModal({
+      title: "Change Profile Image",
+      centered: true,
+      closeOnClickOutside: false,
+      children: (
+        <>
+          <AvatarUpload modals={modals} />
+        </>
+      ),
+    });
+  };
+
   let initVals = {
     fname: user && user.first_name ? user.first_name : "",
     lname: user && user.last_name ? user.last_name : "",
@@ -123,13 +140,19 @@ const SettingsForm = ({ user, updateUserAction }) => {
                 />
               </InputGroup>
 
-              <div className="pt-3">
+              <div className="pt-3 d-flex align-items-center">
                 <Button
                   type="submit"
-                  className={"btn_primary"}
+                  className={"btn_primary me-4"}
                   disabled={submitting}
                 >
                   {submitting ? "Submitting..." : "Save"}
+                </Button>
+                <Button
+                  className={"btn_primary"}
+                  onClick={() => handleUploadAvatar()}
+                >
+                  Change Image
                 </Button>
               </div>
             </Form>

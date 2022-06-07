@@ -103,7 +103,6 @@ const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
                 withArrow
               >
                 <Nav.Link
-                  href="#deets"
                   className={styles.nav_btn}
                   onMouseEnter={() => setTooltipActive(true)}
                   onMouseLeave={() => setTooltipActive(false)}

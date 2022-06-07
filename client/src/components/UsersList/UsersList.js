@@ -28,11 +28,11 @@ const UsersList = ({ users, getUsersAction, deleteUsersAction, user }) => {
       centered: true,
       children: (
         <Text size="sm">
-          Are you sure you want to delete this category? This action cannot be
+          Are you sure you want to delete this user? This action cannot be
           undone.
         </Text>
       ),
-      labels: { confirm: "Delete Category", cancel: "Cancel" },
+      labels: { confirm: "Delete User", cancel: "Cancel" },
       onConfirm: () => deleteUsersAction(id),
     });
   };

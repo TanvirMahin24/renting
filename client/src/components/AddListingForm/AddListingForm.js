@@ -16,6 +16,7 @@ import { updateUserAction } from "../../actions/Auth.action";
 import { MultiSelect, Select, Switch } from "@mantine/core";
 import { getCategoryAction } from "../../actions/Category.action";
 import { useNavigate } from "react-router-dom";
+import districts from "../../constants/Districts";
 
 const AddListingForm = ({
   updateUserAction,
@@ -70,6 +71,7 @@ const AddListingForm = ({
     district: edit && data.district ? data.district : "",
     house_no: edit && data.house_no ? data.house_no : "",
     floor_no: edit && data.floor_no ? data.floor_no : "",
+    flat_no: edit && data.flat_no ? data.flat_no : "",
   };
 
   const SignupSchema = Yup.object().shape({
@@ -127,6 +129,7 @@ const AddListingForm = ({
     district: Yup.string().required("District is required!"),
     house_no: Yup.number().required("House no is required!"),
     floor_no: Yup.number().notRequired(),
+    flat_no: Yup.number().notRequired(),
   });
   return (
     <Container className="">
@@ -479,24 +482,34 @@ const AddListingForm = ({
                 </Col>
                 <Col md={6} className="pt-3">
                   <InputGroup className="mb-3 d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-center pb-2">
-                      <label htmlFor="district" className="d-block">
-                        District
-                      </label>
-                      {errors.district && touched.district ? (
-                        <small className="text-danger pt-2">
-                          {errors.district}
-                        </small>
-                      ) : null}
-                    </div>
-                    <Field
-                      as={BootstrapForm.Control}
-                      placeholder="Type district..."
-                      name="district"
-                      isValid={!errors.district && touched.district}
-                      type="text"
-                      className={`${styles.input}  w-100`}
-                      isInvalid={errors.district && touched.district}
+                    <Select
+                      label="District"
+                      placeholder="Select District"
+                      searchable
+                      nothingFound="No district found"
+                      error={
+                        errors.district && touched.district
+                          ? errors.district
+                          : null
+                      }
+                      classNames={{
+                        input: `${styles.select} ${styles.input} form-control`,
+                        label: styles.label,
+                        selected: styles.selected,
+                        dropdown: styles.dropdown2,
+                      }}
+                      variant="filled"
+                      radius="xs"
+                      size="md"
+                      shadow={"lg"}
+                      defaultValue={values.district}
+                      onChange={(e) => {
+                        setFieldValue("district", e);
+                      }}
+                      data={districts.map((dis) => ({
+                        label: `${dis.name} - ${dis.bn_name}`,
+                        value: dis.id,
+                      }))}
                     />
                   </InputGroup>
                 </Col>
@@ -570,6 +583,8 @@ const AddListingForm = ({
                   </InputGroup>
                 </Col>
               </Row>
+
+              <input type="file" name="image" id="image" multiple />
 
               <div className="pt-3">
                 <Button
