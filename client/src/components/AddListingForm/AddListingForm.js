@@ -12,14 +12,14 @@ import {
   Col,
 } from "react-bootstrap";
 import * as Yup from "yup";
-import { updateUserAction } from "../../actions/Auth.action";
 import { MultiSelect, Select, Switch } from "@mantine/core";
 import { getCategoryAction } from "../../actions/Category.action";
 import { useNavigate } from "react-router-dom";
 import districts from "../../constants/Districts";
+import { createListing } from "../../actions/Listing.action";
 
 const AddListingForm = ({
-  updateUserAction,
+  createListing,
   user,
   edit,
   data,
@@ -28,6 +28,8 @@ const AddListingForm = ({
 }) => {
   const [subletCheck, setSubletCheck] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,10 +40,70 @@ const AddListingForm = ({
       navigate("/");
     }
   }, []);
+
+  const handleImage = (e) => {
+    // validate image
+    if (e.target.files && e.target.files.length > 0) {
+      // Validate size of 2 mb
+      for (let i = 0; i < e.target.files.length; i++) {
+        if (e.target.files[i].size > 2000000) {
+          toast.error("Image size should be less than 2 mb");
+          return;
+        }
+      }
+
+      // Validate type of image
+      for (let i = 0; i < e.target.files.length; i++) {
+        if (
+          e.target.files[i].type !== "image/jpeg" &&
+          e.target.files[i].type !== "image/png"
+        ) {
+          toast.error("Image type should be jpeg or png");
+          return;
+        }
+      }
+
+      // Validate number of image
+      if (e.target.files.length > 8) {
+        toast.error("You can upload maximum 8 images");
+      }
+
+      // Set the image to state
+      setImage(e.target.files);
+    } else {
+      setImage(null);
+    }
+  };
+
+  const handlePreviewImage = (e) => {
+    // validate image
+    if (e.target.files && e.target.files.length == 1) {
+      // Validate size of 2 mb
+      if (e.target.files[0].size > 2000000) {
+        toast.error("Preview image size should be less than 2 mb");
+        return;
+      }
+
+      // Validate type of image
+      if (
+        e.target.files[0].type !== "image/jpeg" &&
+        e.target.files[0].type !== "image/png"
+      ) {
+        toast.error("Image type should be jpeg or png");
+        return;
+      }
+
+      // Set the image to state
+      setPreviewImage(e.target.files[0]);
+    } else {
+      setPreviewImage(null);
+    }
+  };
+
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
-    let check = await updateUserAction(values);
+    let check = await createListing(values, image, previewImage);
     if (check === true) {
       toast.success("Listing added Successfully");
       setSubmitting(false);
@@ -88,20 +150,12 @@ const AddListingForm = ({
       .required("Price is required!"),
     sublet: Yup.boolean().required(),
     // ROOMS
-    bedrooms: Yup.number().when("sublet", (sublet, schema) => {
-      return sublet
-        ? schema
-            .min(0, "Can not be negetive")
-            .required("Bedroom count is required!")
-        : schema.notRequired();
-    }),
-    bathrooms: Yup.number().when("sublet", (sublet, schema) => {
-      return sublet
-        ? schema
-            .min(0, "Can not be negetive")
-            .required("Bathroom count is required!")
-        : schema.notRequired();
-    }),
+    bedrooms: Yup.number()
+      .min(1, "Bedrooms can not be Zero or less")
+      .required("Bedroom count is required!"),
+    bathroom: Yup.number()
+      .min(1, "Bathroom can not be Zero or less")
+      .required("Bathroom count is required!"),
     dining: Yup.number().when("sublet", (sublet, schema) => {
       return sublet
         ? schema
@@ -583,8 +637,28 @@ const AddListingForm = ({
                   </InputGroup>
                 </Col>
               </Row>
+              <div className="py-3">
+                <span className="d-block pb-2">Main Image</span>
+                <input
+                  type="file"
+                  onChange={(e) => handlePreviewImage(e)}
+                  name="image"
+                  id="image"
+                  className="form-control"
+                />
+              </div>
 
-              <input type="file" name="image" id="image" multiple />
+              <div className="py-3">
+                <span className="d-block pb-2">Room Images</span>
+                <input
+                  type="file"
+                  onChange={(e) => handleImage(e)}
+                  name="image"
+                  id="image"
+                  multiple
+                  className="form-control"
+                />
+              </div>
 
               <div className="pt-3">
                 <Button
@@ -609,6 +683,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  updateUserAction,
+  createListing,
   getCategoryAction,
 })(AddListingForm);

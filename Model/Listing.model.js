@@ -37,6 +37,11 @@ const Listing = sequelize.define("listing", {
     allowNull: true,
   },
 
+  preview_image: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+
   // ROOMS
   bedrooms: {
     type: Sequelize.INTEGER,

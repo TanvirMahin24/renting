@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import {
   CREATE_ADMIN,
   CREATE_ADMIN_ERROR,
+  CREATE_LISTING,
+  CREATE_LISTING_ERROR,
   DELETE_ADMIN,
   DELETE_ADMIN_ERROR,
   GET_ADMIN_LIST,
@@ -27,32 +29,85 @@ export const getAdminList = () => async (dispatch) => {
   }
 };
 
-// CREATE Admin
-export const createAdmin = (values) => async (dispatch) => {
-  let formData = {
-    username: values.name,
-    password: values.password,
-  };
+// CREATE Listing
+export const createListing = (values, images, preview) => async (dispatch) => {
+  // Create Form data
+  const data = new FormData();
+  data.append("title", values.title);
+  data.append("category", values.category);
+
+  data.append("description", values.description);
+  data.append("size", values.size);
+  data.append("price", values.price);
+
+  //Rooms
+  data.append("sublet", values.sublet);
+  if (values.bedrooms) {
+    data.append("bedrooms", values.bedrooms);
+  }
+  if (values.bathrooms) {
+    data.append("bathrooms", values.bathrooms);
+  }
+  if (values.dining) {
+    data.append("dining", values.dining);
+  }
+  if (values.kitchen) {
+    data.append("kitchen", values.kitchen);
+  }
+  if (values.drawingroom) {
+    data.append("drawingroom", values.drawingroom);
+  }
+
+  // Requirements
+  if (values.requirements) {
+    values.requirements.map((item) => {
+      data.append("requirements", item);
+    });
+  }
+  // Keywords
+  if (values.keywords) {
+    values.keywords.map((item) => {
+      data.append("keywords", item);
+    });
+  }
+
+  // Images
+  if (images) {
+    for (let i = 0; i < images.length; i++) {
+      data.append("image", images[i]);
+    }
+  }
+
+  if (preview) {
+    data.append("preview_image", preview);
+  }
+
+  //Address
+  data.append("full_address", values.full_address);
+  data.append("district", values.district);
+  data.append("house_no", values.house_no);
+  data.append("floor_no", values.floor_no);
+  data.append("flat_no", values.flat_no);
 
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
+    withCredentials: true,
   };
   try {
     // TODO ::: API CALL
-    await axios.post(`${BASE_URL}/api/admin`, JSON.stringify(formData), config);
+    const res = await axios.post(`${BASE_URL}/api/listing`, data, config);
     dispatch({
-      type: CREATE_ADMIN,
+      type: CREATE_LISTING,
+      payload: res.data.data,
     });
-    toast.success("Admin added successfully");
-    dispatch(getAdminList());
     return true;
   } catch (err) {
+    toast.error(err.response.data.message);
     dispatch({
-      type: CREATE_ADMIN_ERROR,
+      type: CREATE_LISTING_ERROR,
     });
-    console.log(err);
     return false;
   }
 };

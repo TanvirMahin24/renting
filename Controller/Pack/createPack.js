@@ -20,8 +20,6 @@ const createPack = async (req, res) => {
     targetPrice,
   } = req.body;
 
-  console.log(keywords);
-
   // Check Pack slug exist or not
   try {
     const newPack = await Pack.findAll({ where: { slug: slug } });

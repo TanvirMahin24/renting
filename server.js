@@ -74,6 +74,7 @@ app.use(passport.session());
 app.use("/api", require("./Routes/Auth"));
 app.use("/api/user", require("./Routes/User"));
 app.use("/api/category", require("./Routes/Category"));
+app.use("/api/listing", require("./Routes/Listing"));
 app.use("/api/subscriber", require("./Routes/Subscribe"));
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
