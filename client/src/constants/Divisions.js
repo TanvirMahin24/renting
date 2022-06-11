@@ -40,3 +40,5 @@ const divisions = [
     bn_name: "ময়মনসিংহ",
   },
 ];
+
+export default divisions;

@@ -8,21 +8,21 @@ import {
   DELETE_ADMIN,
   DELETE_ADMIN_ERROR,
   GET_ADMIN_LIST,
+  GET_LISTING_LIST,
   UPDATE_ADMIN,
   UPDATE_ADMIN_ERROR,
 } from "../constants/Type";
 import { BASE_URL } from "../constants/URL";
 import setAuthToken from "../utils/setAuthToken";
 
-//GET ADMIN LIST
-export const getAdminList = () => async (dispatch) => {
+//GET LISTING ACTION
+export const getListingLaningpage = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${BASE_URL}/api/admin`);
-    // console.log(res);
+    const res = await axios.get(`${BASE_URL}/api/listing?page=1&limit=9`);
 
     dispatch({
-      type: GET_ADMIN_LIST,
-      payload: res.data,
+      type: GET_LISTING_LIST,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);
@@ -141,7 +141,6 @@ export const updateAdmin = (values, gameId, id) => async (dispatch) => {
         type: UPDATE_ADMIN,
       });
       toast.success("Player updated successfully");
-      dispatch(getAdminList());
       return true;
     } else {
       toast.error(res.data.message);

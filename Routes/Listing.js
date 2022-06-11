@@ -1,11 +1,8 @@
 const express = require("express");
 const { check } = require("express-validator");
-const { isAdmin } = require("../Utils/isAuth");
+const { isAuth } = require("../Utils/isAuth");
 const upload = require("../config/multer");
-const {
-  getPackDetails,
-  getPackList,
-} = require("../Controller/Pack/getPackDetails");
+
 const updatePack = require("../Controller/Pack/updatePack");
 const deletePack = require("../Controller/Pack/deletePack");
 const createListing = require("../Controller/Listing/createListing");
@@ -18,7 +15,7 @@ const router = express.Router();
 router.post(
   "/",
   [
-    isAdmin,
+    isAuth,
     upload.fields([
       { name: "image", maxCount: 8 },
       { name: "preview_image", maxCount: 1 },
@@ -47,7 +44,7 @@ router.get("/:slug", getListingDetails);
 router.patch(
   "/:id",
   [
-    isAdmin,
+    isAuth,
     upload.single("image"),
     [
       check("title", "Title is required").not().isEmpty(),
@@ -59,6 +56,6 @@ router.patch(
   ],
   updatePack
 );
-router.delete("/:id", isAdmin, deletePack);
+router.delete("/:id", isAuth, deletePack);
 
 module.exports = router;

@@ -3,18 +3,16 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import styles from "./LandingFilter.module.css";
 
-const LandingFilter = () => {
+const LandingFilter = ({ categories }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.filter}>
         <Select
           placeholder="House Type"
-          data={[
-            { value: "react", label: "React" },
-            { value: "ng", label: "Angular" },
-            { value: "svelte", label: "Svelte" },
-            { value: "vue", label: "Vue" },
-          ]}
+          data={categories.map((category) => ({
+            value: category.id,
+            label: category.name,
+          }))}
           style={{ label: { height: "90px" } }}
         />
         <div className={styles.range}>
