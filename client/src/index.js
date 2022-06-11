@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <Provider store={store}>
       <MantineProvider>
         <ModalsProvider>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </ModalsProvider>
       </MantineProvider>
     </Provider>

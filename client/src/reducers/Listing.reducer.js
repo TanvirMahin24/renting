@@ -2,12 +2,14 @@ import {
   CREATE_LISTING,
   GET_LISTING_DETAILS,
   GET_LISTING_LIST,
+  GET_LISTING_SEARCH,
 } from "../constants/Type";
 
 const inititalState = {
   listings: null,
   loading: false,
   selected_listing: null,
+  search_listings: null,
 };
 
 const listingReducer = (state = inititalState, action) => {
@@ -18,6 +20,12 @@ const listingReducer = (state = inititalState, action) => {
       return {
         ...state,
         listings: payload,
+        loading: false,
+      };
+    case GET_LISTING_SEARCH:
+      return {
+        ...state,
+        search_listings: payload,
         loading: false,
       };
     case GET_LISTING_DETAILS:

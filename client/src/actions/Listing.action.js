@@ -1,14 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import {
-  CREATE_ADMIN,
-  CREATE_ADMIN_ERROR,
   CREATE_LISTING,
   CREATE_LISTING_ERROR,
   DELETE_ADMIN,
   DELETE_ADMIN_ERROR,
-  GET_ADMIN_LIST,
+  GET_LISTING_DETAILS,
+  GET_LISTING_DETAILS_ERROR,
   GET_LISTING_LIST,
+  GET_LISTING_SEARCH,
   UPDATE_ADMIN,
   UPDATE_ADMIN_ERROR,
 } from "../constants/Type";
@@ -26,6 +26,47 @@ export const getListingLaningpage = () => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+//SEARCH LISTING ACTION
+export const searchListingLanding = (text) => async (dispatch) => {
+  if (text === "") {
+    return null;
+  }
+  try {
+    const res = await axios.get(
+      `${BASE_URL}/api/listing/search?search=${text}`
+    );
+
+    dispatch({
+      type: GET_LISTING_SEARCH,
+      payload: res.data.data,
+    });
+    return res.data.data;
+  } catch (err) {
+    return null;
+  }
+};
+
+// LISTING DETAILS ACTION
+export const getListingDetails = (slug) => async (dispatch) => {
+  if (slug === "") {
+    return null;
+  }
+  try {
+    const res = await axios.get(`${BASE_URL}/api/listing/${slug}`);
+
+    dispatch({
+      type: GET_LISTING_DETAILS,
+      payload: res.data.data,
+    });
+    return true;
+  } catch (err) {
+    dispatch({
+      type: GET_LISTING_DETAILS_ERROR,
+    });
+    return false;
   }
 };
 

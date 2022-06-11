@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./CustomNavbar.module.css";
 import logoImg from "../../../assets/logo.png";
 import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
-import { useSpotlight } from "@mantine/spotlight";
+import { openSpotlight } from "@mantine/spotlight";
 import { Tooltip } from "@mantine/core";
 import { connect } from "react-redux";
 import { logoutAction } from "../../../actions/Auth.action";
 
-const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
-  const spotlight = useSpotlight();
+const CustomNavbar = ({ landing, isAuth, logoutAction, user, searchRes }) => {
   const [tooltipActive, setTooltipActive] = useState(false);
+  useEffect(() => {}, [searchRes]);
   return (
     <div>
       <Navbar
@@ -106,7 +106,7 @@ const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
                   className={styles.nav_btn}
                   onMouseEnter={() => setTooltipActive(true)}
                   onMouseLeave={() => setTooltipActive(false)}
-                  onClick={() => spotlight.openSpotlight()}
+                  onClick={() => openSpotlight()}
                 >
                   <span>
                     <AiOutlineSearch />
@@ -161,6 +161,7 @@ const CustomNavbar = ({ landing, isAuth, logoutAction, user }) => {
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   user: state.auth.user,
+  searchRes: state.listing.search_listings,
 });
 
 export default connect(mapStateToProps, { logoutAction })(CustomNavbar);

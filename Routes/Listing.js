@@ -8,6 +8,7 @@ const deletePack = require("../Controller/Pack/deletePack");
 const createListing = require("../Controller/Listing/createListing");
 const getListingDetails = require("../Controller/Listing/getListingDetails");
 const getAllListings = require("../Controller/Listing/getListing");
+const searchListing = require("../Controller/Listing/searchListing");
 
 const router = express.Router();
 
@@ -40,6 +41,7 @@ router.post(
 );
 
 router.get("/", getAllListings);
+router.get("/search", searchListing);
 router.get("/:slug", getListingDetails);
 router.patch(
   "/:id",

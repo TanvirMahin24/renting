@@ -51,7 +51,7 @@ const ListingCard = ({ data }) => {
         <span className={styles.price}>
           {data.price} TK/<small>Month</small>
         </span>
-        <Link to={`/listing/${data.id}`} className={styles.title}>
+        <Link to={`/listing/${data.slug}`} className={styles.title}>
           {data.title}
         </Link>
         <span className="d-block text-secondary py-3" style={{ fontSize: 14 }}>
