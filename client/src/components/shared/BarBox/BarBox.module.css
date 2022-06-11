@@ -1,0 +1,5 @@
+.wrapper {
+  background: #fef5f4;
+  border-left: 3px solid var(--primary);
+  padding: 10px;
+}

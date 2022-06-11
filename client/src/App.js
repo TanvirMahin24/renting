@@ -15,6 +15,7 @@ import {
   CategoryPage,
   AddCategoryPage,
   UsersPage,
+  AboutPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
@@ -38,6 +39,7 @@ function App({ authUserAction }) {
             <Route path="/" element={<LandingPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/about" element={<AboutPage />} />
 
             <Route path="/*" element={<PrivateOutlet />}>
               <>
