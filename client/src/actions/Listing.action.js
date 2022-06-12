@@ -5,10 +5,13 @@ import {
   CREATE_LISTING_ERROR,
   DELETE_ADMIN,
   DELETE_ADMIN_ERROR,
+  DELETE_LISTING,
+  DELETE_LISTING_ERROR,
   GET_LISTING_DETAILS,
   GET_LISTING_DETAILS_ERROR,
   GET_LISTING_LIST,
   GET_LISTING_SEARCH,
+  GET_MY_LISTING_LIST,
   UPDATE_ADMIN,
   UPDATE_ADMIN_ERROR,
 } from "../constants/Type";
@@ -22,6 +25,22 @@ export const getListingLaningpage = () => async (dispatch) => {
 
     dispatch({
       type: GET_LISTING_LIST,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//GET LISTING ACTION
+export const getMyListing = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${BASE_URL}/api/listing/my`, {
+      withCredentials: true,
+    });
+
+    dispatch({
+      type: GET_MY_LISTING_LIST,
       payload: res.data.data,
     });
   } catch (err) {
@@ -83,21 +102,16 @@ export const createListing = (values, images, preview) => async (dispatch) => {
 
   //Rooms
   data.append("sublet", values.sublet);
-  if (values.bedrooms) {
-    data.append("bedrooms", values.bedrooms);
-  }
-  if (values.bathrooms) {
-    data.append("bathrooms", values.bathrooms);
-  }
-  if (values.dining) {
-    data.append("dining", values.dining);
-  }
-  if (values.kitchen) {
-    data.append("kitchen", values.kitchen);
-  }
-  if (values.drawingroom) {
-    data.append("drawingroom", values.drawingroom);
-  }
+
+  data.append("bedrooms", values.bedrooms);
+
+  data.append("bathrooms", values.bathrooms);
+
+  data.append("dining", values.dining);
+
+  data.append("kitchen", values.kitchen);
+
+  data.append("drawingroom", values.drawingroom);
 
   // Requirements
   if (values.requirements) {
@@ -196,28 +210,24 @@ export const updateAdmin = (values, gameId, id) => async (dispatch) => {
   }
 };
 
-//DELETE Admin
-export const deleteAdmin = (playerUniqueId) => async (dispatch) => {
+//DELETE Listing
+export const deleteListing = (id) => async (dispatch) => {
   try {
-    if (localStorage.getItem("token_anbs")) {
-      setAuthToken(localStorage.getItem("token_anbs"));
-    }
-    const res = await axios.delete(
-      `${BASE_URL}/api/deletePlayer?playerUniqueId=${playerUniqueId}`
-    );
-    if (res.data.code === 200) {
-      dispatch({
-        type: DELETE_ADMIN,
-        payload: playerUniqueId,
-      });
-      return true;
-    } else {
-      return false;
-    }
+    const res = await axios.delete(`${BASE_URL}/api/listing/${id}`, {
+      withCredentials: true,
+    });
+    dispatch({
+      type: DELETE_LISTING,
+      payload: id,
+    });
+    toast.success("Listing deleted successfully");
+    return true;
   } catch (err) {
     dispatch({
-      type: DELETE_ADMIN_ERROR,
+      type: DELETE_LISTING_ERROR,
     });
+
+    toast.error(err.response.data.message);
 
     return false;
   }

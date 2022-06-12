@@ -2,35 +2,15 @@ const Listing = require("../../Model/Listing.model");
 const Category = require("../../Model/Category.model");
 
 // Controller for get all listings
-const getAllListings = async (req, res) => {
+const getMyListings = async (req, res) => {
   // Fetch all listings paginated
+
   try {
-    let { limit, page, category } = req.query;
-
-    // Default query params
-    if (!limit) {
-      // Infinity limit
-      limit = Number.MAX_SAFE_INTEGER;
-    }
-    if (!page) {
-      page = 1;
-    }
-    if (!category) {
-      category = "";
-    }
-
-    // Converting params to integer
-    limit = parseInt(limit);
-    page = parseInt(page);
-
-    // Determining offset
-    let offset = (page - 1) * limit;
-
-    // Fetch paginated list reversely
+    // Fetch users listing list reversely
     const listingList = await Listing.findAndCountAll({
-      limit,
-      offset,
-
+      where: {
+        userId: req.user.id,
+      },
       include: [
         {
           model: Category,
@@ -38,7 +18,6 @@ const getAllListings = async (req, res) => {
           attributes: ["id", "name"],
         },
       ],
-
       order: [["id", "DESC"]],
     });
 
@@ -55,10 +34,11 @@ const getAllListings = async (req, res) => {
     });
   } catch (error) {
     // Send Error
+    console.log(error);
     return res.status(500).json({
       message: "Something went wrong",
     });
   }
 };
 
-module.exports = getAllListings;
+module.exports = getMyListings;

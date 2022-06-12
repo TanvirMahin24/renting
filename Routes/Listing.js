@@ -4,11 +4,12 @@ const { isAuth } = require("../Utils/isAuth");
 const upload = require("../config/multer");
 
 const updatePack = require("../Controller/Pack/updatePack");
-const deletePack = require("../Controller/Pack/deletePack");
 const createListing = require("../Controller/Listing/createListing");
 const getListingDetails = require("../Controller/Listing/getListingDetails");
 const getAllListings = require("../Controller/Listing/getListing");
 const searchListing = require("../Controller/Listing/searchListing");
+const getMyListings = require("../Controller/Listing/getMyListings");
+const deleteListing = require("../Controller/Listing/deleteListing");
 
 const router = express.Router();
 
@@ -42,6 +43,7 @@ router.post(
 
 router.get("/", getAllListings);
 router.get("/search", searchListing);
+router.get("/my", isAuth, getMyListings);
 router.get("/:slug", getListingDetails);
 router.patch(
   "/:id",
@@ -58,6 +60,6 @@ router.patch(
   ],
   updatePack
 );
-router.delete("/:id", isAuth, deletePack);
+router.delete("/:id", isAuth, deleteListing);
 
 module.exports = router;

@@ -1,8 +1,8 @@
-import { Button, Table, Text } from "@mantine/core";
-import { Container } from "react-bootstrap";
+import { Button, Text } from "@mantine/core";
+import { Container, Table } from "react-bootstrap";
 import React, { useEffect } from "react";
 import styles from "./CategoryList.module.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiAddToQueue, BiCommentError, BiEditAlt } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { connect } from "react-redux";
@@ -64,7 +64,7 @@ const CategoryList = ({
         </span>
       ) : (
         <>
-          <Table verticalSpacing="sm" striped highlightOnHover>
+          <Table responsive striped highlightOnHover>
             <thead>
               <tr>
                 <th>#</th>

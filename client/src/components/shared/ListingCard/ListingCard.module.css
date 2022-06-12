@@ -27,7 +27,7 @@
 
 .heading_top {
   position: relative;
-  z-index: 999;
+  z-index: 9;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

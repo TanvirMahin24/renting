@@ -30,12 +30,20 @@ const DashLayout = ({ logoutAction, children, user }) => {
               <span className={styles.nav__item_text}>Dashboard</span>
             </NavLink>
           </div>
-          <div className={styles.nav}>
+          {/* <div className={styles.nav}>
             <NavLink to="/add-listing" className={styles.nav__item}>
               <span className={styles.icon}>
                 <BiAddToQueue />
               </span>
               <span className={styles.nav__item_text}>Add Listing</span>
+            </NavLink>
+          </div> */}
+          <div className={styles.nav}>
+            <NavLink to="/listings" className={styles.nav__item}>
+              <span className={styles.icon}>
+                <BiAddToQueue />
+              </span>
+              <span className={styles.nav__item_text}>My Listings</span>
             </NavLink>
           </div>
           {user !== null && user.role === "admin" ? (

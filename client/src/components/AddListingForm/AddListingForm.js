@@ -106,6 +106,7 @@ const AddListingForm = ({
     let check = await createListing(values, image, previewImage);
     if (check === true) {
       toast.success("Listing added Successfully");
+      navigate("/listings");
       setSubmitting(false);
     }
     setSubmitting(false);
@@ -153,7 +154,7 @@ const AddListingForm = ({
     bedrooms: Yup.number()
       .min(1, "Bedrooms can not be Zero or less")
       .required("Bedroom count is required!"),
-    bathroom: Yup.number()
+    bathrooms: Yup.number()
       .min(1, "Bathroom can not be Zero or less")
       .required("Bathroom count is required!"),
     dining: Yup.number().when("sublet", (sublet, schema) => {
@@ -231,11 +232,9 @@ const AddListingForm = ({
                   as={"textarea"}
                   placeholder="Type description..."
                   name="description"
-                  isValid={!errors.description && touched.description}
                   type="text"
                   className={`${styles.input} form-control w-100`}
                   style={{ height: "150px" }}
-                  isInvalid={errors.description && touched.description}
                 />
               </InputGroup>
               <Row>
@@ -409,7 +408,7 @@ const AddListingForm = ({
                   <InputGroup className="mb-3 d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                       <label htmlFor="bathrooms" className="d-block">
-                        No. of Bathrooms
+                        No. of Bathroom
                       </label>
                       {errors.bathrooms && touched.bathrooms ? (
                         <small className="text-danger pt-2">

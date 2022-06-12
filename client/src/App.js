@@ -25,6 +25,7 @@ import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
 import ListingDetailsPage from "./views/ListingDetailsPage/ListingDetailsPage";
+import ListingsPage from "./views/ListingsPage/ListingsPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
               <Route path="settings" element={<SettingsPage />} />
               <Route path="category" element={<CategoryPage />} />
               <Route path="category/add" element={<AddCategoryPage />} />
+              <Route path="listings" element={<ListingsPage />} />
               <Route path="users" element={<UsersPage />} />
               <Route
                 path="category/:id/edit"
