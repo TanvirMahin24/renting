@@ -221,8 +221,10 @@ export const deleteListing = (id) => async (dispatch) => {
       payload: id,
     });
     toast.success("Listing deleted successfully");
+    dispatch(getMyListing());
     return true;
   } catch (err) {
+    console.log(err);
     dispatch({
       type: DELETE_LISTING_ERROR,
     });

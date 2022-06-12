@@ -42,7 +42,14 @@ app.use(
       }
     },
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Methods",
+    ],
+    methods: ["GET", "PUT", "POST", "DELETE", "PATCH"],
   })
 );
 

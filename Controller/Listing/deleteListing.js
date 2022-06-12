@@ -56,7 +56,10 @@ const deleteListing = async (req, res) => {
       await item.destroy();
     });
 
-    console.log(resTest);
+    console.log("+++++++++++++++++++");
+    console.log(listing.keywords);
+    console.log("+++++++++++++++++++");
+    console.log(listing.requirements);
 
     // Delete Keyword model keywords
     await listing.keywords.map(async (item) => {

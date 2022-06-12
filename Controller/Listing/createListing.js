@@ -91,15 +91,24 @@ const createListing = async (req, res) => {
   });
 
   try {
-    // Create Listing keywords
-    keywords.map(async (item) => {
+    console.log(keywords);
+    console.log(requirements);
+    if (typeof keywords === "string") {
       await finalListing.createKeyword({ name: item });
-    });
+    } else {
+      await keywords.map(async (item) => {
+        await finalListing.createKeyword({ name: item });
+      });
+    }
 
-    // Create Listing Requirements
-    requirements.map(async (item) => {
+    if (typeof requirements === "string") {
       await finalListing.createRequirement({ name: item });
-    });
+    } else {
+      // Create Listing Requirements
+      requirements.map(async (item) => {
+        await finalListing.createRequirement({ name: item });
+      });
+    }
 
     // Create Listing images
     files.map(async (item) => {

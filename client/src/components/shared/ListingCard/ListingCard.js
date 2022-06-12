@@ -15,6 +15,7 @@ import { kFormat } from "../../../utils/kFormat";
 import { connect } from "react-redux";
 import { useModals } from "@mantine/modals";
 import { deleteListing } from "../../../actions/Listing.action";
+import { BASE_URL } from "../../../constants/URL";
 
 const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
   const modals = useModals();
@@ -38,7 +39,12 @@ const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <img src={demoImg} alt="" className={styles.img} />
+        <img
+          alt={data?.title}
+          className={styles.img}
+          crossOrigin="true"
+          src={`http://${data?.preview_image}`}
+        />
         <div className={styles.heading_top}>
           <div className="text-end p-3">
             <Badge

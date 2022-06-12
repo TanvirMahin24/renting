@@ -48,19 +48,19 @@ const listingReducer = (state = inititalState, action) => {
       return {
         ...state,
         my_listings:
-          state.my_listings === null ? null : [payload, ...state.my_listings],
+          state.my_listings === null
+            ? null
+            : {
+                ...state.my_listings,
+                rows: [payload, ...state.my_listings.rows],
+              },
         loading: false,
       };
 
     case DELETE_LISTING:
       return {
         ...state,
-        my_listings: state.my_listings.filter(
-          (listing) => listing.id !== parseInt(payload)
-        ),
-        listings: state.listings.filter(
-          (listing) => listing.id !== parseInt(payload)
-        ),
+
         loading: false,
       };
     default:
