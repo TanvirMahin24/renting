@@ -8,14 +8,12 @@ import bedroomImg from "../../../assets/icons/bedroom.png";
 import bathroomImg from "../../../assets/icons/bathroom.png";
 import sizeImg from "../../../assets/icons/house_size.png";
 
-import demoImg from "../../../assets/Landing/1.jpg";
 import districts from "../../../constants/Districts";
 import divisions from "../../../constants/Divisions";
 import { kFormat } from "../../../utils/kFormat";
 import { connect } from "react-redux";
 import { useModals } from "@mantine/modals";
 import { deleteListing } from "../../../actions/Listing.action";
-import { BASE_URL } from "../../../constants/URL";
 
 const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
   const modals = useModals();

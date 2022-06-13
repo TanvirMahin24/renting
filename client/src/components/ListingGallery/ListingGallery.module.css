@@ -10,16 +10,41 @@
 }
 
 .swiper {
-  width: 900px;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
 }
 
-.swiper_slide {
-  background-position: center;
-  background-size: cover;
-  width: 300px;
+.img_wrapper {
   height: 300px;
+  width: 100%;
+}
+
+.swiper_slide {
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: 0.3s all ease-in-out;
+}
+
+.swiper_slide:hover {
+  border: 1px solid var(--primary);
+  transition: 0.3s all ease-in-out;
+}
+
+.img {
+  width: 100%;
+  min-height: 300px;
+  min-width: 500px;
+  transform: scale(1);
+  transition: 0.3s all ease-in-out;
+}
+
+.img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s all ease-in-out;
 }
 
 .swiper_slide img {

@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store/Store";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "swiper/css";
+import "react-image-lightbox/style.css";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { BrowserRouter } from "react-router-dom";

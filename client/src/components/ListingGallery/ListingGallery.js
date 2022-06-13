@@ -1,47 +1,81 @@
-import React from "react";
-// Import Swiper React components
+import React, { useState } from "react";
+import Lightbox from "react-image-lightbox";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
 import styles from "./ListingGallery.module.css";
 
 // import required modules
-import { EffectCoverflow, Pagination, Autoplay } from "swiper";
+import { Autoplay } from "swiper";
 
 const ListingGallery = ({ listing }) => {
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className={styles.wrapper}>
-      <h2 className="pb-3 pt-5">Glimps Of The House</h2>
-      <Swiper
-        width={900}
-        effect={"coverflow"}
-        grabCursor={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        centeredSlides={false}
-        slidesPerView={"auto"}
-        loop={true}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Autoplay]}
-        className={styles.swiper}
-      >
-        {listing?.images}
-        <SwiperSlide className={styles.swiper_slide}>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-      </Swiper>
-    </div>
+    <>
+      {listing ? (
+        <div className={styles.wrapper}>
+          {/* <h2 className="pb-3 pt-5">Glimps Of The House</h2> */}
+          <Swiper
+            grabCursor={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            centeredSlides={false}
+            slidesPerView={3}
+            loop={true}
+            pagination={true}
+            modules={[Autoplay]}
+            lazy={true}
+            className={styles.swiper}
+          >
+            {listing?.images.map((img, i) => (
+              <SwiperSlide key={img.id} className={styles.swiper_slide}>
+                <div className={styles.img_wrapper}>
+                  <img
+                    src={`http://${img.image}`}
+                    className={styles.img}
+                    onClick={() => {
+                      setPhotoIndex(i);
+                      setTimeout(() => {
+                        setIsOpen(true);
+                      }, 100);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {isOpen ? (
+            <Lightbox
+              mainSrc={`http://${listing.images[photoIndex].image}`}
+              nextSrc={`http://${
+                listing.images[(photoIndex + 1) % listing.images.length].image
+              }`}
+              prevSrc={`http://${
+                listing.images[
+                  (photoIndex + listing.images.length - 1) %
+                    listing.images.length
+                ].image
+              }`}
+              onCloseRequest={() => setIsOpen(false)}
+              onMovePrevRequest={() =>
+                setPhotoIndex(
+                  (photoIndex + listing.images.length - 1) %
+                    listing.images.length
+                )
+              }
+              onMoveNextRequest={() =>
+                setPhotoIndex((photoIndex + 1) % listing.images.length)
+              }
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

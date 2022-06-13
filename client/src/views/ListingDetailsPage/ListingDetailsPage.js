@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getListingDetails } from "../../actions/Listing.action";
 import ListingGallery from "../../components/ListingGallery/ListingGallery";
+import ListingInfo from "../../components/ListingInfo/ListingInfo";
 import BreadCrumb from "../../components/shared/BreadCrumb/BreadCrumb";
 import CustomNavbar from "../../components/shared/Navbar/CustomNavbar";
 
@@ -31,6 +32,7 @@ const ListingDetailsPage = ({ listing, getListingDetails }) => {
         }`}
       />
       <ListingGallery listing={listing} />
+      <ListingInfo listing={listing} />
     </div>
   );
 };

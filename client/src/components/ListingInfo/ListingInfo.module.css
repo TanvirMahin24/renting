@@ -1,0 +1,30 @@
+.room {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--light);
+  box-shadow: 6px 6px 12px 0 rgba(7, 28, 31, 0.1);
+  min-width: 150px;
+  height: 150px;
+  color: var(--dark);
+}
+
+.room:hover {
+  background: var(--dark);
+  color: #ffffff;
+}
+
+.room:hover .icon {
+  filter: invert(1);
+}
+
+.icon {
+  filter: invert(0);
+  width: 50px;
+  margin-right: 5px;
+}
+
+.room_title {
+  font-size: 20px;
+}

@@ -2,6 +2,7 @@ const Listing = require("../../Model/Listing.model");
 const Image = require("../../Model/Image.model");
 const Keyword = require("../../Model/Keyword.model");
 const Requirement = require("../../Model/Requirement.model");
+const Category = require("../../Model/Category.model");
 
 // Get Listing Details using slug
 const getListingDetails = async (req, res) => {
@@ -29,6 +30,10 @@ const getListingDetails = async (req, res) => {
           model: Requirement,
           as: "requirements",
           attributes: ["id", "name"],
+        },
+        {
+          model: Category,
+          attributes: ["name"],
         },
       ],
     });

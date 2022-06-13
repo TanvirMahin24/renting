@@ -17,6 +17,15 @@
 		},
 		{
 			"path": "..\\Sproxte"
+		},
+		{
+			"path": "..\\problem-solve"
+		},
+		{
+			"path": "..\\Book-Reading-Backend"
+		},
+		{
+			"path": "..\\book-reading-frontend"
 		}
 	],
 	"settings": {}
