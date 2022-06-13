@@ -116,13 +116,13 @@ export const createListing = (values, images, preview) => async (dispatch) => {
   // Requirements
   if (values.requirements) {
     values.requirements.map((item) => {
-      data.append("requirements", item);
+      data.append("requirements[]", item);
     });
   }
   // Keywords
   if (values.keywords) {
     values.keywords.map((item) => {
-      data.append("keywords", item);
+      data.append("keywords[]", item);
     });
   }
 

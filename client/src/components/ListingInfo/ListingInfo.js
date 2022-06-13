@@ -11,6 +11,9 @@ import { IoMdCheckboxOutline } from "react-icons/io";
 
 import bedroomImg from "../../assets/icons/bedroom.png";
 import bathroomImg from "../../assets/icons/bathroom.png";
+import drawingImg from "../../assets/icons/drawing.png";
+import kitchenImg from "../../assets/icons/kitchen.png";
+import diningImg from "../../assets/icons/dining.png";
 
 const ListingInfo = ({ listing }) => {
   const district = listing
@@ -161,7 +164,7 @@ const ListingInfo = ({ listing }) => {
                   <Col className="p-3">
                     <div className={styles.room}>
                       <div className="d-flex align-items-center">
-                        <img src={bathroomImg} alt="" className={styles.icon} />
+                        <img src={diningImg} alt="" className={styles.icon} />
                         <span className="d-block fs-3 fw-bold ps-2">
                           {listing.dining}
                         </span>
@@ -176,7 +179,7 @@ const ListingInfo = ({ listing }) => {
                   <Col className="p-3">
                     <div className={styles.room}>
                       <div className="d-flex align-items-center">
-                        <img src={bathroomImg} alt="" className={styles.icon} />
+                        <img src={kitchenImg} alt="" className={styles.icon} />
                         <span className="d-block fs-3 fw-bold ps-2">
                           {listing.kitchen}
                         </span>
@@ -191,12 +194,12 @@ const ListingInfo = ({ listing }) => {
                   <Col className="p-3">
                     <div className={styles.room}>
                       <div className="d-flex align-items-center">
-                        <img src={bathroomImg} alt="" className={styles.icon} />
+                        <img src={drawingImg} alt="" className={styles.icon} />
                         <span className="d-block fs-3 fw-bold ps-2">
                           {listing.drawingroom}
                         </span>
                       </div>
-                      <span className={styles.room_title}>drawingroom</span>
+                      <span className={styles.room_title}>Drawing room</span>
                     </div>
                   </Col>
                 ) : (
