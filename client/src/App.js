@@ -19,13 +19,14 @@ import {
   AddCategoryPage,
   UsersPage,
   AboutPage,
+  ListingDetailsPage,
+  ListingsPage,
+  SearchPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
-import ListingDetailsPage from "./views/ListingDetailsPage/ListingDetailsPage";
-import ListingsPage from "./views/ListingsPage/ListingsPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 

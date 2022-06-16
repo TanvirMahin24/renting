@@ -8,6 +8,9 @@ import CategoryPage from "./CategoryPage/CategoryPage";
 import AddCategoryPage from "./AddCategoryPage/AddCategoryPage";
 import UsersPage from "./UsersPage/UsersPage";
 import AboutPage from "./AboutPage/AboutPage";
+import ListingDetailsPage from "./ListingDetailsPage/ListingDetailsPage";
+import SearchPage from "./SearchPage/SearchPage";
+import ListingsPage from "./ListingsPage/ListingsPage";
 
 export {
   RegisterPage,
@@ -20,4 +23,7 @@ export {
   AddCategoryPage,
   UsersPage,
   AboutPage,
+  ListingDetailsPage,
+  ListingsPage,
+  SearchPage,
 };

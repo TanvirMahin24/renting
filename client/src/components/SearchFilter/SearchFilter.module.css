@@ -1,0 +1,110 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-20%);
+  position: absolute;
+  z-index: 99;
+  flex-direction: column;
+}
+
+.shadow {
+  box-shadow: var(--box-shadow-1);
+}
+
+.filter {
+  position: relative;
+  background: var(--white);
+  height: 120px;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+}
+
+.filter:last-child {
+}
+
+:global(.mantine-Select-wrapper input) {
+  height: 60px;
+  color: var(--dark);
+  font-size: 20px;
+}
+
+:global(.mantine-Select-wrapper input::placeholder) {
+  color: var(--dark) !important;
+}
+:global(.mantine-Slider-root) {
+  margin-top: 8px;
+}
+
+.range {
+  width: 60%;
+}
+
+.select:global(.mantine-MultiSelect-defaultVariant.mantine-MultiSelect-input) {
+  border: none !important;
+  padding-left: 0px !important;
+  padding-right: 0 !important;
+}
+
+.dropdown {
+  top: -10px;
+}
+.dropdown {
+  top: -5px;
+}
+
+.select input {
+  position: relative;
+  display: block !important;
+  background: var(--light) !important;
+  color: var(--dark) !important;
+  border: 2px solid #e4ecf2 !important;
+  height: 40px;
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  width: 100px !important;
+  padding: 0 10px !important;
+}
+
+.label {
+  font-family: "Montserrat" !important;
+  font-weight: normal !important;
+  font-size: 16px;
+}
+
+.select.input {
+  top: 10px;
+  font-size: 16px;
+}
+.select_icon {
+  top: 20px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    margin-top: 20px;
+    transform: translateY(0);
+    position: relative;
+  }
+  .filter {
+    width: 90%;
+    flex-direction: column;
+    height: auto !important;
+    padding: 20px;
+  }
+  .range {
+    width: 100%;
+  }
+
+  :global(.mantine-Select-wrapper input) {
+    height: 40px;
+    color: var(--dark);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
