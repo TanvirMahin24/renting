@@ -10,6 +10,7 @@ const getAllListings = require("../Controller/Listing/getListing");
 const searchListing = require("../Controller/Listing/searchListing");
 const getMyListings = require("../Controller/Listing/getMyListings");
 const deleteListing = require("../Controller/Listing/deleteListing");
+const filterListing = require("../Controller/Listing/filterListing");
 
 const router = express.Router();
 
@@ -43,6 +44,7 @@ router.post(
 
 router.get("/", getAllListings);
 router.get("/search", searchListing);
+router.get("/filter", filterListing);
 router.get("/my", isAuth, getMyListings);
 router.get("/:slug", getListingDetails);
 router.patch(

@@ -7,6 +7,7 @@ import {
   DELETE_ADMIN_ERROR,
   DELETE_LISTING,
   DELETE_LISTING_ERROR,
+  GET_FILTER_LISTING,
   GET_LISTING_DETAILS,
   GET_LISTING_DETAILS_ERROR,
   GET_LISTING_LIST,
@@ -67,6 +68,30 @@ export const searchListingLanding = (text) => async (dispatch) => {
     return null;
   }
 };
+
+//FILTER LISTING ACTION
+export const filterListings =
+  (start, end, category, district, division, sublet) => async (dispatch) => {
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/api/listing/filter?${
+          category ? `category=${category}` : ""
+        }&start=${start}&end=${end}${district ? `&district=${district}` : ""}${
+          division ? `&division=${division}` : ""
+        }&sublet=${sublet === true ? "1" : "0"}`
+      );
+
+      dispatch({
+        type: GET_FILTER_LISTING,
+        payload: res.data.data,
+      });
+      return res.data.data;
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.log(err);
+      return null;
+    }
+  };
 
 // LISTING DETAILS ACTION
 export const getListingDetails = (slug) => async (dispatch) => {

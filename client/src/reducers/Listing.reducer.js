@@ -1,6 +1,7 @@
 import {
   CREATE_LISTING,
   DELETE_LISTING,
+  GET_FILTER_LISTING,
   GET_LISTING_DETAILS,
   GET_LISTING_LIST,
   GET_LISTING_SEARCH,
@@ -12,6 +13,7 @@ const inititalState = {
   loading: false,
   selected_listing: null,
   search_listings: null,
+  filter_listings: null,
   my_listings: null,
 };
 
@@ -23,6 +25,12 @@ const listingReducer = (state = inititalState, action) => {
       return {
         ...state,
         listings: payload,
+        loading: false,
+      };
+    case GET_FILTER_LISTING:
+      return {
+        ...state,
+        filter_listings: payload,
         loading: false,
       };
     case GET_MY_LISTING_LIST:

@@ -11,6 +11,7 @@
 
 .shadow {
   box-shadow: var(--box-shadow-1);
+  width: 75%;
 }
 
 .filter {
@@ -23,9 +24,6 @@
   justify-content: space-around;
   align-items: center;
   z-index: 999;
-}
-
-.filter:last-child {
 }
 
 :global(.mantine-Select-wrapper input) {
@@ -51,9 +49,6 @@
   padding-right: 0 !important;
 }
 
-.dropdown {
-  top: -10px;
-}
 .dropdown {
   top: -5px;
 }
@@ -87,12 +82,16 @@
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    margin-top: 20px;
+    margin-top: 0;
     transform: translateY(0);
     position: relative;
   }
+
+  .shadow {
+    width: 100%;
+  }
   .filter {
-    width: 90%;
+    width: 100%;
     flex-direction: column;
     height: auto !important;
     padding: 20px;
@@ -106,5 +105,9 @@
     color: var(--dark);
     font-size: 14px;
     margin-bottom: 20px;
+  }
+
+  .mark_label {
+    font-size: 10px;
   }
 }
