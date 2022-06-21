@@ -50,7 +50,6 @@ const updateProfile = async (req, res) => {
 const updatePassword = async (req, res) => {
   // get id from authenticated user
   const id = req.user.id;
-  console.log(req.user);
 
   // get data from request
   const { password, newPassword } = req.body;

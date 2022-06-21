@@ -26,7 +26,12 @@
 		},
 		{
 			"path": "..\\book-reading-frontend"
+		},
+		{
+			"path": "..\\angular-mapban"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "angular-mapban"
+	}
 }

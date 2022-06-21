@@ -7,7 +7,7 @@ import { Button, InputGroup, Form as BootstrapForm } from "react-bootstrap";
 import * as Yup from "yup";
 import { useModals } from "@mantine/modals";
 import { updateUserAction } from "../../actions/Auth.action";
-import AvatarUpload from "../AvatarUpload/AvatarUpload";
+import { PasswordChangeForm } from "../PasswordChangeForm";
 
 const SettingsForm = ({ user, updateUserAction }) => {
   const [submitting, setSubmitting] = useState(false);
@@ -25,12 +25,12 @@ const SettingsForm = ({ user, updateUserAction }) => {
 
   const handleUploadAvatar = () => {
     modals.openModal({
-      title: "Change Profile Image",
+      title: "Change Password",
       centered: true,
       closeOnClickOutside: false,
       children: (
         <>
-          <AvatarUpload modals={modals} />
+          <PasswordChangeForm modals={modals} />
         </>
       ),
     });
@@ -152,7 +152,7 @@ const SettingsForm = ({ user, updateUserAction }) => {
                   className={"btn_primary"}
                   onClick={() => handleUploadAvatar()}
                 >
-                  Change Image
+                  Change Password
                 </Button>
               </div>
             </Form>

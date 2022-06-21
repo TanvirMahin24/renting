@@ -6,6 +6,8 @@ import {
   DELETE_USERS,
   DELETE_USERS_ERROR,
   GET_USERS_LIST,
+  PASSWORD_CHANGED,
+  PASSWORD_CHANGED_ERROR,
   UPDATE_USERS,
   UPDATE_USERS_ERROR,
 } from "../constants/Type";
@@ -74,7 +76,7 @@ export const deleteUsersAction = (id) => async (dispatch) => {
       withCredentials: true,
     };
 
-    const res = await axios.delete(`${BASE_URL}/api/user/${id}`, config);
+    await axios.delete(`${BASE_URL}/api/user/${id}`, config);
 
     toast.success("User Deleted Successfully");
     dispatch({
@@ -121,6 +123,42 @@ export const updateUsersAction = (values, id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_USERS_ERROR,
+    });
+    toast.error(error.response.data.message);
+    return false;
+  }
+};
+// UPDATE USER ACTION
+export const updatePasswordAction = (values, id) => async (dispatch) => {
+  try {
+    const data = {
+      password: values.password,
+      newPassword: values.newPassword,
+    };
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    await axios.patch(
+      `${BASE_URL}/api/user/password`,
+      JSON.stringify(data),
+      config
+    );
+
+    dispatch({
+      type: PASSWORD_CHANGED,
+    });
+
+    toast.success("Password Changed Successfully");
+
+    return true;
+  } catch (error) {
+    dispatch({
+      type: PASSWORD_CHANGED_ERROR,
     });
     toast.error(error.response.data.message);
     return false;
