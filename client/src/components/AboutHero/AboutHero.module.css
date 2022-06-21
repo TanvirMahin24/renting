@@ -8,7 +8,7 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: #ff593c6e;
+  background-color: #ff593c44;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,10 +16,10 @@
 }
 
 .img {
-  width: 80%;
+  width: 100%;
 
-  filter: invert(70%) sepia(55%) saturate(3127%) hue-rotate(316deg)
-    brightness(99%) contrast(96%);
+  /* filter: invert(70%) sepia(55%) saturate(3127%) hue-rotate(316deg)
+    brightness(99%) contrast(96%); */
 }
 
 .icon {

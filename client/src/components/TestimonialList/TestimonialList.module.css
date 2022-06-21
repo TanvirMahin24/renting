@@ -1,0 +1,26 @@
+.wrapper {
+  background: #ff593c44;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bolder;
+  color: var(--dark);
+  font-size: 3rem;
+  padding-bottom: 50px;
+  padding-top: 80px;
+}
+
+.dot {
+  margin: 5px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--primary);
+}
+
+.activeDot {
+  margin: 5px;
+  width: 10px;
+  height: 10px;
+  background: var(--color_light) !important;
+}
