@@ -1,6 +1,5 @@
 import { Button, Form } from "react-bootstrap";
 import React from "react";
-import { BsTelephone } from "react-icons/bs";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
