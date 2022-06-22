@@ -17,7 +17,7 @@ const AboutHero = () => {
         <Row>
           <Col
             md={5}
-            className="p-5 d-flex justify-content-center align-items-center"
+            className="p-5 d-md-flex justify-content-center align-items-center d-none"
           >
             <div className="">
               <img src={bg} alt="" className={styles.img} />
