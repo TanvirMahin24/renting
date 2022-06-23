@@ -3,13 +3,14 @@
   flex-direction: column;
   padding-top: 100px;
   padding-bottom: 30px;
-  background: var(--light);
+  background: var(--primary-light) !important;
   min-height: 400px;
   position: relative;
 }
 
 .pt {
   padding-top: 180px;
+  background: transparent !important;
 }
 
 .phone {
@@ -25,7 +26,7 @@
   align-items: center;
   flex-direction: column;
 
-  color: var(--dark);
+  color: var(--light) !important;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -55,7 +56,7 @@
 }
 
 .input::placeholder {
-  color: var(--light);
+  color: var(--light) !important;
 }
 
 .input:focus {
@@ -65,8 +66,8 @@
 
 .btn {
   background: transparent !important;
-  color: var(--white);
-  border: 1px solid var(--white);
+  color: var(--white) !important;
+  border: 1px solid var(--white) !important;
   font-size: 16px;
   font-weight: bold;
   transition: 0.3s all ease-in-out;
@@ -74,7 +75,62 @@
 
 .btn:hover {
   background: var(--light) !important;
-  color: var(--dark);
+  color: var(--dark) !important;
   border: 1px solid transparent;
   transition: 0.3s all ease-in-out;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--heading) !important;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 0;
+  margin: 0 20px;
+  display: inline-block;
+  transition: 0.3s all ease-in-out;
+}
+
+.link:hover {
+  color: var(--primary) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.copy {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: 0.3s all ease-in-out;
+}
+
+.copy:hover {
+  color: var(--dark) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+@media screen and (max-width: 668px) {
+  .wrapper {
+    padding-top: 0;
+  }
+  .pt {
+    padding-top: 0;
+  }
+
+  .phone {
+    position: relative;
+  }
+
+  .content {
+    padding: 15px;
+    height: auto;
+  }
+
+  .w100 {
+    width: 100% !important;
+  }
+
+  .input,
+  .input::placeholder {
+    font-size: 16px !important;
+  }
 }

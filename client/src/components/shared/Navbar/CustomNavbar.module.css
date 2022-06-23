@@ -19,7 +19,7 @@
   color: var(--heading) !important;
   font-weight: 600;
   font-size: 18px;
-  padding: 20px 10px;
+  margin: 20px 4px;
   display: inline-block;
   transition: 0.3s all ease-in-out;
   background: var(--white) !important;

@@ -10,7 +10,6 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 require("./Utils/passport");
 
-const passportLocalSequelize = require("passport-local-sequelize");
 // MODELS
 const User = require("./Model/User.model");
 const Listing = require("./Model/Listing.model");
@@ -19,6 +18,7 @@ const Image = require("./Model/Image.model");
 const Keyword = require("./Model/Keyword.model");
 const Requirement = require("./Model/Requirement.model");
 const Request = require("./Model/Request.model");
+const Contact = require("./Model/Contact.model");
 require("./Model/Subscribers.model");
 
 // INITIALIZE APP
@@ -96,12 +96,14 @@ Listing.hasMany(Image);
 Listing.hasMany(Keyword);
 Listing.hasMany(Requirement);
 User.hasMany(Listing);
+User.hasMany(Contact);
 Category.hasMany(Listing);
 Image.belongsTo(Listing);
 Keyword.belongsTo(Listing);
 Requirement.belongsTo(Listing);
 Request.belongsTo(User);
 Request.belongsTo(Listing);
+Contact.belongsTo(User);
 
 // Sequelize Sync
 sequelize

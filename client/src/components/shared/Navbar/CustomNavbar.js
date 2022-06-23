@@ -46,6 +46,9 @@ const CustomNavbar = ({ landing, isAuth, logoutAction, user, searchRes }) => {
               <Nav.Link as={Link} to="/contact" className={styles.link}>
                 Contact
               </Nav.Link>
+              <Nav.Link as={Link} to="/faq" className={styles.link}>
+                FAQ
+              </Nav.Link>
               {isAuth ? (
                 <Nav.Link
                   as={Link}

@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", isAuth, getAllSubscribers);
 router.post(
   "/",
-  [check("email", "Email is required").not().isEmpty()],
+  [check("phone", "Phone is required").not().isEmpty()],
   addSubscriber
 );
 

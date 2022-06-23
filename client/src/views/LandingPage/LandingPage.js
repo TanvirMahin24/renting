@@ -8,6 +8,7 @@ import { Badge } from "@mantine/core";
 import { connect } from "react-redux";
 import { getCategoryAction } from "../../actions/Category.action";
 import { getListingLaningpage } from "../../actions/Listing.action";
+import Footer from "../../components/Footer/Footer";
 
 const LandingPage = ({
   categories,
@@ -55,6 +56,7 @@ const LandingPage = ({
           )}
         </Row>
       </Container>
+      <Footer />
     </div>
   );
 };

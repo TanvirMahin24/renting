@@ -8,7 +8,7 @@ const Subscriber = sequelize.define("subscriber", {
     autoIncrement: true,
     allowNull: false,
   },
-  email: {
+  phone: {
     type: Sequelize.STRING,
     allowNull: false,
   },

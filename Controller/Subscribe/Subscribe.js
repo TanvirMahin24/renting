@@ -26,24 +26,25 @@ const addSubscriber = async (req, res) => {
     return res.status(400).json({ message: errors.array()[0].msg });
   }
 
-  const { email } = req.body;
+  const { phone } = req.body;
   // Check if user exist
   try {
-    const subs = await Subscriber.findAll({ where: { email } });
+    const subs = await Subscriber.findAll({ where: { phone } });
     if (subs.length > 0) {
       res.status(400).json({
-        message: "Email already exist",
+        message: "Phone already subscribed",
       });
       return;
     } else {
       // Add new subscriber
-      const newSub = await Subscriber.create({ email });
+      const newSub = await Subscriber.create({ phone });
       // Send Response
       res.json({ data: newSub });
       return;
     }
   } catch (error) {
     // Send Error
+    console.log(error);
     res.status(500).json({
       message: "Error adding subscriber",
     });
