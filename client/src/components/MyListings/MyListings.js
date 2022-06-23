@@ -59,7 +59,7 @@ const MyListings = ({ user, listings, deleteCategoryAction }) => {
         <>
           <Row>
             {listings.rows.map((listing) => (
-              <Col md={6} key={listing.id}>
+              <Col md={6} key={listing.id} className="py-3">
                 <ListingCard data={listing} edit />
               </Col>
             ))}

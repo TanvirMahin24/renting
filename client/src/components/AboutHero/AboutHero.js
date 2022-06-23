@@ -7,7 +7,6 @@ import AvComp from "./AvComp";
 import home from "../../assets/icons/home.png";
 import verification from "../../assets/icons/verification.png";
 import salary from "../../assets/icons/salary.png";
-import contract from "../../assets/icons/enterprise.png";
 import bg from "../../assets/About/1.jpg";
 
 const AboutHero = () => {

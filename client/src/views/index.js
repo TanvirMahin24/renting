@@ -12,6 +12,7 @@ import ListingDetailsPage from "./ListingDetailsPage/ListingDetailsPage";
 import SearchPage from "./SearchPage/SearchPage";
 import ListingsPage from "./ListingsPage/ListingsPage";
 import ContactPage from "./ContactPage/ContactPage";
+import FaqPage from "./FaqPage/FaqPage";
 
 export {
   RegisterPage,
@@ -28,4 +29,5 @@ export {
   ListingsPage,
   SearchPage,
   ContactPage,
+  FaqPage,
 };

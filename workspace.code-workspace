@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "..\\angular-mapban"
+		},
+		{
+			"path": "..\\Cover-Generator\\client"
 		}
 	],
 	"settings": {

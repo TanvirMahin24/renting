@@ -87,4 +87,10 @@
     background: var(--white) !important;
     color: var(--dark) !important;
   }
+
+  .link {
+    margin: 0 0 !important;
+    display: block;
+    text-align: center;
+  }
 }

@@ -23,6 +23,7 @@ import {
   ListingsPage,
   SearchPage,
   ContactPage,
+  FaqPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
@@ -72,6 +73,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FaqPage />} />
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 
           <Route path="/*" element={<PrivateOutlet />}>
