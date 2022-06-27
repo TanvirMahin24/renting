@@ -14,6 +14,7 @@ import bathroomImg from "../../assets/icons/bathroom.png";
 import drawingImg from "../../assets/icons/drawing.png";
 import kitchenImg from "../../assets/icons/kitchen.png";
 import diningImg from "../../assets/icons/dining.png";
+import { AiOutlineHome } from "react-icons/ai";
 
 const ListingInfo = ({ listing }) => {
   const district = listing
@@ -62,7 +63,8 @@ const ListingInfo = ({ listing }) => {
         </Col>
         <Col md={5} className="mt-4">
           <div className="bg-light  p-4 ">
-            <div className="border_left h3 mb-4">Property Details</div>
+            <button className="btn_primary w-100">Request For Booking</button>
+            <div className="border_left h3 mb-4 mt-4">Property Details</div>
             <Row className="py-2">
               <Col xs={6}>
                 <span className="fw-bold">Category</span>

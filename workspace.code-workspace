@@ -32,6 +32,9 @@
 		},
 		{
 			"path": "..\\Cover-Generator\\client"
+		},
+		{
+			"path": "..\\about-temporary"
 		}
 	],
 	"settings": {

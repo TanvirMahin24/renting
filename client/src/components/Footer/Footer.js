@@ -58,16 +58,16 @@ const Footer = ({ addSubscriber }) => {
             <Nav.Link as={Link} to="/faq" className={styles.link}>
               FAQ
             </Nav.Link>
-            <Nav.Link as={Link} to="/contact" className={styles.link}>
+            <Nav.Link as={Link} to="/privacy" className={styles.link}>
               Privacy Policy
             </Nav.Link>
-            <Nav.Link as={Link} to="/faq" className={styles.link}>
+            <Nav.Link as={Link} to="/terms" className={styles.link}>
               Terms & Conditions
             </Nav.Link>
           </div>
           <hr className="w-50 mx-auto" />
           <span className="fs-5 text-center d-block pt-3">
-            &copy;{new Date().getFullYear()} by{" "}
+            &copy;{new Date().getFullYear()} Renting Site. Developed by{" "}
             <a
               href="https://tanvirmahin.tech"
               target="_blank"

@@ -55,6 +55,11 @@ body {
   transition: 0.3s all ease-in-out;
 }
 
+.img_primary {
+  filter: invert(70%) sepia(55%) saturate(3127%) hue-rotate(316deg)
+    brightness(99%) contrast(96%);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

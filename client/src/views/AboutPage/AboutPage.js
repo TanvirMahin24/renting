@@ -1,4 +1,5 @@
 import React from "react";
+import AboutBottom from "../../components/AboutBottom/AboutBottom";
 import AboutHero from "../../components/AboutHero/AboutHero";
 import Footer from "../../components/Footer/Footer";
 import BreadCrumb from "../../components/shared/BreadCrumb/BreadCrumb";
@@ -12,6 +13,7 @@ const AboutPage = () => {
       <BreadCrumb type={"home"} first="home" last="About" name={"About Us"} />
       <AboutHero />
       <TestimonialList />
+      <AboutBottom />
       <Footer />
     </div>
   );

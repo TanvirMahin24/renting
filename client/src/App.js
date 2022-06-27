@@ -1,4 +1,10 @@
-import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import PrivateOutlet from "./utils/PrivateOutlet";
@@ -29,6 +35,7 @@ import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
+import CommingSoonPage from "./views/CommingSoonPage/CommingSoonPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -67,6 +74,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
         <ToastContainer newestOnTop theme="light" />
 
         <Routes>
+          <Route path="*" element={<CommingSoonPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -74,6 +82,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
+
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 
           <Route path="/*" element={<PrivateOutlet />}>

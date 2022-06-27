@@ -34,13 +34,14 @@ const submitContact = async (req, res) => {
       name,
       email,
       message,
-      userId: req.user.id ? req.user.id : null,
+      userId: req.user && req.user.id ? req.user.id : null,
     });
 
     // Send Response
     res.json({ data: newContact });
     return;
   } catch (error) {
+    //console.log(error);
     // Send Error
     res.status(500).json({
       message: "Error adding contact",

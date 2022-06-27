@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+
 import { Field, Formik, Form } from "formik";
 import {
   Button,
   InputGroup,
   Form as BootstrapForm,
-  Container,
   Row,
   Col,
 } from "react-bootstrap";
 import * as Yup from "yup";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { toast } from "react-toastify";
 import styles from "./ContactForm.module.css";
+import { submitContact } from "../../actions/Contact.action";
+import { connect } from "react-redux";
 
-const ContactForm = () => {
+const ContactForm = ({ submitContact }) => {
   const [submitting, setSubmitting] = useState(false);
-
-  const navigate = useNavigate();
 
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
-    // TODO ::: create account action
-    let check = false;
+    let check = await submitContact(values);
     if (check === true) {
-      toast.success("Login Successful");
+      toast.success("Message sent successfully");
       setSubmitting(false);
-      navigate("/dashboard");
     }
     setSubmitting(false);
   };
@@ -44,7 +39,7 @@ const ContactForm = () => {
       .required("Email is required!"),
   });
   return (
-    <div>
+    <div className="">
       <span className="d-block  pt-4 pb-4 lead">
         Drop a message and we will get back to you as soon as possible.
       </span>
@@ -141,4 +136,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default connect(null, { submitContact })(ContactForm);
