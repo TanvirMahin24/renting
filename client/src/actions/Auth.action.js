@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import axios from "axios";
 import {
+  ADMIN_DATA_LOAD,
   AUTH_USER_LOAD,
   AUTH_USER_LOAD_ERROR,
   LOGIN_SUCCESS,
@@ -164,6 +165,26 @@ export const updateUserAction = (values, id) => async (dispatch) => {
       type: PROFILE_UPDATE_ERROR,
     });
     toast.error(error.response.data.message);
+    return false;
+  }
+};
+
+// ADMIN DATA ACTION
+export const adminDataAction = () => async (dispatch) => {
+  try {
+    const config = {
+      withCredentials: true,
+    };
+
+    const res = await axios.get(`${BASE_URL}/api/user/dashboard`, config);
+
+    dispatch({
+      type: ADMIN_DATA_LOAD,
+      payload: res.data.data,
+    });
+    return true;
+  } catch (error) {
+    console.log(error);
     return false;
   }
 };

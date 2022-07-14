@@ -1,0 +1,22 @@
+.btn_primary {
+  outline: none !important;
+  border: none !important;
+  padding: 8px 15px !important;
+  font-weight: bold !important;
+  border-radius: 0px !important;
+  color: var(--white) !important;
+  background: var(--primary) !important;
+  text-decoration: none !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.btn_primary:hover {
+  color: var(--white) !important;
+  background: var(--primary-hover) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.link {
+  text-decoration: none;
+  margin-right: 10px;
+}

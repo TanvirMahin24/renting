@@ -84,6 +84,7 @@ app.use("/api/category", require("./Routes/Category"));
 app.use("/api/listing", require("./Routes/Listing"));
 app.use("/api/contact", require("./Routes/Contact"));
 app.use("/api/subscriber", require("./Routes/Subscribe"));
+app.use("/api/request", require("./Routes/Request"));
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {

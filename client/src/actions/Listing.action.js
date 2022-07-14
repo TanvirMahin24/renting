@@ -7,6 +7,7 @@ import {
   DELETE_ADMIN_ERROR,
   DELETE_LISTING,
   DELETE_LISTING_ERROR,
+  GET_FAVORITE_LIST,
   GET_FILTER_LISTING,
   GET_LISTING_DETAILS,
   GET_LISTING_DETAILS_ERROR,
@@ -17,7 +18,22 @@ import {
   UPDATE_ADMIN_ERROR,
 } from "../constants/Type";
 import { BASE_URL } from "../constants/URL";
-import setAuthToken from "../utils/setAuthToken";
+
+//GET FAV LISTING ACTION
+export const getFavListings = (ids) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL}/api/package/fav?id=${ids.join(",")}`
+    );
+
+    dispatch({
+      type: GET_FAVORITE_LIST,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 //GET LISTING ACTION
 export const getListingLaningpage = () => async (dispatch) => {

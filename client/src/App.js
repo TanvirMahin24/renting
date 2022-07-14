@@ -30,12 +30,15 @@ import {
   SearchPage,
   ContactPage,
   FaqPage,
+  BookingRequestPage,
+  CommingSoonPage,
+  ContactListPage,
+  SubscribersPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
-import CommingSoonPage from "./views/CommingSoonPage/CommingSoonPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -85,9 +88,12 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
 
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 
+          <Route path="/booking/:id" element={<BookingRequestPage />} />
           <Route path="/*" element={<PrivateOutlet />}>
             <>
               <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="contact-list" element={<ContactListPage />} />
+              <Route path="newsletter" element={<SubscribersPage />} />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="category" element={<CategoryPage />} />
               <Route path="category/add" element={<AddCategoryPage />} />

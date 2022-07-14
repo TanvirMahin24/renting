@@ -14,9 +14,10 @@ import bathroomImg from "../../assets/icons/bathroom.png";
 import drawingImg from "../../assets/icons/drawing.png";
 import kitchenImg from "../../assets/icons/kitchen.png";
 import diningImg from "../../assets/icons/dining.png";
-import { AiOutlineHome } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const ListingInfo = ({ listing }) => {
+  const navigate = useNavigate();
   const district = listing
     ? districts.filter((dis) => dis.id === listing.district)[0]
     : "";
@@ -63,7 +64,12 @@ const ListingInfo = ({ listing }) => {
         </Col>
         <Col md={5} className="mt-4">
           <div className="bg-light  p-4 ">
-            <button className="btn_primary w-100">Request For Booking</button>
+            <button
+              onClick={() => navigate(`/booking/${listing.slug}`)}
+              className="btn_primary w-100"
+            >
+              Request For Booking
+            </button>
             <div className="border_left h3 mb-4 mt-4">Property Details</div>
             <Row className="py-2">
               <Col xs={6}>

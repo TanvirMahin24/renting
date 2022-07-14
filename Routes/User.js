@@ -1,4 +1,5 @@
 const express = require("express");
+const { getDashboardAdmin } = require("../Controller/User/dashboardAdmin");
 const { deleteUser } = require("../Controller/User/deleteUser");
 const { changeUserRole } = require("../Controller/User/editUser");
 const {
@@ -15,6 +16,7 @@ const router = express.Router();
 
 // Auth Routes
 router.get("/auth", getAuthUser);
+router.get("/dashboard", isAdmin, getDashboardAdmin);
 router.get("/", getAllUser);
 router.post("/role/:id", isAdmin, changeUserRole);
 router.patch("/password", isAuth, updatePassword);

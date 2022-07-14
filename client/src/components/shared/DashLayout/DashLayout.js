@@ -6,10 +6,11 @@ import { TiCogOutline } from "react-icons/ti";
 import { FiLogOut, FiUsers } from "react-icons/fi";
 import { ImStack } from "react-icons/im";
 import styles from "./DashLayout.module.css";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../Footer/Footer";
+import { BsTelephoneInbound } from "react-icons/bs";
 
 const DashLayout = ({ logoutAction, children, user }) => {
   const navigate = useNavigate();
@@ -64,6 +65,22 @@ const DashLayout = ({ logoutAction, children, user }) => {
                       <FiUsers />
                     </span>
                     <span className={styles.nav__item_text}>Users</span>
+                  </NavLink>
+                </div>
+                <div className={styles.nav}>
+                  <NavLink to="/contact-list" className={styles.nav__item}>
+                    <span className={styles.icon}>
+                      <AiOutlineMail />
+                    </span>
+                    <span className={styles.nav__item_text}>Contacts</span>
+                  </NavLink>
+                </div>
+                <div className={styles.nav}>
+                  <NavLink to="/newsletter" className={styles.nav__item}>
+                    <span className={styles.icon}>
+                      <BsTelephoneInbound />
+                    </span>
+                    <span className={styles.nav__item_text}>Newsletter</span>
                   </NavLink>
                 </div>
               </>

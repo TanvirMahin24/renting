@@ -13,6 +13,10 @@ import SearchPage from "./SearchPage/SearchPage";
 import ListingsPage from "./ListingsPage/ListingsPage";
 import ContactPage from "./ContactPage/ContactPage";
 import FaqPage from "./FaqPage/FaqPage";
+import BookingRequestPage from "./BookingRequestPage/BookingRequestPage";
+import CommingSoonPage from "./CommingSoonPage/CommingSoonPage";
+import ContactListPage from "./ContactListPage/ContactListPage";
+import SubscribersPage from "./SubscribersPage/SubscribersPage";
 
 export {
   RegisterPage,
@@ -30,4 +34,8 @@ export {
   SearchPage,
   ContactPage,
   FaqPage,
+  BookingRequestPage,
+  CommingSoonPage,
+  ContactListPage,
+  SubscribersPage,
 };

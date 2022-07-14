@@ -8,6 +8,10 @@ const Request = sequelize.define("request", {
     autoIncrement: true,
     allowNull: false,
   },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   occupation: {
     type: Sequelize.STRING,
     allowNull: false,
