@@ -24,7 +24,9 @@ const ReqList = ({ data }) => {
             {data.map((item, i) => (
               <tr key={item.id}>
                 <td>{i + 1}</td>
-                <td>{item.name}</td>
+                <td>
+                  <Link to={`/my-requests/${item.id}`}>{item.name}</Link>
+                </td>
                 <td>{item.phone}</td>
                 <td className="text-uppercase">
                   {" "}

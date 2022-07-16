@@ -3,12 +3,13 @@ import { useModals } from "@mantine/modals";
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { changeStatusAction } from "../../actions/Request.action";
 import ListingCard from "../shared/ListingCard/ListingCard";
-import styles from "./RequestInfo.module.css";
+import { saveAs } from "file-saver";
+//import styles from "./RequestInfo.module.css";
 
-const RequestInfo = ({ data, changeStatusAction }) => {
+const RequestInfo = ({ data, changeStatusAction, my }) => {
   const navigate = useNavigate();
   const modals = useModals();
   const handleClick = (status) => {
@@ -27,6 +28,11 @@ const RequestInfo = ({ data, changeStatusAction }) => {
     });
   };
 
+  const saveFile = (file) => {
+    console.log(file);
+    saveAs(`http://${file}`);
+  };
+
   return (
     <div>
       <Row>
@@ -35,12 +41,24 @@ const RequestInfo = ({ data, changeStatusAction }) => {
             <Button classname="" onClick={() => navigate(-1)}>
               Go Back
             </Button>
-            <Button variant="success" onClick={() => handleClick("approved")}>
-              Approve
-            </Button>
-            <Button variant="danger" onClick={() => handleClick("rejected")}>
-              Reject
-            </Button>
+            {my === true ? (
+              <></>
+            ) : (
+              <>
+                <Button
+                  variant="success"
+                  onClick={() => handleClick("approved")}
+                >
+                  Approve
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleClick("rejected")}
+                >
+                  Reject
+                </Button>
+              </>
+            )}
           </div>
           <h3 className="border_left mb-4 mt-4">Booking Request Details</h3>
           <span className="d-block fw-bold h6">
@@ -85,15 +103,13 @@ const RequestInfo = ({ data, changeStatusAction }) => {
           )}
           {data.document ? (
             <div className="pt-4">
-              <Link
+              <button
                 className="btn_primary"
                 style={{ textDecoration: "none" }}
-                to={`${data.document}`}
-                download
-                target={"_blank"}
+                onClick={() => saveFile(data.document)}
               >
                 Download Document
-              </Link>
+              </button>
             </div>
           ) : (
             <></>

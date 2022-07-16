@@ -1,5 +1,5 @@
-import { Button, Table, Text } from "@mantine/core";
-import { Container } from "react-bootstrap";
+import { Button, Text } from "@mantine/core";
+import { Container, Table } from "react-bootstrap";
 import React, { useEffect } from "react";
 import styles from "./UsersList.module.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ const UsersList = ({ users, getUsersAction, deleteUsersAction, user }) => {
         </span>
       ) : (
         <>
-          <Table verticalSpacing="sm" striped highlightOnHover>
+          <Table hover striped responsive>
             <thead>
               <tr>
                 <th>#</th>

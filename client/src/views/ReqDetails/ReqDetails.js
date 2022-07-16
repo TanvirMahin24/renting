@@ -8,7 +8,7 @@ import { DashLayout } from "../../components/shared/DashLayout";
 import { Loader } from "../../components/shared/Loader";
 import CustomNavbar from "../../components/shared/Navbar/CustomNavbar";
 
-const ReqDetails = ({ getRequestDetailsAction, data }) => {
+const ReqDetails = ({ getRequestDetailsAction, data, my }) => {
   const { id } = useParams();
   useEffect(() => {
     getRequestDetailsAction(id);
@@ -28,7 +28,7 @@ const ReqDetails = ({ getRequestDetailsAction, data }) => {
             <Loader />
           </>
         ) : (
-          <RequestInfo data={data} />
+          <RequestInfo data={data} my={my} />
         )}
       </DashLayout>
     </div>

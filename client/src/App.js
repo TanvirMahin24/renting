@@ -110,6 +110,10 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
                 path="requests-received/details/:id"
                 element={<ReqDetails />}
               />
+              <Route
+                path="my-requests/:id"
+                element={<ReqDetails my={true} />}
+              />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="category" element={<CategoryPage />} />
               <Route path="category/add" element={<AddCategoryPage />} />
