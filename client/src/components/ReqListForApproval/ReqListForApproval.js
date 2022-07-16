@@ -12,7 +12,7 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
       <h2 className="border_left mt-3 mb-4">Requests For Approval</h2>
       {!dashboard ? (
         <div className="d-flex align-items-center pb-3">
-          <Link to="/req-approve/pending" className={styles.link}>
+          <Link to="/requests-received/pending" className={styles.link}>
             <Badge
               variant={`${status === "pending" ? "filled" : "outline"}`}
               size="xl"
@@ -20,7 +20,7 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
               <span style={{ cursor: "pointer" }}>Pending</span>
             </Badge>
           </Link>
-          <Link to="/req-approve/approved" className={styles.link}>
+          <Link to="/requests-received/approved" className={styles.link}>
             <Badge
               variant={`${status === "approved" ? "filled" : "outline"}`}
               color="green"
@@ -29,7 +29,7 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
               <span style={{ cursor: "pointer" }}>Approved</span>
             </Badge>
           </Link>
-          <Link to="/req-approve/rejected" className={styles.link}>
+          <Link to="/requests-received/rejected" className={styles.link}>
             <Badge
               variant={`${status === "rejected" ? "filled" : "outline"}`}
               color="red"
@@ -58,7 +58,9 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
               <tr key={item.id}>
                 <td>{i + 1}</td>
                 <td>
-                  <Link to={`/req-approve/one/${item.id}`}>{item.name}</Link>
+                  <Link to={`/requests-received/details/${item.id}`}>
+                    {item.name}
+                  </Link>
                 </td>
                 <td>{item.phone}</td>
                 <td className="text-uppercase">

@@ -10,7 +10,7 @@ import { AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../Footer/Footer";
-import { BsTelephoneInbound } from "react-icons/bs";
+import { BsFolder, BsFolderX, BsTelephoneInbound } from "react-icons/bs";
 
 const DashLayout = ({ logoutAction, children, user }) => {
   const navigate = useNavigate();
@@ -41,6 +41,22 @@ const DashLayout = ({ logoutAction, children, user }) => {
               <span className={styles.nav__item_text}>Add Listing</span>
             </NavLink>
           </div> */}
+            <div className={styles.nav}>
+              <NavLink to="/my-requests" className={styles.nav__item}>
+                <span className={styles.icon}>
+                  <BsFolder />
+                </span>
+                <span className={styles.nav__item_text}>My Requests</span>
+              </NavLink>
+            </div>
+            <div className={styles.nav}>
+              <NavLink to="/requests-received" className={styles.nav__item}>
+                <span className={styles.icon}>
+                  <BsFolderX />
+                </span>
+                <span className={styles.nav__item_text}>Requests Received</span>
+              </NavLink>
+            </div>
             <div className={styles.nav}>
               <NavLink to="/listings" className={styles.nav__item}>
                 <span className={styles.icon}>

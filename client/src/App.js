@@ -39,6 +39,9 @@ import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
+import MyRequsetsPage from "./views/MyRequsetsPage/MyRequsetsPage";
+import RequestForApproval from "./views/RequestForApproval/RequestForApproval";
+import ReqDetails from "./views/ReqDetails/ReqDetails";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -94,6 +97,19 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="contact-list" element={<ContactListPage />} />
               <Route path="newsletter" element={<SubscribersPage />} />
+              <Route path="my-requests" element={<MyRequsetsPage />} />
+              <Route
+                path="requests-received"
+                element={<RequestForApproval />}
+              />
+              <Route
+                path="requests-received/:status"
+                element={<RequestForApproval />}
+              />
+              <Route
+                path="requests-received/details/:id"
+                element={<ReqDetails />}
+              />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="category" element={<CategoryPage />} />
               <Route path="category/add" element={<AddCategoryPage />} />
