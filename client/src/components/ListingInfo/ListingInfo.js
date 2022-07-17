@@ -147,6 +147,11 @@ const ListingInfo = ({ listing, removeFromFavorite, addToFavorite, fav }) => {
                 </Badge>
               ))}
             </div>
+            <div className=" mt-5 mb-2">
+              <button className="btn_danger outline">
+                Report This Listing
+              </button>
+            </div>
           </div>
         </Col>
 

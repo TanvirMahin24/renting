@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getListingDetails } from "../../actions/Listing.action";
+import Footer from "../../components/Footer/Footer";
 import ListingGallery from "../../components/ListingGallery/ListingGallery";
 import ListingInfo from "../../components/ListingInfo/ListingInfo";
 import BreadCrumb from "../../components/shared/BreadCrumb/BreadCrumb";
@@ -33,6 +34,7 @@ const ListingDetailsPage = ({ listing, getListingDetails }) => {
       />
       <ListingGallery listing={listing} />
       <ListingInfo listing={listing} />
+      <Footer />
     </div>
   );
 };

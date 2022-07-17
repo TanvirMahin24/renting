@@ -150,16 +150,15 @@ select.form-select option:hover {
 .btn_danger {
   outline: none !important;
   border: none !important;
-  padding: 8px 26px !important;
-  font-weight: bold !important;
-  border-radius: 30px !important;
+  padding: 10px 20px !important;
+  border-radius: 0px !important;
   color: var(--white) !important;
-  background: linear-gradient(90deg, #ff7c02 0%, #f02e2e 100%) !important;
+  background: var(--danger) !important;
   transition: 0.3s all ease-in-out;
 }
 
 .btn_danger:hover {
-  background: linear-gradient(90deg, #fc2222 0%, #ff7c02 100%) !important;
+  background: #fc2222 !important;
   transition: 0.3s all ease-in-out;
 }
 
