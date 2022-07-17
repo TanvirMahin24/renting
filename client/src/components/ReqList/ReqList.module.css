@@ -15,3 +15,15 @@
   background: var(--primary-hover) !important;
   transition: 0.3s all ease-in-out;
 }
+
+.name {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  transition: 0.3s all ease-in-out;
+}
+
+.name:hover {
+  color: black !important;
+  transition: 0.3s all ease-in-out;
+}

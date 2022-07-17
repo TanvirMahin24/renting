@@ -25,7 +25,9 @@ const ReqList = ({ data }) => {
               <tr key={item.id}>
                 <td>{i + 1}</td>
                 <td>
-                  <Link to={`/my-requests/${item.id}`}>{item.name}</Link>
+                  <Link to={`/my-requests/${item.id}`} className={styles.name}>
+                    {item.name}
+                  </Link>
                 </td>
                 <td>{item.phone}</td>
                 <td className="text-uppercase">

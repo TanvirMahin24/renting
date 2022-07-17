@@ -7,21 +7,14 @@ import {
   BsClipboardX,
   BsStack,
 } from "react-icons/bs";
-import {
-  FaUserCog,
-  FaUserAlt,
-  FaListAlt,
-  FaClipboardCheck,
-  FaRegCalendarTimes,
-} from "react-icons/fa";
-import { MdPendingActions } from "react-icons/md";
+import { FaUserAlt, FaListAlt } from "react-icons/fa";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
 import LineChart from "../lineChart/lineChart";
 import PiChart from "../PiChart/PiChart";
 import Loader from "../shared/Loader/Loader";
 import StatCard from "../shared/StatCard/StatCard";
-import styles from "./AdminDashboard.module.css";
+//import styles from "./AdminDashboard.module.css";
 
 const AdminDashboard = ({ adminDataAction, data }) => {
   useEffect(() => {

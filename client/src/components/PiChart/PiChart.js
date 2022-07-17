@@ -8,14 +8,21 @@ const PiChart = ({ pending, approved, rejected }) => {
     options: {
       labels: ["Pending", "Approved", "Rejected"],
       legend: {
+        show: true,
         position: "bottom",
+        labels: {
+          colors: undefined,
+          useSeriesColors: false,
+        },
+        markers: {
+          fillColors: ["#fc7259", "#1db954", "#dc3545"],
+        },
       },
-      dropShadow: {
-        enabled: true,
-        top: 0,
-        left: 0,
-        blur: 3,
-        opacity: 1,
+      fill: {
+        colors: ["#fc7259", "#1db954", "#dc3545"],
+      },
+      markers: {
+        colors: ["#fc7259", "#1db954", "#dc3545"],
       },
     },
 
@@ -28,7 +35,7 @@ const PiChart = ({ pending, approved, rejected }) => {
         options={options.options}
         series={options.series}
         type="donut"
-        width="380"
+        width="400px"
       />
     </div>
   );

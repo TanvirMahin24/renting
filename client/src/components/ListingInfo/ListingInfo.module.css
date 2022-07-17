@@ -28,3 +28,12 @@
 .room_title {
   font-size: 20px;
 }
+
+.btn {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  color: var(--danger);
+  font-size: 20px;
+  margin-left: 10px;
+}

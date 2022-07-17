@@ -11,6 +11,7 @@ const searchListing = require("../Controller/Listing/searchListing");
 const getMyListings = require("../Controller/Listing/getMyListings");
 const deleteListing = require("../Controller/Listing/deleteListing");
 const filterListing = require("../Controller/Listing/filterListing");
+const getFavListing = require("../Controller/Listing/getFavListing");
 
 const router = express.Router();
 
@@ -41,7 +42,7 @@ router.post(
   ],
   createListing
 );
-
+router.get("/fav", getFavListing);
 router.get("/", getAllListings);
 router.get("/search", searchListing);
 router.get("/filter", filterListing);

@@ -24,9 +24,7 @@ const createReq = async (req, res) => {
         message: "Listing not found",
       });
     }
-    console.log(
-      `${process.env.SERVER_DOMAIN}/api/uploads/${document.filename}`
-    );
+
     // Create Request
     const request = await Request.create({
       phone,

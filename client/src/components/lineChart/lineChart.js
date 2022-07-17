@@ -30,7 +30,7 @@ const LineChart = ({ data }) => {
     theme: {
       monochrome: {
         enabled: true,
-        color: "#ffa602",
+        color: "#fc7259",
         shadeTo: "dark",
         shadeIntensity: 0.65,
       },
@@ -71,7 +71,7 @@ const LineChart = ({ data }) => {
         }}
         series={[
           {
-            name: "Sell (USD)",
+            name: "Booking Request",
             data: collectionsDataCurrentProjects,
           },
         ]}

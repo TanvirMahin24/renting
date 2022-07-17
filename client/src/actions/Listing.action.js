@@ -23,7 +23,7 @@ import { BASE_URL } from "../constants/URL";
 export const getFavListings = (ids) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `${BASE_URL}/api/package/fav?id=${ids.join(",")}`
+      `${BASE_URL}/api/listing/fav?id=${ids.join(",")}`
     );
 
     dispatch({

@@ -15,8 +15,11 @@ import drawingImg from "../../assets/icons/drawing.png";
 import kitchenImg from "../../assets/icons/kitchen.png";
 import diningImg from "../../assets/icons/dining.png";
 import { useNavigate } from "react-router-dom";
+import { addToFavorite, removeFromFavorite } from "../../actions/Fav.action";
+import { connect } from "react-redux";
+import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 
-const ListingInfo = ({ listing }) => {
+const ListingInfo = ({ listing, removeFromFavorite, addToFavorite, fav }) => {
   const navigate = useNavigate();
   const district = listing
     ? districts.filter((dis) => dis.id === listing.district)[0]
@@ -45,6 +48,20 @@ const ListingInfo = ({ listing }) => {
                   .name
               }
             </span>
+            <button
+              className={styles.btn}
+              onClick={() =>
+                fav.includes(listing.id)
+                  ? removeFromFavorite(listing.id)
+                  : addToFavorite(listing.id)
+              }
+            >
+              {fav.includes(listing.id) ? (
+                <MdFavorite />
+              ) : (
+                <MdOutlineFavoriteBorder />
+              )}
+            </button>
           </span>
           <div className="border_left h3 mt-5">Description</div>
           <span className="d-block fs-6 py-3">{listing.description}</span>
@@ -224,4 +241,9 @@ const ListingInfo = ({ listing }) => {
   );
 };
 
-export default ListingInfo;
+const mapStateToProps = (state) => ({
+  fav: state.fav.favorite,
+});
+export default connect(mapStateToProps, { removeFromFavorite, addToFavorite })(
+  ListingInfo
+);

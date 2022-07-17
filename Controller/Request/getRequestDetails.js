@@ -1,6 +1,7 @@
 const Request = require("../../Model/Request.model");
 const User = require("../../Model/User.model");
 const Listing = require("../../Model/Listing.model");
+const Category = require("../../Model/Category.model");
 
 // Get request details by pk
 const getRequestDetails = async (req, res) => {
@@ -15,7 +16,10 @@ const getRequestDetails = async (req, res) => {
           model: User,
           attributes: ["id", "first_name", "last_name", "email", "phone"],
         },
-        Listing,
+        {
+          model: Listing,
+          include: [Category],
+        },
       ],
     });
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getFavListings } from "../../actions/Listing.action";
 import { getRecentReqAction } from "../../actions/Request.action";
 import ReqList from "../ReqList/ReqList";
@@ -14,6 +15,7 @@ const UserDashboard = ({
   fav,
   data,
 }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     getRecentReqAction();
     if (fav && fav.length > 0) {
@@ -27,9 +29,18 @@ const UserDashboard = ({
           <ReqList data={req.rows} />
         </>
       ) : (
-        <>
-          <h4>Please Request For A Pack & Get Started.</h4>
-        </>
+        <div className="text-center">
+          <h4 className="py-4 text-center">
+            Please Request For A Pack & Get Started.
+          </h4>
+          <button
+            className="btn_primary"
+            onClick={() => navigate("/search?category=&price=0,100")}
+          >
+            {" "}
+            Start Searching House
+          </button>
+        </div>
       )}
 
       {data !== null && data.length > 0 ? (

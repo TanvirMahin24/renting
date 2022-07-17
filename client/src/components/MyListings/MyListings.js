@@ -49,7 +49,7 @@ const MyListings = ({ user, listings, deleteCategoryAction }) => {
 
       {listings === null ? (
         <Loader />
-      ) : listings.length === 0 ? (
+      ) : listings.rows.length === 0 ? (
         <span className="h4 d-block py-5 fw-normal text-center">
           <BiCommentError size={48} color="var(--primary)" className="mb-3" />{" "}
           <br />

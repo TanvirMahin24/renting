@@ -14,7 +14,9 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
         <div className="d-flex align-items-center pb-3">
           <Link to="/requests-received/pending" className={styles.link}>
             <Badge
-              variant={`${status === "pending" ? "filled" : "outline"}`}
+              variant={`${
+                status === "pending" || !status ? "filled" : "outline"
+              }`}
               size="xl"
             >
               <span style={{ cursor: "pointer" }}>Pending</span>
