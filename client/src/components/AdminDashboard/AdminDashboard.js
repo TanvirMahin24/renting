@@ -17,6 +17,7 @@ import {
 import { MdPendingActions } from "react-icons/md";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
+import PiChart from "../PiChart/PiChart";
 import Loader from "../shared/Loader/Loader";
 import StatCard from "../shared/StatCard/StatCard";
 import styles from "./AdminDashboard.module.css";
@@ -82,6 +83,15 @@ const AdminDashboard = ({ adminDataAction, data }) => {
                 title="Rejected"
                 count={data.rejected}
                 icon={<BsClipboardX />}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <PiChart
+                pending={data.pending}
+                approved={data.approved}
+                rejected={data.rejected}
               />
             </Col>
           </Row>
