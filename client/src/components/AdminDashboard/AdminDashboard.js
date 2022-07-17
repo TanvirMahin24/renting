@@ -17,6 +17,7 @@ import {
 import { MdPendingActions } from "react-icons/md";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
+import LineChart from "../lineChart/lineChart";
 import PiChart from "../PiChart/PiChart";
 import Loader from "../shared/Loader/Loader";
 import StatCard from "../shared/StatCard/StatCard";
@@ -86,8 +87,11 @@ const AdminDashboard = ({ adminDataAction, data }) => {
               />
             </Col>
           </Row>
-          <Row>
-            <Col>
+          <Row className="py-4">
+            <Col md={7}>
+              <LineChart data={data.requestTime} />
+            </Col>
+            <Col md={5}>
               <PiChart
                 pending={data.pending}
                 approved={data.approved}

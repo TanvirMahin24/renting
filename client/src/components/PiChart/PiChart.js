@@ -7,12 +7,23 @@ const PiChart = ({ pending, approved, rejected }) => {
   const options = {
     options: {
       labels: ["Pending", "Approved", "Rejected"],
+      legend: {
+        position: "bottom",
+      },
+      dropShadow: {
+        enabled: true,
+        top: 0,
+        left: 0,
+        blur: 3,
+        opacity: 1,
+      },
     },
+
     series: [pending, approved, rejected],
   };
 
   return (
-    <div>
+    <div className="h-100 d-flex align-items-center justify-content-center">
       <Chart
         options={options.options}
         series={options.series}

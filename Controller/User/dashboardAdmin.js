@@ -16,6 +16,9 @@ const getDashboardAdmin = async (req, res) => {
     const pendingCount = await Request.count({
       where: { status: "pending" },
     });
+    const reqTimes = await Request.findAll({
+      attributes: ["createdAt"],
+    });
 
     const approvedCount = await Request.count({
       where: { status: "approved" },
@@ -40,6 +43,7 @@ const getDashboardAdmin = async (req, res) => {
         rejected: rejectedCount,
         subscribers: subscribersCount,
         contact: contactCount,
+        requestTime: reqTimes,
       },
     });
   } catch (error) {
