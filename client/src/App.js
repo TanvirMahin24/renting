@@ -34,14 +34,15 @@ import {
   CommingSoonPage,
   ContactListPage,
   SubscribersPage,
+  ReportPage,
+  ReqDetails,
+  RequestForApproval,
+  MyRequsetsPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
-import MyRequsetsPage from "./views/MyRequsetsPage/MyRequsetsPage";
-import RequestForApproval from "./views/RequestForApproval/RequestForApproval";
-import ReqDetails from "./views/ReqDetails/ReqDetails";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -106,6 +107,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
                 path="requests-received/:status"
                 element={<RequestForApproval />}
               />
+              <Route path="report/:id" element={<ReportPage />} />
               <Route
                 path="requests-received/details/:id"
                 element={<ReqDetails />}

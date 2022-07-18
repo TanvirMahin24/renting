@@ -24,6 +24,8 @@ const ListingInfo = ({ listing, removeFromFavorite, addToFavorite, fav }) => {
   const district = listing
     ? districts.filter((dis) => dis.id === listing.district)[0]
     : "";
+
+  const reportHandeler = () => {};
   return listing ? (
     <Container className="pb-5">
       <Row>
@@ -148,7 +150,10 @@ const ListingInfo = ({ listing, removeFromFavorite, addToFavorite, fav }) => {
               ))}
             </div>
             <div className=" mt-5 mb-2">
-              <button className="btn_danger outline">
+              <button
+                className="btn_danger outline"
+                onClick={() => navigate(`/report/${listing.slug}`)}
+              >
                 Report This Listing
               </button>
             </div>

@@ -17,6 +17,10 @@ import BookingRequestPage from "./BookingRequestPage/BookingRequestPage";
 import CommingSoonPage from "./CommingSoonPage/CommingSoonPage";
 import ContactListPage from "./ContactListPage/ContactListPage";
 import SubscribersPage from "./SubscribersPage/SubscribersPage";
+import ReportPage from "./ReportPage/ReportPage";
+import ReqDetails from "./ReqDetails/ReqDetails";
+import RequestForApproval from "./RequestForApproval/RequestForApproval";
+import MyRequsetsPage from "./MyRequsetsPage/MyRequsetsPage";
 
 export {
   RegisterPage,
@@ -38,4 +42,8 @@ export {
   CommingSoonPage,
   ContactListPage,
   SubscribersPage,
+  ReportPage,
+  ReqDetails,
+  RequestForApproval,
+  MyRequsetsPage,
 };
