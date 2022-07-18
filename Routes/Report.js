@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { isAuth, isAdmin } = require("../Utils/isAuth");
 
 const createReport = require("../Controller/Report/createReport");
+const getReport = require("../Controller/Report/getReport");
 
 const router = express.Router();
 
@@ -15,5 +16,7 @@ router.post(
 
   createReport
 );
+
+router.get("/", isAdmin, getReport);
 
 module.exports = router;

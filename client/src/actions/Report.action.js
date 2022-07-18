@@ -44,9 +44,9 @@ export const createReportAction = (values, id) => async (dispatch) => {
 };
 
 // get my requests
-export const getMyReqAction = () => async (dispatch) => {
+export const getReportsAction = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${BASE_URL}/api/request/my`, {
+    const res = await axios.get(`${BASE_URL}/api/report`, {
       withCredentials: true,
     });
     dispatch({

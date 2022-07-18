@@ -38,6 +38,7 @@ import {
   ReqDetails,
   RequestForApproval,
   MyRequsetsPage,
+  ReportListPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
@@ -99,6 +100,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="contact-list" element={<ContactListPage />} />
               <Route path="newsletter" element={<SubscribersPage />} />
+              <Route path="report" element={<ReportListPage />} />
               <Route path="my-requests" element={<MyRequsetsPage />} />
               <Route
                 path="requests-received"

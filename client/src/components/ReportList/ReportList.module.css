@@ -1,0 +1,29 @@
+.btn_primary {
+  outline: none !important;
+  border: none !important;
+  padding: 8px 15px !important;
+  font-weight: bold !important;
+  border-radius: 0px !important;
+  color: var(--white) !important;
+  background: var(--primary) !important;
+  text-decoration: none !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.btn_primary:hover {
+  color: var(--white) !important;
+  background: var(--primary-hover) !important;
+  transition: 0.3s all ease-in-out;
+}
+
+.name {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  transition: 0.3s all ease-in-out;
+}
+
+.name:hover {
+  color: black !important;
+  transition: 0.3s all ease-in-out;
+}

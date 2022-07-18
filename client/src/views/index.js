@@ -21,6 +21,7 @@ import ReportPage from "./ReportPage/ReportPage";
 import ReqDetails from "./ReqDetails/ReqDetails";
 import RequestForApproval from "./RequestForApproval/RequestForApproval";
 import MyRequsetsPage from "./MyRequsetsPage/MyRequsetsPage";
+import ReportListPage from "./ReportListPage/ReportListPage";
 
 export {
   RegisterPage,
@@ -46,4 +47,5 @@ export {
   ReqDetails,
   RequestForApproval,
   MyRequsetsPage,
+  ReportListPage,
 };

@@ -11,6 +11,7 @@ import { BiAddToQueue } from "react-icons/bi";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../Footer/Footer";
 import { BsFolder, BsFolderX, BsTelephoneInbound } from "react-icons/bs";
+import { GoReport } from "react-icons/go";
 
 const DashLayout = ({ logoutAction, children, user }) => {
   const navigate = useNavigate();
@@ -76,6 +77,14 @@ const DashLayout = ({ logoutAction, children, user }) => {
                   </NavLink>
                 </div>
                 <div className={styles.nav}>
+                  <NavLink to="/report" className={styles.nav__item}>
+                    <span className={styles.icon}>
+                      <GoReport />
+                    </span>
+                    <span className={styles.nav__item_text}>Reports</span>
+                  </NavLink>
+                </div>
+                <div className={styles.nav}>
                   <NavLink to="/users" className={styles.nav__item}>
                     <span className={styles.icon}>
                       <FiUsers />
@@ -83,6 +92,7 @@ const DashLayout = ({ logoutAction, children, user }) => {
                     <span className={styles.nav__item_text}>Users</span>
                   </NavLink>
                 </div>
+
                 <div className={styles.nav}>
                   <NavLink to="/contact-list" className={styles.nav__item}>
                     <span className={styles.icon}>
