@@ -19,6 +19,7 @@ const Keyword = require("./Model/Keyword.model");
 const Requirement = require("./Model/Requirement.model");
 const Request = require("./Model/Request.model");
 const Contact = require("./Model/Contact.model");
+const Report = require("./Model/Report.model");
 require("./Model/Subscribers.model");
 
 // INITIALIZE APP
@@ -85,6 +86,7 @@ app.use("/api/listing", require("./Routes/Listing"));
 app.use("/api/contact", require("./Routes/Contact"));
 app.use("/api/subscriber", require("./Routes/Subscribe"));
 app.use("/api/request", require("./Routes/Request"));
+app.use("/api/report", require("./Routes/Report"));
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
@@ -106,6 +108,10 @@ Requirement.belongsTo(Listing);
 Request.belongsTo(User);
 Request.belongsTo(Listing);
 Contact.belongsTo(User);
+Report.belongsTo(Listing);
+Listing.hasMany(Report);
+Report.belongsTo(User);
+User.hasMany(Report);
 
 // Sequelize Sync
 sequelize

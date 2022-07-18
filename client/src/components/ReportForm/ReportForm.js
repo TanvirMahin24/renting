@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, Formik, Form } from "formik";
-import {
-  Button,
-  InputGroup,
-  Form as BootstrapForm,
-  Container,
-} from "react-bootstrap";
+import { Button, InputGroup, Container } from "react-bootstrap";
 import * as Yup from "yup";
 import styles from "./ReportForm.module.css";
 import { toast } from "react-toastify";
-import { createReqAction } from "../../actions/Request.action";
+import { createReportAction } from "../../actions/Report.action";
 
-const ReportForm = ({ data, createReqAction, user }) => {
+const ReportForm = ({ data, createReportAction, user }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
@@ -21,9 +16,13 @@ const ReportForm = ({ data, createReqAction, user }) => {
   useEffect(() => {}, []);
 
   const onSubmitHandeler = async (values) => {
+    if (user === null) {
+      toast.error("Please login to report listing");
+      return;
+    }
     setSubmitting(true);
     // TODO ::: create account action
-    let check = await createReqAction(values, data.id);
+    let check = await createReportAction(values, data.id);
     if (check === true) {
       toast.success("Package Reported Successful");
       setSubmitting(false);
@@ -100,4 +99,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { createReqAction })(ReportForm);
+export default connect(mapStateToProps, { createReportAction })(ReportForm);

@@ -93,6 +93,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 
           <Route path="/booking/:id" element={<BookingRequestPage />} />
+          <Route path="/report/:id" element={<ReportPage />} />
           <Route path="/*" element={<PrivateOutlet />}>
             <>
               <Route path="dashboard" element={<DashboardPage />} />
@@ -107,7 +108,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
                 path="requests-received/:status"
                 element={<RequestForApproval />}
               />
-              <Route path="report/:id" element={<ReportPage />} />
+
               <Route
                 path="requests-received/details/:id"
                 element={<ReqDetails />}
