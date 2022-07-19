@@ -8,6 +8,7 @@ import {
   BsStack,
 } from "react-icons/bs";
 import { FaUserAlt, FaListAlt } from "react-icons/fa";
+import { GoReport } from "react-icons/go";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
 import LineChart from "../lineChart/lineChart";
@@ -77,6 +78,13 @@ const AdminDashboard = ({ adminDataAction, data }) => {
                 title="Rejected"
                 count={data.rejected}
                 icon={<BsClipboardX />}
+              />
+            </Col>
+            <Col md={3} className="py-3">
+              <StatCard
+                title="Reports"
+                count={data.report}
+                icon={<GoReport />}
               />
             </Col>
           </Row>

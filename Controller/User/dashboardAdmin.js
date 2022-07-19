@@ -3,6 +3,7 @@ const Listing = require("../../Model/Listing.model");
 const Request = require("../../Model/Request.model");
 const Subscribers = require("../../Model/Subscribers.model");
 const Contact = require("../../Model/Contact.model");
+const Report = require("../../Model/Report.model");
 
 const getDashboardAdmin = async (req, res) => {
   // Fetch all users
@@ -27,6 +28,7 @@ const getDashboardAdmin = async (req, res) => {
     const rejectedCount = await Request.count({
       where: { status: "rejected" },
     });
+    const reportCount = await Report.count();
 
     const subscribersCount = await Subscribers.count();
 
@@ -43,6 +45,7 @@ const getDashboardAdmin = async (req, res) => {
         rejected: rejectedCount,
         subscribers: subscribersCount,
         contact: contactCount,
+        report: reportCount,
         requestTime: reqTimes,
       },
     });

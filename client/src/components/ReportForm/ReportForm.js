@@ -24,7 +24,7 @@ const ReportForm = ({ data, createReportAction, user }) => {
     // TODO ::: create account action
     let check = await createReportAction(values, data.id);
     if (check === true) {
-      toast.success("Package Reported Successful");
+      toast.success("Listing Reported Successful");
       setSubmitting(false);
       navigate(-1);
     }
