@@ -141,11 +141,19 @@ select.form-select option:hover {
   transition: 0.3s all ease-in-out;
 }
 
+.btn_primary.danger {
+  background: var(--danger) !important;
+}
+
 .btn_primary:hover {
   color: var(--white) !important;
   background: var(--primary-hover) !important;
   box-shadow: 0 16px 32px 0 rgba(7, 28, 31, 0.4) !important;
   transition: 0.3s all ease-in-out;
+}
+
+.btn_primary.danger:hover {
+  background: var(--danger-hover) !important;
 }
 .btn_danger {
   outline: none !important;

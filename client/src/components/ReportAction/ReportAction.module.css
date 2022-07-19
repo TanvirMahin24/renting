@@ -1,0 +1,9 @@
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  padding-bottom: 0px;
+}
+
+.header {
+  transform: translateY(-20px);
+}

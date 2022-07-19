@@ -1,11 +1,18 @@
-import { Badge } from "@mantine/core";
+import { useModals } from "@mantine/modals";
 import React from "react";
 import { Table } from "react-bootstrap";
 import { BiCommentError } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import ReportAction from "../ReportAction/ReportAction";
 import styles from "./ReportList.module.css";
 
 const ReportList = ({ data }) => {
+  const modals = useModals();
+  const clickHandeler = (item) => {
+    modals.openModal({
+      centered: true,
+      children: <ReportAction data={item} />,
+    });
+  };
   return (
     <div>
       <h2 className="border_left mt-3 mb-4">Reports</h2>
@@ -24,9 +31,12 @@ const ReportList = ({ data }) => {
               <tr key={item.id}>
                 <td>{i + 1}</td>
                 <td>
-                  <Link to={`/my-requests/${item.id}`} className={styles.name}>
+                  <span
+                    onClick={() => clickHandeler(item)}
+                    className={styles.name}
+                  >
                     {item.message}
-                  </Link>
+                  </span>
                 </td>
                 <td>{item.listing.title}</td>
                 <td>{`${item.user.first_name} ${item.user.last_name}`}</td>
