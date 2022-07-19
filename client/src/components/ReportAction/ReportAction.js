@@ -3,9 +3,14 @@ import Loader from "../shared/Loader/Loader";
 import styles from "./ReportAction.module.css";
 import Moment from "react-moment";
 import { BiNotepad } from "react-icons/bi";
+import { deleteReportAction } from "../../actions/Report.action";
+import { connect } from "react-redux";
 
-const ReportAction = ({ data }) => {
-  console.log(data);
+const ReportAction = ({ data, deleteReportAction, modals }) => {
+  const deleteHandeler = () => {
+    deleteReportAction(data.id);
+    modals.closeAll();
+  };
   return (
     <div className={styles.wrapper}>
       {data === null ? (
@@ -48,7 +53,12 @@ const ReportAction = ({ data }) => {
             <span className="text-danger fw-bold">Delete</span> the listing as
             well as the requests for the listing.
           </span>
-          <button className="btn_primary w-100 mt-3 mb-2">Ignore Report</button>
+          <button
+            className="btn_primary w-100 mt-3 mb-2"
+            onClick={() => deleteHandeler()}
+          >
+            Ignore Report
+          </button>
           <button className="btn_primary danger w-100">Remove Listing</button>
         </>
       )}
@@ -56,4 +66,4 @@ const ReportAction = ({ data }) => {
   );
 };
 
-export default ReportAction;
+export default connect(null, { deleteReportAction })(ReportAction);

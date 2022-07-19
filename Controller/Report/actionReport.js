@@ -1,31 +1,37 @@
+const Report = require("../../Model/Report.model");
 const Listing = require("../../Model/Listing.model");
-const path = require("path");
-const fs = require("fs");
+const Request = require("../../Model/Request.model");
 const Image = require("../../Model/Image.model");
-const Keyword = require("../../Model/Keyword.model");
+const Keyword = require("../../Model/Request.model");
 const Requirement = require("../../Model/Requirement.model");
 
-const deleteListing = async (req, res) => {
-  // Get the id from the url
-  const { id } = req.params;
-
+// get the report using the id
+const actionReport = async (req, res) => {
   try {
-    // Check listing is belongs to the user
-    const listing = await Listing.findByPk(id, {
+    const report = await Report.findById(req.params.id);
+    if (!report) {
+      return res.status(404).json({
+        message: "Report not found",
+      });
+    }
+
+    // get the Listing based on the report's listingId
+    const listing = await Listing.findById(report.listingId, {
       include: [Image, Keyword, Requirement],
     });
-    if (!listing) {
-      return res.status(404).json({ message: "Listing not found" });
+
+    // get all the request based on the listingId
+    const requests = await Request.findAll({
+      where: { listingId: report.listingId },
+      attributes: ["id"],
+    });
+
+    // delete all the requests
+    for (let i = 0; i < requests.length; i++) {
+      await requests[i].destroy();
     }
 
-    // console.log(listing);
-
-    // Check user id is same as the user id in the listing
-    if (listing.userId !== req.user.id) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
-    // Delete the image
+    // Delete listing images
     if (listing.preview_image) {
       const imagePath = path.join(
         __dirname,
@@ -42,7 +48,7 @@ const deleteListing = async (req, res) => {
     }
 
     // Delete Image model images
-    const resTest = listing.images.map(async (item) => {
+    listing.images.map(async (item) => {
       let imagePath = path.join(
         __dirname,
         "../../uploads",
@@ -69,11 +75,15 @@ const deleteListing = async (req, res) => {
     // Delete Listing
     await listing.destroy();
 
-    return res.status(200).json({ message: "Listing deleted" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Internal server error" });
+    // delete the report
+    await report.destroy();
+
+    res.status(200).json({ message: "Action successfully" });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
   }
 };
 
-module.exports = deleteListing;
+module.exports = actionReport;

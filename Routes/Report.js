@@ -4,6 +4,7 @@ const { isAuth, isAdmin } = require("../Utils/isAuth");
 
 const createReport = require("../Controller/Report/createReport");
 const getReport = require("../Controller/Report/getReport");
+const deleteReport = require("../Controller/Report/deleteReport");
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.post(
 );
 
 router.get("/", isAdmin, getReport);
+router.delete("/:id", isAdmin, deleteReport);
 
 module.exports = router;

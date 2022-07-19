@@ -10,7 +10,7 @@ const ReportList = ({ data }) => {
   const clickHandeler = (item) => {
     modals.openModal({
       centered: true,
-      children: <ReportAction data={item} />,
+      children: <ReportAction data={item} modals={modals} />,
     });
   };
   return (

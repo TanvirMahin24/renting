@@ -1,10 +1,4 @@
-const {
-  GET_MY_REQUEST_LIST,
-  GET_REQUEST_LIST,
-  GET_REQUEST_DETAILS,
-  GET_RECENT_REQUEST_LIST,
-  GET_REPORT_LIST,
-} = require("../constants/Type");
+const { GET_REPORT_LIST, DELETE_REPORT } = require("../constants/Type");
 
 const initialState = {
   report: null,
@@ -19,7 +13,11 @@ const reportReducer = (state = initialState, action) => {
         ...state,
         report: payload,
       };
-
+    case DELETE_REPORT:
+      return {
+        ...state,
+        report: state.report.filter((report) => report.id !== payload),
+      };
     default:
       return state;
   }
