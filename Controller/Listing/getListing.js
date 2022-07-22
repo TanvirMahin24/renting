@@ -39,6 +39,10 @@ const getAllListings = async (req, res) => {
         },
       ],
 
+      where: {
+        approved: "approved",
+      },
+
       order: [["id", "DESC"]],
     });
 

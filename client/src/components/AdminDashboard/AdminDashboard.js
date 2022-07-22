@@ -12,6 +12,7 @@ import { GoReport } from "react-icons/go";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
 import LineChart from "../lineChart/lineChart";
+import { ListingPiChart } from "../ListingPiChart";
 import PiChart from "../PiChart/PiChart";
 import Loader from "../shared/Loader/Loader";
 import StatCard from "../shared/StatCard/StatCard";
@@ -30,14 +31,7 @@ const AdminDashboard = ({ adminDataAction, data }) => {
         <Loader />
       ) : (
         <>
-          <Row className="">
-            <Col md={3} className="pb-4">
-              <StatCard
-                title="Listings"
-                count={data.packages}
-                icon={<BsStack />}
-              />
-            </Col>
+          <Row>
             <Col md={3} className="pb-4">
               <StatCard title="Users" count={data.users} icon={<FaUserAlt />} />
             </Col>
@@ -54,6 +48,48 @@ const AdminDashboard = ({ adminDataAction, data }) => {
                 title="Contacts"
                 count={data.contact}
                 icon={<AiFillMail />}
+              />
+            </Col>
+          </Row>
+          <h2 className="border_left mt-5 mb-4">Listing Information</h2>
+          <Row className="">
+            <Col md={3} className="pb-4">
+              <StatCard
+                title="Listings"
+                count={data.packages}
+                icon={<BsStack />}
+              />
+            </Col>
+            <Col md={3} className="pb-4">
+              <StatCard
+                title="Approved"
+                count={data.listing.approved}
+                icon={<BsClipboardCheck />}
+              />
+            </Col>
+
+            <Col md={3} className="pb-4">
+              <StatCard
+                title="Pending"
+                count={data.listing.pending}
+                icon={<BsClipboardData />}
+              />
+            </Col>
+            <Col md={3} className="pb-4">
+              <StatCard
+                title="Rejected"
+                count={data.listing.rejected}
+                icon={<BsClipboardX />}
+              />
+            </Col>
+            <Col md={6}>
+              <LineChart data={data.listing.time} listing={true} />
+            </Col>
+            <Col md={6}>
+              <ListingPiChart
+                approved={data.listing.approved}
+                pending={data.listing.pending}
+                rejected={data.listing.rejected}
               />
             </Col>
           </Row>

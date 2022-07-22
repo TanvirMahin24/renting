@@ -6,6 +6,7 @@ import {
   GET_LISTING_LIST,
   GET_LISTING_SEARCH,
   GET_MY_LISTING_LIST,
+  UPDATE_LISTING_STATUS,
 } from "../constants/Type";
 
 const inititalState = {
@@ -25,6 +26,18 @@ const listingReducer = (state = inititalState, action) => {
       return {
         ...state,
         listings: payload,
+        loading: false,
+      };
+
+    case UPDATE_LISTING_STATUS:
+      return {
+        ...state,
+        listings: state.listings.map((listing) => {
+          if (listing.id === payload.id) {
+            return payload;
+          }
+          return listing;
+        }),
         loading: false,
       };
     case GET_FILTER_LISTING:

@@ -1,6 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator");
-const { isAuth } = require("../Utils/isAuth");
+const { isAuth, isAdmin } = require("../Utils/isAuth");
 const upload = require("../config/multer");
 
 const createListing = require("../Controller/Listing/createListing");
@@ -12,6 +12,7 @@ const deleteListing = require("../Controller/Listing/deleteListing");
 const filterListing = require("../Controller/Listing/filterListing");
 const getFavListing = require("../Controller/Listing/getFavListing");
 const editListing = require("../Controller/Listing/editListing");
+const changeApprovedStatus = require("../Controller/Listing/changeApprovedStatus");
 
 const router = express.Router();
 
@@ -75,5 +76,6 @@ router.patch(
   editListing
 );
 router.delete("/:id", isAuth, deleteListing);
+router.patch("/status/:id", isAdmin, changeApprovedStatus);
 
 module.exports = router;

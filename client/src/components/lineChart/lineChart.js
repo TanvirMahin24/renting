@@ -3,7 +3,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import moment from "moment";
 
-const LineChart = ({ data }) => {
+const LineChart = ({ data, listing }) => {
   const months = [
     "Jan",
     "Feb",
@@ -71,7 +71,7 @@ const LineChart = ({ data }) => {
         }}
         series={[
           {
-            name: "Booking Request",
+            name: listing ? "Listing Created" : "Booking Request",
             data: collectionsDataCurrentProjects,
           },
         ]}

@@ -98,7 +98,9 @@ const editListing = async (req, res) => {
       floor_no,
       flat_no,
     });
-    return res.status(200).json({ message: "Listing updated successfully" });
+    return res
+      .status(200)
+      .json({ message: "Listing updated successfully", data: updatedListing });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ListingCard.module.css";
-import { Badge, Button, Text } from "@mantine/core";
+import { Badge, Text } from "@mantine/core";
 import { FaEdit, FaMapMarkerAlt, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -13,9 +13,23 @@ import divisions from "../../../constants/Divisions";
 import { kFormat } from "../../../utils/kFormat";
 import { connect } from "react-redux";
 import { useModals } from "@mantine/modals";
-import { deleteListing } from "../../../actions/Listing.action";
+import {
+  deleteListing,
+  statusChangeListing,
+} from "../../../actions/Listing.action";
+import {
+  AiOutlineCheckSquare,
+  AiOutlineExclamationCircle,
+} from "react-icons/ai";
 
-const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
+const ListingCard = ({
+  data,
+  edit,
+  isAuthenticated,
+  deleteListing,
+  user,
+  statusChangeListing,
+}) => {
   const modals = useModals();
   const district = data
     ? districts.filter((dis) => dis.id === data.district)[0]
@@ -80,20 +94,56 @@ const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
           {data.description.substring(0, 100)}
         </span>
         {edit && isAuthenticated ? (
-          <div className="d-flex justify-content-around align-items-center">
-            <Link
-              to={`/listings/${data.slug}/edit`}
-              className="btn btn_primary btn_sm"
-            >
-              <FaEdit size={20} /> Edit Now
-            </Link>
-            <button
-              className="btn btn_primary btn_sm"
-              onClick={() => deleteHandeler(data.id)}
-            >
-              <FaTrashAlt size={20} /> Delete
-            </button>
-          </div>
+          <>
+            {user && user.role !== "admin" ? (
+              <div className="d-flex justify-content-around align-items-center">
+                <Link
+                  to={`/listings/${data.slug}/edit`}
+                  className="btn btn_primary btn_sm"
+                >
+                  <FaEdit size={20} /> Edit Now
+                </Link>
+                <button
+                  className="btn btn_primary btn_sm"
+                  onClick={() => deleteHandeler(data.id)}
+                >
+                  <FaTrashAlt size={20} /> Delete
+                </button>
+              </div>
+            ) : data.approved !== "approved" ? (
+              <div className="d-flex justify-content-around align-items-center">
+                <button
+                  className="btn btn_primary btn_sm"
+                  onClick={() => statusChangeListing(data.id, "approved")}
+                >
+                  <AiOutlineCheckSquare size={20} /> Approve
+                </button>
+                <button
+                  className="btn btn_primary btn_sm"
+                  onClick={() => statusChangeListing(data.id, "rejected")}
+                >
+                  <AiOutlineExclamationCircle size={20} /> Reject
+                </button>
+              </div>
+            ) : user.id === data.userId ? (
+              <div className="d-flex justify-content-around align-items-center">
+                <Link
+                  to={`/listings/${data.slug}/edit`}
+                  className="btn btn_primary btn_sm"
+                >
+                  <FaEdit size={20} /> Edit Now
+                </Link>
+                <button
+                  className="btn btn_primary btn_sm"
+                  onClick={() => deleteHandeler(data.id)}
+                >
+                  <FaTrashAlt size={20} /> Delete
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
         ) : (
           <div className={styles.rooms}>
             <div className={styles.room}>
@@ -134,6 +184,9 @@ const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { deleteListing })(ListingCard);
+export default connect(mapStateToProps, { deleteListing, statusChangeListing })(
+  ListingCard
+);

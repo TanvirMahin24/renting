@@ -73,7 +73,7 @@ const UsersList = ({ users, getUsersAction, deleteUsersAction, user }) => {
                   <td>{usr.phone}</td>
                   <td>
                     <div className="d-flex align-items-center flex-md-row flex-column">
-                      <Button
+                      {/* <Button
                         onClick={() => navigate(`/users/${usr.id}/edit`)}
                         leftIcon={<BiEditAlt />}
                         radius="xs"
@@ -81,7 +81,7 @@ const UsersList = ({ users, getUsersAction, deleteUsersAction, user }) => {
                         className="me-2 mb-md-0 mb-2"
                       >
                         Edit
-                      </Button>
+                      </Button> */}
                       <Button
                         color="red"
                         leftIcon={<BsTrash />}

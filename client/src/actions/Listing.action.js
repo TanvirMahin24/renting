@@ -18,6 +18,8 @@ import {
   UPDATE_ADMIN_ERROR,
   UPDATE_LISTING,
   UPDATE_LISTING_ERROR,
+  UPDATE_LISTING_STATUS,
+  UPDATE_LISTING_STATUS_ERROR,
 } from "../constants/Type";
 import { BASE_URL } from "../constants/URL";
 
@@ -48,6 +50,39 @@ export const getListingLaningpage = () => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+//Change Status LISTING ACTION
+export const statusChangeListing = (id, status) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const res = await axios.patch(
+      `${BASE_URL}/api/listing/status/${id}`,
+      JSON.stringify({ status }),
+      config
+    );
+
+    dispatch({
+      type: UPDATE_LISTING_STATUS,
+      payload: res.data.data,
+    });
+
+    toast.success("Listing status updated successfully");
+
+    return true;
+  } catch (err) {
+    dispatch({
+      type: UPDATE_LISTING_STATUS_ERROR,
+    });
+    toast.error(err.response.data.message);
+    return false;
   }
 };
 

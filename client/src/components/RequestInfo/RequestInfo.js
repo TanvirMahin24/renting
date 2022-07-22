@@ -115,6 +115,30 @@ const RequestInfo = ({ data, changeStatusAction, my }) => {
             <></>
           )}
 
+          {data.status === "approved" && data.owner ? (
+            <>
+              <h3 className="border_left mb-4 mt-5">Owner Details</h3>
+              <span className="d-block fw-bold h6">
+                First Name:
+                <span className="fw-normal ms-3">{data.owner.first_name}</span>
+              </span>
+              <span className="d-block fw-bold h6">
+                Last Name:
+                <span className="fw-normal ms-3">{data.owner.last_name}</span>
+              </span>
+              <span className="d-block fw-bold h6">
+                Phone:
+                <span className="fw-normal ms-3">{data.owner.phone}</span>
+              </span>
+              <span className="d-block fw-bold h6">
+                Email:
+                <span className="fw-normal ms-3">{data.owner.email}</span>
+              </span>
+            </>
+          ) : (
+            <></>
+          )}
+
           <h3 className="border_left mb-4 mt-5">User Details</h3>
           <span className="d-block fw-bold h6">
             First Name:

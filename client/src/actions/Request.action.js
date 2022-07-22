@@ -43,7 +43,7 @@ export const createReqAction = (values, id, doc) => async (dispatch) => {
 
     return true;
   } catch (error) {
-    toast.error(error.message);
+    toast.error(error.response.data.message);
     dispatch({
       type: CREATE_REQUEST_ERROR,
     });

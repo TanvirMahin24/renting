@@ -31,6 +31,7 @@ const filterListing = async (req, res) => {
     // Get all listings
     const listingsResult = await Listing.findAndCountAll({
       where: {
+        approved: "approved",
         price: { [Op.gte]: limitStart, [Op.lte]: limitEnd },
         district: {
           [Op.in]: districtList,

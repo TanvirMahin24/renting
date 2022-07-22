@@ -13,11 +13,23 @@ const getDashboardAdmin = async (req, res) => {
     });
 
     const packCount = await Listing.count();
+    const listingPendingCount = await Listing.count({
+      where: { approved: "pending" },
+    });
+    const listingApprovedCount = await Listing.count({
+      where: { approved: "approved" },
+    });
+    const listingRejectedCount = await Listing.count({
+      where: { approved: "rejected" },
+    });
 
     const pendingCount = await Request.count({
       where: { status: "pending" },
     });
     const reqTimes = await Request.findAll({
+      attributes: ["createdAt"],
+    });
+    const listingTimes = await Listing.findAll({
       attributes: ["createdAt"],
     });
 
@@ -47,6 +59,12 @@ const getDashboardAdmin = async (req, res) => {
         contact: contactCount,
         report: reportCount,
         requestTime: reqTimes,
+        listing: {
+          pending: listingPendingCount,
+          approved: listingApprovedCount,
+          rejected: listingRejectedCount,
+          time: listingTimes,
+        },
       },
     });
   } catch (error) {

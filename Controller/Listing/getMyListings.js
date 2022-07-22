@@ -4,40 +4,72 @@ const Category = require("../../Model/Category.model");
 // Controller for get all listings
 const getMyListings = async (req, res) => {
   // Fetch all listings paginated
+  if (req.user.role === "admin") {
+    try {
+      // Fetch users listing list reversely
+      const listingList = await Listing.findAndCountAll({
+        include: [
+          {
+            model: Category,
+            as: "category",
+            attributes: ["id", "name"],
+          },
+        ],
+        order: [["approved", "DESC"]],
+      });
 
-  try {
-    // Fetch users listing list reversely
-    const listingList = await Listing.findAndCountAll({
-      where: {
-        userId: req.user.id,
-      },
-      include: [
-        {
-          model: Category,
-          as: "category",
-          attributes: ["id", "name"],
-        },
-      ],
-      order: [["id", "DESC"]],
-    });
-
-    // Send Error Response
-    if (!listingList) {
-      return res.status(404).json({
-        message: "Listings not found",
+      // Send Error Response
+      if (!listingList) {
+        return res.status(404).json({
+          message: "Listings not found",
+        });
+      }
+      // Send Response
+      return res.status(200).json({
+        success: true,
+        data: listingList,
+      });
+    } catch (error) {
+      // Send Error
+      return res.status(500).json({
+        message: "Something went wrong",
       });
     }
-    // Send Response
-    return res.status(200).json({
-      success: true,
-      data: listingList,
-    });
-  } catch (error) {
-    // Send Error
-    console.log(error);
-    return res.status(500).json({
-      message: "Something went wrong",
-    });
+  } else {
+    try {
+      // Fetch users listing list reversely
+      const listingList = await Listing.findAndCountAll({
+        where: {
+          userId: req.user.id,
+        },
+        include: [
+          {
+            model: Category,
+            as: "category",
+            attributes: ["id", "name"],
+          },
+        ],
+        order: [["id", "DESC"]],
+      });
+
+      // Send Error Response
+      if (!listingList) {
+        return res.status(404).json({
+          message: "Listings not found",
+        });
+      }
+      // Send Response
+      return res.status(200).json({
+        success: true,
+        data: listingList,
+      });
+    } catch (error) {
+      // Send Error
+      console.log(error);
+      return res.status(500).json({
+        message: "Something went wrong",
+      });
+    }
   }
 };
 

@@ -14,6 +14,20 @@ const createReq = async (req, res) => {
       return res.status(400).json({ message: errors.array()[0].msg });
     }
 
+    // check if request exist or not
+    const requestTemp = await Request.findAll({
+      where: {
+        listingId: packId,
+        userId: req.user.id,
+      },
+    });
+
+    if (requestTemp.length > 0) {
+      return res
+        .status(400)
+        .json({ message: "You have already made a request to this listing" });
+    }
+
     // Check Files exist or not
     const document = req.file ? req.file : null;
 

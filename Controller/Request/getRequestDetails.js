@@ -30,17 +30,19 @@ const getRequestDetails = async (req, res) => {
       });
     }
 
-    // Fetch moderator
-    const moderator = await User.findByPk(request.moderator_id, {
-      attributes: ["id", "first_name", "last_name", "email", "phone"],
-    });
-    console.log(moderator);
+    let owner = null;
+    if (request.status === "approved") {
+      // Fetch owner
+      owner = await User.findByPk(request.listing.userId, {
+        attributes: ["id", "first_name", "last_name", "email", "phone"],
+      });
+    }
     // success response
     return res.status(200).json({
       message: "Request details",
       data: {
         ...request.get({ plain: true }),
-        moderator,
+        owner,
       },
     });
   } catch (error) {

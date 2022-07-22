@@ -35,7 +35,7 @@ const Listing = sequelize.define("listing", {
   approved: {
     type: Sequelize.STRING,
     allowNull: true,
-    default: "pending",
+    defaultValue: "pending",
   },
   sublet: {
     type: Sequelize.BOOLEAN,
