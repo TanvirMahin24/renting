@@ -123,6 +123,11 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
               <Route path="category" element={<CategoryPage />} />
               <Route path="category/add" element={<AddCategoryPage />} />
               <Route path="listings" element={<ListingsPage />} />
+
+              <Route
+                path="listings/:slug/edit"
+                element={<AddListingPage edit={true} />}
+              />
               <Route path="users" element={<UsersPage />} />
               <Route
                 path="category/:id/edit"

@@ -32,11 +32,15 @@ const Listing = sequelize.define("listing", {
     type: Sequelize.STRING,
     allowNull: true,
   },
+  approved: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    default: "pending",
+  },
   sublet: {
     type: Sequelize.BOOLEAN,
     allowNull: true,
   },
-
   preview_image: {
     type: Sequelize.STRING,
     allowNull: false,

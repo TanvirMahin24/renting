@@ -16,6 +16,8 @@ import {
   GET_MY_LISTING_LIST,
   UPDATE_ADMIN,
   UPDATE_ADMIN_ERROR,
+  UPDATE_LISTING,
+  UPDATE_LISTING_ERROR,
 } from "../constants/Type";
 import { BASE_URL } from "../constants/URL";
 
@@ -207,6 +209,89 @@ export const createListing = (values, images, preview) => async (dispatch) => {
     return false;
   }
 };
+
+// Update Listing
+export const updateListing =
+  (values, images, preview, id) => async (dispatch) => {
+    // Create Form data
+    const data = new FormData();
+    data.append("title", values.title);
+    data.append("category", values.category);
+
+    data.append("description", values.description);
+    data.append("size", values.size);
+    data.append("price", values.price);
+
+    //Rooms
+    data.append("sublet", values.sublet);
+
+    data.append("bedrooms", values.bedrooms);
+
+    data.append("bathrooms", values.bathrooms);
+
+    data.append("dining", values.dining);
+
+    data.append("kitchen", values.kitchen);
+
+    data.append("drawingroom", values.drawingroom);
+
+    // Requirements
+    if (values.requirements) {
+      values.requirements.map((item) => {
+        data.append("requirements[]", item);
+      });
+    }
+    // Keywords
+    if (values.keywords) {
+      values.keywords.map((item) => {
+        data.append("keywords[]", item);
+      });
+    }
+
+    // Images
+    if (images) {
+      for (let i = 0; i < images.length; i++) {
+        data.append("image", images[i]);
+      }
+    }
+
+    if (preview) {
+      data.append("preview_image", preview);
+    }
+
+    //Address
+    data.append("full_address", values.full_address);
+    data.append("district", values.district);
+    data.append("house_no", values.house_no);
+    data.append("floor_no", values.floor_no);
+    data.append("flat_no", values.flat_no);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    };
+    try {
+      // TODO ::: API CALL
+      const res = await axios.patch(
+        `${BASE_URL}/api/listing/${id}`,
+        data,
+        config
+      );
+      dispatch({
+        type: UPDATE_LISTING,
+        payload: res.data.data,
+      });
+      return true;
+    } catch (err) {
+      toast.error(err.response.data.message);
+      dispatch({
+        type: UPDATE_LISTING_ERROR,
+      });
+      return false;
+    }
+  };
 
 // UPDATE Admin
 export const updateAdmin = (values, gameId, id) => async (dispatch) => {

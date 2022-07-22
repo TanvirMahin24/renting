@@ -115,8 +115,12 @@ const AddListingForm = ({
   let initVals = {
     title: edit && data.title ? data.title : "",
     category: edit && data.category ? data.category : "",
-    keywords: edit && data.keywords ? data.keywords : "",
-    requirements: edit && data.requirements ? data.requirements : "",
+    keywords:
+      edit && data?.keywords ? data.keywords.map((item) => item.name) : "",
+    requirements:
+      edit && data?.requirements
+        ? data.requirements.map((item) => item.name)
+        : "",
     description: edit && data.description ? data.description : "",
     size: edit && data.size ? data.size : 0,
     price: edit && data.price ? data.price : 0,
@@ -136,6 +140,8 @@ const AddListingForm = ({
     floor_no: edit && data.floor_no ? data.floor_no : "",
     flat_no: edit && data.flat_no ? data.flat_no : "",
   };
+
+  console.log(initVals.requirements);
 
   const SignupSchema = Yup.object().shape({
     title: Yup.string().required("Title is required!"),
@@ -243,6 +249,7 @@ const AddListingForm = ({
                     label="Keywords"
                     data={[]}
                     placeholder="Type keywords..."
+                    value={values.keywords}
                     searchable
                     creatable
                     getCreateLabel={(query) => `+ Create ${query}`}
@@ -266,6 +273,7 @@ const AddListingForm = ({
                     placeholder="Type requirements..."
                     searchable
                     creatable
+                    value={values.requirements}
                     getCreateLabel={(query) => `+ Create ${query}`}
                     onCreate={(query) =>
                       setFieldValue("requirements", [
@@ -545,6 +553,7 @@ const AddListingForm = ({
                           ? errors.district
                           : null
                       }
+                      value={values.district}
                       classNames={{
                         input: `${styles.select} ${styles.input} form-control`,
                         label: styles.label,

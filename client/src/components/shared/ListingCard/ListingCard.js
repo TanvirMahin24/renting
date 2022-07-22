@@ -82,7 +82,7 @@ const ListingCard = ({ data, edit, isAuthenticated, deleteListing }) => {
         {edit && isAuthenticated ? (
           <div className="d-flex justify-content-around align-items-center">
             <Link
-              to={`/listing/${data.slug}/edit`}
+              to={`/listings/${data.slug}/edit`}
               className="btn btn_primary btn_sm"
             >
               <FaEdit size={20} /> Edit Now
