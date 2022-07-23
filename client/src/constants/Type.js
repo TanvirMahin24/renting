@@ -7,6 +7,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const ADMIN_DATA_LOAD = "ADMIN_DATA_LOAD";
+export const RESET_LINK_SENT = "RESET_LINK_SENT";
 
 //PROFILE REDUCER
 export const AUTH_USER_LOAD = "AUTH_USER_LOAD";

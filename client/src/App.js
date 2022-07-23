@@ -44,6 +44,8 @@ import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
+import PasswordResetPage from "./views/PasswordResetPage/PasswordResetPage";
+import ForgetPasswordPage from "./views/ForgetPasswordPage/ForgetPasswordPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -86,6 +88,8 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/reset-password" element={<PasswordResetPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

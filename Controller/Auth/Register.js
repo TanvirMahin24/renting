@@ -32,11 +32,11 @@ const registerController = async (req, res) => {
     });
 
     // Send Email
-    // const emailResult = await sendMail({
-    //   to: newUser.email,
-    //   subject: "Thanks For Joining Us",
-    //   template: "register",
-    // });
+    const emailResult = await sendMail({
+      to: newUser.email,
+      subject: "Thanks For Joining Us",
+      template: "register",
+    });
 
     return res.status(200).json({
       message: "User created successfully",

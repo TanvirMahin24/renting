@@ -9,13 +9,11 @@ import {
   Container,
 } from "react-bootstrap";
 import * as Yup from "yup";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import styles from "./LoginForm.module.css";
-import { loginAction } from "../../actions/Auth.action";
+import styles from "./ForgetPassForm.module.css";
 import { toast } from "react-toastify";
+import { resetLinkSend } from "../../actions/Users.action";
 
-const LoginForm = ({ isAuthenticated, loginAction }) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+const ForgetPassForm = ({ isAuthenticated, resetLinkSend }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
@@ -29,37 +27,30 @@ const LoginForm = ({ isAuthenticated, loginAction }) => {
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
-    let check = await loginAction(values);
+    let check = await resetLinkSend(values.email);
     if (check === true) {
-      toast.success("Login Successful");
+      toast.success("Resent link sent to your email");
       setSubmitting(false);
-      navigate("/dashboard");
     }
     setSubmitting(false);
   };
   let initVals = {
     email: "",
-    password: "",
   };
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
       .email("Enter a valid email!")
-
       .required("Email is required!"),
-    password: Yup.string()
-      .required("Password is required!")
-
-      .min(6, "Password is too short!"),
   });
   return (
     <Container className="py-md-5 py-4">
       <h1 className="text-center fw-bold">
-        Login Into <br />
-        Your Account
+        Reset Your <br />
+        Password
       </h1>
       <span className="d-block text-center pt-2 pb-4">
-        Login now and start searching for your next rental home. It's free!
+        We will send you a link to reset your password.
       </span>
       <div className={styles.form}>
         <Formik
@@ -89,62 +80,22 @@ const LoginForm = ({ isAuthenticated, loginAction }) => {
                 />
               </InputGroup>
 
-              <InputGroup className="mb-3 d-flex flex-column">
-                <div className="d-flex justify-content-between align-items-center">
-                  <label htmlFor="password" className="d-block">
-                    Password
-                  </label>
-                  {errors.password && touched.password ? (
-                    <small className="text-danger">{errors.password}</small>
-                  ) : null}
-                </div>
-                <Field
-                  as={BootstrapForm.Control}
-                  placeholder="Create your own password"
-                  name="password"
-                  isValid={!errors.password && touched.password}
-                  type={isPasswordVisible ? "text" : "password"}
-                  className={`${styles.input} w-100 icon-hidden`}
-                  isInvalid={errors.password && touched.password}
-                  style={{ position: "relative" }}
-                />
-                {!isPasswordVisible ? (
-                  <AiOutlineEye
-                    className={styles.eyeIcon}
-                    color="black"
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  />
-                ) : (
-                  <AiOutlineEyeInvisible
-                    className={styles.eyeIcon}
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  />
-                )}
-              </InputGroup>
-
-              <span className="d-block text-end">
-                Forgot your password?{" "}
-                <Link to="/forget-password" className={styles.link__page}>
-                  Reset Password Now
-                </Link>
-              </span>
-
               <div className="pt-3 d-flex justify-content-between align-items-center">
                 <Button
                   type="submit"
                   className={"btn_primary"}
                   disabled={submitting}
                 >
-                  {submitting ? "Submitting..." : "Login"}
+                  {submitting ? "Submitting..." : "Send Reset Link"}
                 </Button>
                 <Link
                   as={Button}
                   type="submit"
-                  to="/register"
+                  to="/login"
                   className={"btn_primary text-decoration-none"}
                   disabled={submitting}
                 >
-                  Register Now
+                  Go Back
                 </Link>
               </div>
             </Form>
@@ -171,4 +122,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { loginAction })(LoginForm);
+export default connect(mapStateToProps, { resetLinkSend })(ForgetPassForm);

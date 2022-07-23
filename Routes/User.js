@@ -1,4 +1,5 @@
 const express = require("express");
+const ResetLinkSend = require("../Controller/Auth/ResetLinkSend");
 const { getDashboardAdmin } = require("../Controller/User/dashboardAdmin");
 const { deleteUser } = require("../Controller/User/deleteUser");
 const { changeUserRole } = require("../Controller/User/editUser");
@@ -16,6 +17,7 @@ const router = express.Router();
 
 // Auth Routes
 router.get("/auth", getAuthUser);
+router.post("/reset", ResetLinkSend);
 router.get("/dashboard", isAdmin, getDashboardAdmin);
 router.get("/", getAllUser);
 router.post("/role/:id", isAdmin, changeUserRole);

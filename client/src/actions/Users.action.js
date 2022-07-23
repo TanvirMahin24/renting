@@ -8,6 +8,7 @@ import {
   GET_USERS_LIST,
   PASSWORD_CHANGED,
   PASSWORD_CHANGED_ERROR,
+  RESET_LINK_SENT,
   UPDATE_USERS,
   UPDATE_USERS_ERROR,
 } from "../constants/Type";
@@ -25,6 +26,33 @@ export const getUsersAction = () => async (dispatch) => {
     dispatch({
       type: GET_USERS_LIST,
       payload: res.data.data,
+    });
+
+    return true;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    return false;
+  }
+};
+
+// GET USERS ACTION
+export const resetLinkSend = (email) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    await axios.post(
+      `${BASE_URL}/api/user/reset`,
+      JSON.stringify({ email }),
+      config
+    );
+
+    dispatch({
+      type: RESET_LINK_SENT,
     });
 
     return true;

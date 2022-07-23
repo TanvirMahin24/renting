@@ -14,7 +14,7 @@ import styles from "./LoginForm.module.css";
 import { loginAction } from "../../actions/Auth.action";
 import { toast } from "react-toastify";
 
-const LoginForm = ({ isAuthenticated, loginAction }) => {
+const ResetPasswordForm = ({ isAuthenticated, loginAction }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -171,4 +171,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { loginAction })(LoginForm);
+export default connect(mapStateToProps, { loginAction })(ResetPasswordForm);

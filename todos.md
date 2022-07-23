@@ -12,19 +12,19 @@
 - [x] Search modal
 - [x] Landing search section for price range
 - [x] Filter Page for searcing 
-- [ ] Make a request to listing   
-- [ ] Pending Requests in Dashboard
-- [ ] View Request History
+- [x] Make a request to listing   
+- [x] Pending Requests in Dashboard
+- [x] View Request History
 
 # Owner
 - [x] Listing Creation
 - [x] Listing Delete
-- [ ] Listing Edit
+- [x] Listing Edit
 - [x] Dashboard my listings
-- [ ] Pending requests for approval in dashboard
-- [ ] Previous requests for listings in dashboard
+- [x] Pending requests for approval in dashboard
+- [x] Previous requests for listings in dashboard
 
 # Admin
-- [ ] Listings List
-- [ ] Requests List (pending, approved, rejected)
+- [x] Listings List
+- [x] Requests List (pending, approved, rejected)
 - [x] Users List

@@ -20,6 +20,7 @@ const Requirement = require("./Model/Requirement.model");
 const Request = require("./Model/Request.model");
 const Contact = require("./Model/Contact.model");
 const Report = require("./Model/Report.model");
+const Reset = require("./Model/Reset.model");
 require("./Model/Subscribers.model");
 
 // INITIALIZE APP
@@ -112,6 +113,8 @@ Report.belongsTo(Listing);
 Listing.hasMany(Report);
 Report.belongsTo(User);
 User.hasMany(Report);
+Reset.belongsTo(User);
+User.hasMany(Reset);
 
 // Sequelize Sync
 sequelize
