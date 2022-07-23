@@ -26,7 +26,7 @@ const ContactList = ({ user, contact, getContactsAction }) => {
         <span className="h4 d-block py-5 fw-normal text-center">
           <BiCommentError size={48} color="var(--primary)" className="mb-3" />{" "}
           <br />
-          No Comment Found!
+          No Contact Found!
         </span>
       ) : (
         <>

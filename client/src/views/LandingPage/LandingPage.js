@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import { getCategoryAction } from "../../actions/Category.action";
 import { getListingLaningpage } from "../../actions/Listing.action";
 import Footer from "../../components/Footer/Footer";
+import TestimonialList from "../../components/TestimonialList/TestimonialList";
+import AboutBottom from "../../components/AboutBottom/AboutBottom";
 
 const LandingPage = ({
   categories,
@@ -56,6 +58,8 @@ const LandingPage = ({
           )}
         </Row>
       </Container>
+      <TestimonialList />
+      <AboutBottom />
       <Footer />
     </div>
   );

@@ -24,7 +24,6 @@ router.post(
     failWithError: true,
   }),
   function (err, req, res, next) {
-    console.log(err);
     return res.json({ ...err, message: "Invalid Credentials" });
   }
 );

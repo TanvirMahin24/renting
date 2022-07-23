@@ -1,9 +1,11 @@
 import React from "react";
-import LoginForm from "../../components/LoginForm";
+import { useParams } from "react-router-dom";
+import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
 import BreadCrumb from "../../components/shared/BreadCrumb/BreadCrumb";
 import CustomNavbar from "../../components/shared/Navbar/CustomNavbar";
 
 const PasswordResetPage = () => {
+  const { token } = useParams();
   return (
     <div className="bg-light" style={{ minHeight: "100vh" }}>
       <CustomNavbar />
@@ -13,7 +15,7 @@ const PasswordResetPage = () => {
         last="Reset Password"
         name={"Password Reset"}
       />
-      <LoginForm />
+      {token ? <ResetPasswordForm token={token} /> : <div>No Token</div>}
     </div>
   );
 };

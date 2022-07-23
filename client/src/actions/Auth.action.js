@@ -7,6 +7,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT_FAIL,
   LOGOUT_SUCCESS,
+  PASSWORD_RESET_SUCCESS,
   PROFILE_UPDATE,
   PROFILE_UPDATE_ERROR,
   REGISTER_FAIL,
@@ -38,6 +39,36 @@ export const loginAction = (values) => async (dispatch) => {
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data.data,
+    });
+
+    return true;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    return false;
+  }
+};
+// LOGIN ACTION
+export const passwordResetAction = (values, token) => async (dispatch) => {
+  try {
+    const data = {
+      password: values.password,
+    };
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    await axios.post(
+      `${BASE_URL}/api/user/password/${token}`,
+      JSON.stringify(data),
+      config
+    );
+
+    dispatch({
+      type: PASSWORD_RESET_SUCCESS,
     });
 
     return true;

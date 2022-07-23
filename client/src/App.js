@@ -89,7 +89,7 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forget-password" element={<ForgetPasswordPage />} />
-          <Route path="/reset-password" element={<PasswordResetPage />} />
+          <Route path="/reset/:token" element={<PasswordResetPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

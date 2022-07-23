@@ -7,6 +7,7 @@ const {
   getAuthUser,
   getAllUser,
 } = require("../Controller/User/getUserDetails");
+const resetPassword = require("../Controller/User/updatePassword");
 const {
   updateProfile,
   updatePassword,
@@ -18,6 +19,7 @@ const router = express.Router();
 // Auth Routes
 router.get("/auth", getAuthUser);
 router.post("/reset", ResetLinkSend);
+router.post("/password/:token", resetPassword);
 router.get("/dashboard", isAdmin, getDashboardAdmin);
 router.get("/", getAllUser);
 router.post("/role/:id", isAdmin, changeUserRole);
