@@ -9,6 +9,7 @@ import {
 } from "react-icons/bs";
 import { FaUserAlt, FaListAlt } from "react-icons/fa";
 import { GoReport } from "react-icons/go";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { connect } from "react-redux";
 import { adminDataAction } from "../../actions/Auth.action";
 import LineChart from "../lineChart/lineChart";
@@ -48,6 +49,13 @@ const AdminDashboard = ({ adminDataAction, data }) => {
                 title="Contacts"
                 count={data.contact}
                 icon={<AiFillMail />}
+              />
+            </Col>
+            <Col md={3} className="pb-4">
+              <StatCard
+                title="Resets"
+                count={data.reset}
+                icon={<RiLockPasswordLine />}
               />
             </Col>
           </Row>

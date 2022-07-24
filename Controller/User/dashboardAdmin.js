@@ -4,6 +4,7 @@ const Request = require("../../Model/Request.model");
 const Subscribers = require("../../Model/Subscribers.model");
 const Contact = require("../../Model/Contact.model");
 const Report = require("../../Model/Report.model");
+const Reset = require("../../Model/Reset.model");
 
 const getDashboardAdmin = async (req, res) => {
   // Fetch all users
@@ -41,6 +42,7 @@ const getDashboardAdmin = async (req, res) => {
       where: { status: "rejected" },
     });
     const reportCount = await Report.count();
+    const resetCount = await Reset.count();
 
     const subscribersCount = await Subscribers.count();
 
@@ -58,6 +60,7 @@ const getDashboardAdmin = async (req, res) => {
         subscribers: subscribersCount,
         contact: contactCount,
         report: reportCount,
+        reset: resetCount,
         requestTime: reqTimes,
         listing: {
           pending: listingPendingCount,
