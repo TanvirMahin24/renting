@@ -65,6 +65,18 @@ code {
     monospace;
 }
 
+.link_primary {
+  text-decoration: none !important;
+  color: var(--primary);
+  font-weight: bold;
+  transition: 0.3s all ease-in-out;
+}
+
+.link_primary:hover {
+  color: var(--dark);
+  transition: 0.3s all ease-in-out;
+}
+
 .code_block {
   background: rgba(192, 192, 192, 0.2);
   border-radius: 2px;

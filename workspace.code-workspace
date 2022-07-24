@@ -38,6 +38,9 @@
 		},
 		{
 			"path": "..\\ontopups"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\xampp\\htdocs\\rcf"
 		}
 	],
 	"settings": {

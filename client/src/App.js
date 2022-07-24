@@ -39,13 +39,15 @@ import {
   RequestForApproval,
   MyRequsetsPage,
   ReportListPage,
+  PrivacyPolicyPage,
+  PasswordResetPage,
+  ForgetPasswordPage,
+  TermsPage,
 } from "./views";
 import { useEffect } from "react";
 import { authUserAction } from "./actions/Auth.action";
 import { connect } from "react-redux";
 import { searchListingLanding } from "./actions/Listing.action";
-import PasswordResetPage from "./views/PasswordResetPage/PasswordResetPage";
-import ForgetPasswordPage from "./views/ForgetPasswordPage/ForgetPasswordPage";
 
 function App({ authUserAction, searchListingLanding, searchResult }) {
   const navigate = useNavigate();
@@ -94,6 +96,8 @@ function App({ authUserAction, searchListingLanding, searchResult }) {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
 
           <Route path="/listing/:slug" element={<ListingDetailsPage />} />
 

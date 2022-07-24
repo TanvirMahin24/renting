@@ -22,6 +22,10 @@ import ReqDetails from "./ReqDetails/ReqDetails";
 import RequestForApproval from "./RequestForApproval/RequestForApproval";
 import MyRequsetsPage from "./MyRequsetsPage/MyRequsetsPage";
 import ReportListPage from "./ReportListPage/ReportListPage";
+import PasswordResetPage from "./PasswordResetPage/PasswordResetPage";
+import ForgetPasswordPage from "./ForgetPasswordPage/ForgetPasswordPage";
+import PrivacyPolicyPage from "./PrivacyPolicyPage/PrivacyPolicyPage";
+import TermsPage from "./TermsPage/TermsPage";
 
 export {
   RegisterPage,
@@ -48,4 +52,8 @@ export {
   RequestForApproval,
   MyRequsetsPage,
   ReportListPage,
+  PasswordResetPage,
+  ForgetPasswordPage,
+  PrivacyPolicyPage,
+  TermsPage,
 };
