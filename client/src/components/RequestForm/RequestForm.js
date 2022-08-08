@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, Formik, Form } from "formik";
@@ -18,8 +18,6 @@ const RequestForm = ({ data, createReqAction, user }) => {
   const [doc, setDoc] = useState(null);
 
   const navigate = useNavigate();
-
-  useEffect(() => {}, []);
 
   const onSubmitHandeler = async (values) => {
     if (user === null) {
@@ -60,6 +58,7 @@ const RequestForm = ({ data, createReqAction, user }) => {
     occupation: Yup.string().required("Occupation is required!"),
     job_title: Yup.string().notRequired(),
   });
+
   return (
     <div>
       <Container fluid className="pb-4">

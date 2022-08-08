@@ -16,7 +16,7 @@ import { MultiSelect, Select, Switch } from "@mantine/core";
 import { getCategoryAction } from "../../actions/Category.action";
 import { useNavigate } from "react-router-dom";
 import districts from "../../constants/Districts";
-import { createListing } from "../../actions/Listing.action";
+import { createListing, updateListing } from "../../actions/Listing.action";
 
 const AddListingForm = ({
   createListing,
@@ -25,6 +25,7 @@ const AddListingForm = ({
   data,
   category,
   getCategoryAction,
+  updateListing,
 }) => {
   const [subletCheck, setSubletCheck] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -36,7 +37,7 @@ const AddListingForm = ({
     if (category === null) {
       getCategoryAction();
     }
-    if (user !== null && user.role !== "admin") {
+    if (user === null) {
       navigate("/");
     }
   }, []);
@@ -103,7 +104,9 @@ const AddListingForm = ({
   const onSubmitHandeler = async (values) => {
     setSubmitting(true);
     // TODO ::: create account action
-    let check = await createListing(values, image, previewImage);
+    let check = !edit
+      ? await createListing(values, image, previewImage)
+      : await updateListing(values, image, previewImage, data.id);
     if (check === true) {
       toast.success("Listing added Successfully");
       navigate("/listings");
@@ -693,4 +696,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   createListing,
   getCategoryAction,
+  updateListing,
 })(AddListingForm);

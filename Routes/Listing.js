@@ -13,6 +13,7 @@ const filterListing = require("../Controller/Listing/filterListing");
 const getFavListing = require("../Controller/Listing/getFavListing");
 const editListing = require("../Controller/Listing/editListing");
 const changeApprovedStatus = require("../Controller/Listing/changeApprovedStatus");
+const { getLatestListing } = require("../Controller/Listing/latestListing");
 
 const router = express.Router();
 
@@ -44,6 +45,7 @@ router.post(
   createListing
 );
 router.get("/fav", getFavListing);
+router.get("/latest", getLatestListing);
 router.get("/", getAllListings);
 router.get("/search", searchListing);
 router.get("/filter", filterListing);

@@ -1,49 +1,52 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "..\\abash-backend"
-		},
-		{
-			"path": "..\\abash"
-		},
-		{
-			"path": "..\\angular-dev"
-		},
-		{
-			"path": "..\\angular-frontend"
-		},
-		{
-			"path": "..\\Sproxte"
-		},
-		{
-			"path": "..\\problem-solve"
-		},
-		{
-			"path": "..\\Book-Reading-Backend"
-		},
-		{
-			"path": "..\\book-reading-frontend"
-		},
-		{
-			"path": "..\\angular-mapban"
-		},
-		{
-			"path": "..\\about-temporary"
-		},
-		{
-			"path": "..\\technowren"
-		},
-		{
-			"path": "..\\ontopups"
-		},
-		{
-			"path": "..\\..\\..\\..\\..\\xampp\\htdocs\\rcf"
-		}
-	],
-	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "angular-mapban"
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "..\\abash-backend"
+    },
+    {
+      "path": "..\\abash"
+    },
+    {
+      "path": "..\\angular-dev"
+    },
+    {
+      "path": "..\\Sproxte"
+    },
+    {
+      "path": "..\\problem-solve"
+    },
+    {
+      "path": "..\\Book-Reading-Backend"
+    },
+    {
+      "path": "..\\book-reading-frontend"
+    },
+    {
+      "path": "..\\about-temporary"
+    },
+    {
+      "path": "..\\ontopups"
+    },
+    {
+      "path": "..\\..\\..\\..\\..\\xampp\\htdocs\\rcf"
+    },
+    {
+      "path": "..\\me-archive"
+    },
+    {
+      "path": "..\\technowren"
+    },
+    {
+      "path": "..\\hackathon-frontend"
+    },
+    {
+      "path": "..\\BUET-Hackathon"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "me-archive"
+  }
 }

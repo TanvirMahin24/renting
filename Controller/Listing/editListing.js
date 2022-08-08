@@ -1,4 +1,5 @@
 const Listing = require("../../Model/Listing.model");
+const { validationResult } = require("express-validator");
 
 // edit listing
 // Language: javascript
@@ -55,22 +56,6 @@ const editListing = async (req, res) => {
   // Check Keywords exist or not
   if (!keywords) {
     return res.status(400).json({ message: "Keywords are required" });
-  }
-
-  // Create slug from title
-  const slug = title.toLowerCase().replace(/ /g, "-");
-
-  // Check slug exist or not
-  try {
-    const newListing = await Listing.findAll({ where: { slug: slug } });
-    if (newListing.length > 0) {
-      return res.status(400).json({
-        message: "This title is already used",
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: error.message });
   }
 
   // update the listing
