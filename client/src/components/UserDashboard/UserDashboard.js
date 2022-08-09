@@ -45,7 +45,7 @@ const UserDashboard = ({
 
       {data !== null && data.length > 0 ? (
         <>
-          <h2 className="border_left mt-5 mb-4">Favorite Packages</h2>
+          <h2 className="border_left mt-5 mb-4">Favorite Listings</h2>
           <Row>
             {data.map((item) => (
               <Col md={6} key={item.id}>

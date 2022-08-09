@@ -328,49 +328,6 @@ export const updateListing =
     }
   };
 
-// UPDATE Admin
-export const updateAdmin = (values, gameId, id) => async (dispatch) => {
-  let formData = {
-    name: values.name,
-    gameId: gameId,
-    customGameId: values.customGameId,
-    pictureUrl: values.pictureUrl,
-    addtionalInfo: {
-      test: "test data",
-    },
-  };
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  try {
-    // TODO ::: API CALL
-    const res = await axios.put(
-      `${BASE_URL}/api/playerUpdate/${id}`,
-      JSON.stringify(formData),
-      config
-    );
-    if (res.data.code === 200) {
-      dispatch({
-        type: UPDATE_ADMIN,
-      });
-      toast.success("Player updated successfully");
-      return true;
-    } else {
-      toast.error(res.data.message);
-    }
-    return false;
-  } catch (err) {
-    dispatch({
-      type: UPDATE_ADMIN_ERROR,
-    });
-    console.log(err);
-    return false;
-  }
-};
-
 //DELETE Listing
 export const deleteListing = (id) => async (dispatch) => {
   try {

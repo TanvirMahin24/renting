@@ -23,7 +23,7 @@ const ListingGallery = ({ listing }) => {
             centeredSlides={false}
             slidesPerView={3}
             loop={true}
-            pagination={true}
+            pagination={false}
             modules={[Autoplay]}
             lazy={true}
             className={styles.swiper}

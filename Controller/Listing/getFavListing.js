@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const Listing = require("../../Model/Listing.model");
+const Category = require("../../Model/Category.model");
 
 // Controller for get all listings
 const getFavListing = async (req, res) => {
@@ -13,6 +14,7 @@ const getFavListing = async (req, res) => {
       where: {
         id: { [Op.in]: ids },
       },
+      include: [Category],
       order: [["id", "DESC"]],
     });
 
