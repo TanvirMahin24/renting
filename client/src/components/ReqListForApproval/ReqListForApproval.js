@@ -52,7 +52,6 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
               <th>Name</th>
               <th>Phone</th>
               <th>Status</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -68,18 +67,6 @@ const ReqListForApproval = ({ data, status, dashboard }) => {
                 <td className="text-uppercase">
                   {" "}
                   <Badge variant="filled">{item.status}</Badge>
-                </td>
-                <td>
-                  {item.status === "approved" ? (
-                    <Link
-                      className={styles.btn_primary}
-                      to={`/payment/${item.id}`}
-                    >
-                      <MdOutlineAttachMoney size={22} /> Pay Now
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
                 </td>
               </tr>
             ))}
